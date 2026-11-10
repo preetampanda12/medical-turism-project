@@ -198,10 +198,10 @@ write("", L.page({
           <a href="#" class="btn btn-wa" data-wa-link hidden>${icon("chat")} Chat on WhatsApp</a>
         </div>
         <ul class="hero-points">
-          <li>${icon("check")}Our help costs you nothing</li>
-          <li>${icon("check")}You see the hospital's own estimate</li>
-          <li>${icon("check")}One person looks after you throughout</li>
-          <li>${icon("check")}For families in India and abroad</li>
+          <li>${icon("check")}Free for families</li>
+          <li>${icon("check")}Real hospital estimates</li>
+          <li>${icon("check")}One person, start to finish</li>
+          <li>${icon("check")}India &amp; abroad</li>
         </ul>
       </div>
       <div class="hero-visual">
