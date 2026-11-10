@@ -10,7 +10,7 @@ const Emu = require("../assets/gas-emulator.js");
 
 const ROOT = path.join(__dirname, "..");
 const SHOTS = process.argv[2] || "";
-const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".gs": "text/plain" };
+const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".gs": "text/plain", ".png": "image/png", ".webmanifest": "application/manifest+json" };
 let pass = 0;
 const ok = (m) => { pass++; console.log("  ✓ " + m); };
 const shot = (page, name, opts) => SHOTS ? page.screenshot({ path: path.join(SHOTS, name + ".png"), ...(opts || {}) }) : null;
@@ -19,7 +19,7 @@ function serve() {
   return new Promise((resolve) => {
     const srv = http.createServer((req, res) => {
       const p = decodeURIComponent(new URL(req.url, "http://x").pathname);
-      const file = path.join(ROOT, p === "/" ? "index.html" : p);
+      const file = path.join(ROOT, p.endsWith("/") ? p + "index.html" : p);
       if (!file.startsWith(ROOT) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); return res.end(); }
       res.writeHead(200, { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream" });
       fs.createReadStream(file).pipe(res);
@@ -28,19 +28,43 @@ function serve() {
   });
 }
 
-async function fillIntake(page, who) {
+async function fillIntake(page, who, opts) {
+  // Step 1 – problem
+  if (opts && opts.checkWizard) {
+    assert.strictEqual(await page.textContent("#wz-count"), "Step 1 of 4");
+    await page.click("#wz-next");
+    assert.ok((await page.textContent("#form-error")).includes("type of health problem"));
+    assert.ok(await page.isHidden("#patientName"));
+  }
+  await page.click('.tile:has(input[value="Heart"])');
+  await page.fill("#problem", "Breathlessness, doctor advised valve replacement.");
+  await page.click("#wz-next");
+  // Step 2 – patient
+  await page.fill("#patientName", who.patient);
+  await page.fill("#patientAge", "61");
+  if (opts && opts.checkWizard) {
+    await page.click("#wz-back");
+    assert.strictEqual(await page.inputValue("#problem"), "Breathlessness, doctor advised valve replacement.");
+    await page.click("#wz-next");
+    assert.strictEqual(await page.inputValue("#patientName"), who.patient);
+  }
+  await page.click("#wz-next");
+  // Step 3 – plan
+  await page.click('.chip-check:has(input[value="Stay near hospital"])');
+  await page.click('.chip-check:has(input[value="Pickup & local cab"])');
+  await page.click("#wz-next");
+  // Step 4 – contact
+  if (opts && opts.checkWizard) {
+    assert.strictEqual(await page.textContent("#wz-count"), "Step 4 of 4");
+    await page.click("#wz-submit");
+    assert.ok(await page.isVisible("#form-error"));
+  }
   await page.check("input[name=filledFor][value=Myself]");
   await page.fill("#contactName", who.name);
   await page.fill("#phone", who.phone);
   await page.fill("#city", who.city);
-  await page.fill("#patientName", who.patient);
-  await page.fill("#patientAge", "61");
-  await page.selectOption("#condition", "Heart");
-  await page.fill("#problem", "Breathlessness, doctor advised valve replacement.");
-  await page.check('input[value="Stay near hospital"]');
-  await page.check('input[value="Pickup & local cab"]');
   await page.check("#consent");
-  await page.click("button[type=submit]");
+  await page.click("#wz-submit");
   await page.waitForSelector("#success.show");
   const caseId = (await page.textContent("#case-id")).trim();
   const track = await page.getAttribute("#success-track a", "href");
@@ -57,8 +81,13 @@ async function demoFlow(browser, base) {
   await page.addInitScript(() => { window.print = () => { window.__printed = (window.__printed || 0) + 1; }; });
 
   // 1. Website intake
+  await page.goto(base + "/treatments/heart-surgery-in-india/");
+  await page.click(".page-hero .btn-primary");
+  await page.waitForSelector("#wz-count");
+  assert.ok(await page.isChecked('input[name=condition][value="Heart"]')); ok("treatment page pre-selects condition in the form");
   await page.goto(base + "/index.html");
-  const { caseId, track } = await fillIntake(page, { name: "Kavita Singh", phone: "+91 99887 76655", city: "Ranchi", patient: "Mohan Singh" });
+  const { caseId, track } = await fillIntake(page, { name: "Kavita Singh", phone: "+91 99887 76655", city: "Ranchi", patient: "Mohan Singh" }, { checkWizard: true });
+  ok("multi-step form: validation per step, back keeps answers");
   assert.ok(/^IRY-\d{6}-[A-Z2-9]{4}$/.test(caseId)); ok("website form saved case " + caseId);
   assert.ok(track && track.includes("track.html?id=" + caseId)); ok("tracking link shown after submit");
 

@@ -140,13 +140,14 @@ function page(o) {
   const rel = o.absBase ? SITE.url + "/" : relFor(o.path);
   const canonical = absUrl(o.path);
   const schema = [ORG()].concat(o.schema || []);
-  const scripts = ["assets/config.js"].concat(o.scripts || []).concat(["assets/app.js"]);
+  const scripts = ["assets/config.js"].concat(o.scripts || []).concat(["assets/motion.js", "assets/app.js"]);
   return `<!doctype html>
 <html lang="en-IN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(o.title)}</title>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__irMotion)document.documentElement.classList.add("reveal-all")},2500)</script>
   <meta name="description" content="${esc(o.description)}">
   <link rel="canonical" href="${canonical}">
   ${o.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}

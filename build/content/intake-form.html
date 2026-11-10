@@ -1,68 +1,63 @@
-  <!-- INTAKE FORM -->
-  <section class="section" id="start">
+  <!-- INTAKE FORM (multi-step) -->
+  <section class="section form-section" id="start">
     <div class="container form-wrap">
       <div class="form-side">
         <p class="eyebrow">Start here</p>
         <h2>Get your free treatment plan</h2>
-        <p class="lead">Takes about 3 minutes. Your coordinator will contact you within <span data-response-hours>2</span> working hours.</p>
+        <p class="lead">4 quick steps, about 2 minutes. Your coordinator will contact you within <span data-response-hours>2</span> working hours.</p>
         <ul class="trust-list">
           <li>No payment needed to get a plan</li>
           <li>Your information is shared only with hospitals you approve</li>
           <li>Not sure what's wrong? Choose "Not sure". We'll help.</li>
         </ul>
         <div class="notice">
-          <b>⚠️ Not for emergencies.</b> If this is a medical emergency, call <b>112</b> in India (or your local emergency number) or go to the nearest hospital now.
+          <b>Not for emergencies.</b> If this is a medical emergency, call <b>112</b> in India (or your local emergency number) or go to the nearest hospital now.
         </div>
       </div>
 
-      <div>
-        <form class="intake" id="intake-form" novalidate>
-          <fieldset>
-            <legend>1. About you</legend>
-            <div class="field">
-              <span>Who are you filling this for? <span class="req">*</span></span>
-              <div class="radio-row">
-                <label class="check"><input type="radio" name="filledFor" value="Myself" required> Myself</label>
-                <label class="check"><input type="radio" name="filledFor" value="Family member / friend"> A family member or friend</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="contactName">Your full name <span class="req">*</span></label><input type="text" id="contactName" name="contactName" required autocomplete="name"></div>
-              <div class="field"><label for="phone">Phone / WhatsApp number <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+91 98765 43210"><span class="hint">Include country code</span></div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email"></div>
-              <div class="field"><label for="country">Country <span class="req">*</span></label><input type="text" id="country" name="country" required value="India" autocomplete="country-name"></div>
-            </div>
-            <div class="field"><label for="city">Your city / town <span class="req">*</span></label><input type="text" id="city" name="city" required autocomplete="address-level2"></div>
-          </fieldset>
+      <div class="wizard-card">
+        <form class="intake wizard" id="intake-form" novalidate>
+          <div class="wz-progress" aria-hidden="true">
+            <div class="wz-bar"><span id="wz-fill"></span></div>
+            <ol class="wz-steps">
+              <li class="on"><span>1</span>Problem</li>
+              <li><span>2</span>Patient</li>
+              <li><span>3</span>Plan</li>
+              <li><span>4</span>Contact</li>
+            </ol>
+          </div>
+          <p class="wz-count" id="wz-count" aria-live="polite">Step 1 of 4</p>
 
-          <fieldset>
-            <legend>2. About the patient</legend>
-            <div class="row-3">
-              <div class="field"><label for="patientName">Patient name <span class="req">*</span></label><input type="text" id="patientName" name="patientName" required></div>
-              <div class="field"><label for="patientAge">Age <span class="req">*</span></label><input type="number" id="patientAge" name="patientAge" min="0" max="120" required></div>
-              <div class="field"><label for="patientGender">Gender</label>
-                <select id="patientGender" name="patientGender"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select>
+          <fieldset class="wz-step" data-step="1">
+            <legend>What do you need help with?</legend>
+            <div class="field">
+              <span id="condition-label">Type of health problem <span class="req">*</span></span>
+              <div class="tiles" role="radiogroup" aria-labelledby="condition-label">
+                <label class="tile"><input type="radio" name="condition" value="Cancer" required><span>{icon:ribbon}Cancer</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Heart"><span>{icon:heart}Heart</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Bones &amp; joints"><span>{icon:bone}Bones &amp; joints</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Brain &amp; spine"><span>{icon:brain}Brain &amp; spine</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Kidney &amp; urology"><span>{icon:drop}Kidney &amp; urology</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Liver &amp; digestive"><span>{icon:pill}Liver &amp; digestive</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Fertility / IVF"><span>{icon:fertility}Fertility / IVF</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Eye"><span>{icon:search}Eye</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Other"><span>{icon:hospital}Other</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Not sure"><span>{icon:chat}Not sure</span></label>
               </div>
-            </div>
-            <div class="field"><label for="condition">Type of health problem <span class="req">*</span></label>
-              <select id="condition" name="condition" required>
-                <option value="">Select one</option>
-                <option>Cancer</option>
-                <option>Heart</option>
-                <option>Bones &amp; joints</option>
-                <option>Brain &amp; spine</option>
-                <option>Kidney &amp; urology</option>
-                <option>Liver &amp; digestive</option>
-                <option>Fertility / IVF</option>
-                <option>Eye</option>
-                <option>Other</option>
-                <option>Not sure</option>
-              </select>
             </div>
             <div class="field"><label for="problem">Describe the problem <span class="req">*</span></label>
               <textarea id="problem" name="problem" required placeholder="What are the symptoms? Since when? What have doctors said so far?"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="wz-step" data-step="2" hidden>
+            <legend>About the patient</legend>
+            <div class="row-3">
+              <div class="field"><label for="patientName">Patient name <span class="req">*</span></label><input type="text" id="patientName" name="patientName" required></div>
+              <div class="field"><label for="patientAge">Age <span class="req">*</span></label><input type="number" id="patientAge" name="patientAge" min="0" max="120" required inputmode="numeric"></div>
+              <div class="field"><label for="patientGender">Gender</label>
+                <select id="patientGender" name="patientGender"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select>
+              </div>
             </div>
             <div class="row">
               <div class="field"><label for="diagnosed">Has a doctor diagnosed it?</label>
@@ -72,8 +67,8 @@
             </div>
           </fieldset>
 
-          <fieldset>
-            <legend>3. Your plan</legend>
+          <fieldset class="wz-step" data-step="3" hidden>
+            <legend>Your plan</legend>
             <div class="row">
               <div class="field"><label for="preferredCity">Preferred treatment city</label>
                 <select id="preferredCity" name="preferredCity">
@@ -93,39 +88,64 @@
             </div>
             <div class="field">
               <span>What help do you need? <span class="hint">(choose all that apply)</span></span>
-              <div class="checks">
-                <label class="check"><input type="checkbox" name="services" value="Hospital & doctor" checked> Hospital &amp; doctor</label>
-                <label class="check"><input type="checkbox" name="services" value="Train / flight booking"> Train / flight booking</label>
-                <label class="check"><input type="checkbox" name="services" value="Pickup & local cab"> Pickup &amp; local cab</label>
-                <label class="check"><input type="checkbox" name="services" value="Stay near hospital"> Stay near hospital</label>
-                <label class="check"><input type="checkbox" name="services" value="Personal assistant"> Personal assistant</label>
-                <label class="check"><input type="checkbox" name="services" value="Stay & food for family"> Stay &amp; food for family</label>
-                <label class="check"><input type="checkbox" name="services" value="Medicines / pharmacy"> Medicines / pharmacy</label>
-                <label class="check"><input type="checkbox" name="services" value="Insurance claim help"> Insurance claim help</label>
-                <label class="check"><input type="checkbox" name="services" value="Medical loan / EMI"> Medical loan / EMI</label>
-                <label class="check"><input type="checkbox" name="services" value="Medical visa & invitation letter"> Medical visa &amp; invitation letter</label>
-                <label class="check"><input type="checkbox" name="services" value="Translator"> Translator</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="contactPref">How should we contact you?</label>
-                <select id="contactPref" name="contactPref"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
-              </div>
-              <div class="field"><label for="bestTime">Best time to reach you</label>
-                <select id="bestTime" name="bestTime"><option>Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+              <div class="chips-select">
+                <label class="chip-check"><input type="checkbox" name="services" value="Hospital & doctor" checked><span>Hospital &amp; doctor</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Train / flight booking"><span>Train / flight booking</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Pickup & local cab"><span>Pickup &amp; local cab</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Stay near hospital"><span>Stay near hospital</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Personal assistant"><span>Personal assistant</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Stay & food for family"><span>Stay &amp; food for family</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Medicines / pharmacy"><span>Medicines / pharmacy</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Insurance claim help"><span>Insurance claim help</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Medical loan / EMI"><span>Medical loan / EMI</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Medical visa & invitation letter"><span>Medical visa &amp; letter</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Translator"><span>Translator</span></label>
               </div>
             </div>
           </fieldset>
 
-          <div class="field">
-            <label class="check"><input type="checkbox" id="consent" name="consent" value="Yes" required> <span>I agree to the <a href="consent.html" target="_blank">Patient Consent</a>, <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>. I understand Irynt is a care coordinator, not a hospital or doctor. <span class="req">*</span></span></label>
-          </div>
-          <p class="hint">Please don't upload reports here. After you submit, you can send them safely on WhatsApp with your case ID.</p>
+          <fieldset class="wz-step" data-step="4" hidden>
+            <legend>How can we reach you?</legend>
+            <div class="field">
+              <span>Who are you filling this for? <span class="req">*</span></span>
+              <div class="radio-row">
+                <label class="check"><input type="radio" name="filledFor" value="Myself" required> Myself</label>
+                <label class="check"><input type="radio" name="filledFor" value="Family member / friend"> A family member or friend</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="contactName">Your full name <span class="req">*</span></label><input type="text" id="contactName" name="contactName" required autocomplete="name"></div>
+              <div class="field"><label for="phone">Phone / WhatsApp number <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+91 98765 43210"><span class="hint">Include country code</span></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email"></div>
+              <div class="field"><label for="country">Country <span class="req">*</span></label><input type="text" id="country" name="country" required value="India" autocomplete="country-name"></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="city">Your city / town <span class="req">*</span></label><input type="text" id="city" name="city" required autocomplete="address-level2"></div>
+              <div class="field"><label for="contactPref">How should we contact you?</label>
+                <select id="contactPref" name="contactPref"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
+              </div>
+            </div>
+            <div class="field"><label for="bestTime">Best time to reach you</label>
+              <select id="bestTime" name="bestTime"><option>Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+            </div>
+            <div class="field">
+              <label class="check"><input type="checkbox" id="consent" name="consent" value="Yes" required> <span>I agree to the <a href="consent.html" target="_blank">Patient Consent</a>, <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>. I understand Irynt is a care coordinator, not a hospital or doctor. <span class="req">*</span></span></label>
+            </div>
+            <p class="hint">Please don't upload reports here. After you submit, you can send them safely on WhatsApp with your case ID.</p>
+          </fieldset>
+
           <p class="error-msg" id="form-error" role="alert"></p>
-          <button type="submit" class="btn btn-primary" style="width: 100%">Get my treatment plan</button>
+          <div class="wz-actions">
+            <button type="button" class="btn btn-ghost" id="wz-back" hidden>← Back</button>
+            <button type="button" class="btn btn-primary" id="wz-next">Continue →</button>
+            <button type="submit" class="btn btn-primary" id="wz-submit" hidden>Get my treatment plan</button>
+          </div>
         </form>
 
         <div class="success" id="success" role="status" aria-live="polite" tabindex="-1">
+          <div class="success-icon">{icon:check}</div>
           <h2>Thank you. We've received your request.</h2>
           <p>Your case ID is:</p>
           <div class="case-id" id="case-id">IRY-XXXX</div>

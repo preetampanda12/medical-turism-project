@@ -10,7 +10,7 @@ const cities = require("./content/cities");
 const guides = require("./content/guides");
 
 const ROOT = path.join(__dirname, "..");
-const C = (f) => fs.readFileSync(path.join(__dirname, "content", f), "utf8");
+const C = (f) => fs.readFileSync(path.join(__dirname, "content", f), "utf8").replace(/\{icon:(\w+)\}/g, (m, n) => L.icon(n));
 const data = { treatments, cities, guides };
 const { icon, esc } = L;
 const written = [];
@@ -93,7 +93,11 @@ write("", L.page({
           <li>${icon("check")}For patients from India and abroad</li>
         </ul>
       </div>
-      ${C("plan-card.html")}
+      <div class="hero-visual">
+        <div class="float-badge b1"><span class="fb-ico">${icon("check")}</span><span><b>3 hospital estimates</b><small>received for comparison</small></span></div>
+        ${C("plan-card.html")}
+        <div class="float-badge b2"><span class="fb-ico amber">${icon("bed")}</span><span><b>Room near hospital</b><small>booked for 12 nights</small></span></div>
+      </div>
     </div>
   </section>
   <div class="trust-strip"><ul>

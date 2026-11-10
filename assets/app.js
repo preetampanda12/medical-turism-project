@@ -65,8 +65,9 @@
   // Pre-select the condition when arriving from a treatment page (?condition=Heart#start).
   try {
     var pre = new URLSearchParams(location.search).get("condition");
-    var sel = document.getElementById("condition");
-    if (pre && sel && Array.prototype.some.call(sel.options, function (o) { return o.value === pre; })) sel.value = pre;
+    if (pre) {
+      Array.prototype.forEach.call(form.querySelectorAll('input[name="condition"]'), function (r) { if (r.value === pre) r.checked = true; });
+    }
   } catch (e) { /* ignore */ }
   var successEl = document.getElementById("success");
 
@@ -100,13 +101,16 @@
     return data;
   }
 
-  function validate() {
+  function validate(scope) {
+    scope = scope || form;
     var firstBad = null;
-    form.querySelectorAll(".invalid").forEach(function (el) { el.classList.remove("invalid"); });
-    form.querySelectorAll("[required]").forEach(function (el) {
+    scope.querySelectorAll(".invalid").forEach(function (el) { el.classList.remove("invalid"); });
+    scope.querySelectorAll("[required]").forEach(function (el) {
       var ok;
       if (el.type === "radio") {
         ok = !!form.querySelector('input[name="' + el.name + '"]:checked');
+        var group = el.closest(".tiles, .radio-row");
+        if (group) group.classList.toggle("invalid-group", !ok);
       } else if (el.type === "checkbox") {
         ok = el.checked;
       } else {
@@ -117,16 +121,72 @@
         if (!firstBad) firstBad = el;
       }
     });
-    var phone = form.phone.value.replace(/\D/g, "");
-    if (form.phone.value.trim() && phone.length < 8) {
-      form.phone.classList.add("invalid");
-      if (!firstBad) firstBad = form.phone;
+    if (scope.contains(form.phone)) {
+      var phone = form.phone.value.replace(/\D/g, "");
+      if (form.phone.value.trim() && phone.length < 8) {
+        form.phone.classList.add("invalid");
+        if (!firstBad) firstBad = form.phone;
+      }
     }
-    if (form.email.value.trim() && !/^\S+@\S+\.\S+$/.test(form.email.value.trim())) {
+    if (scope.contains(form.email) && form.email.value.trim() && !/^\S+@\S+\.\S+$/.test(form.email.value.trim())) {
       form.email.classList.add("invalid");
       if (!firstBad) firstBad = form.email;
     }
     return firstBad;
+  }
+
+  function errorFor(bad) {
+    if (bad.id === "consent") return "Please accept the consent to continue.";
+    if (bad.name === "condition") return "Please choose the type of health problem.";
+    if (bad.name === "filledFor") return "Please tell us who this is for.";
+    if (bad.id === "phone" && bad.value.trim()) return "Please enter a valid phone number with country code.";
+    return "Please fill the highlighted fields.";
+  }
+
+  // ---- Wizard: one step at a time ----
+  var steps = Array.prototype.slice.call(form.querySelectorAll(".wz-step"));
+  var cur = 0;
+  var backBtn = document.getElementById("wz-back");
+  var nextBtn = document.getElementById("wz-next");
+  var submitBtn = document.getElementById("wz-submit");
+  var countEl = document.getElementById("wz-count");
+  var fillEl = document.getElementById("wz-fill");
+  var dots = Array.prototype.slice.call(form.querySelectorAll(".wz-steps li"));
+
+  function showStep(i, dir) {
+    if (!steps.length) return;
+    cur = Math.max(0, Math.min(i, steps.length - 1));
+    steps.forEach(function (st, k) {
+      st.hidden = k !== cur;
+      st.classList.remove("enter-fwd", "enter-back");
+    });
+    if (dir) { void steps[cur].offsetWidth; steps[cur].classList.add(dir > 0 ? "enter-fwd" : "enter-back"); }
+    dots.forEach(function (d, k) { d.classList.toggle("on", k === cur); d.classList.toggle("done", k < cur); });
+    if (fillEl) fillEl.style.width = ((cur + 1) / steps.length * 100) + "%";
+    if (countEl) countEl.textContent = "Step " + (cur + 1) + " of " + steps.length;
+    if (backBtn) backBtn.hidden = cur === 0;
+    if (nextBtn) nextBtn.hidden = cur === steps.length - 1;
+    if (submitBtn) submitBtn.hidden = cur !== steps.length - 1;
+    errorEl.classList.remove("show");
+  }
+
+  function goNext() {
+    var bad = validate(steps[cur]);
+    if (bad) { showError(errorFor(bad)); bad.focus(); return; }
+    showStep(cur + 1, 1);
+    var first = steps[cur].querySelector("input:not([type=hidden]), select, textarea");
+    if (first && window.matchMedia && !window.matchMedia("(max-width: 600px)").matches) first.focus({ preventScroll: true });
+    var top = form.getBoundingClientRect().top;
+    if (top < 0) form.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (steps.length) {
+    nextBtn.addEventListener("click", goNext);
+    backBtn.addEventListener("click", function () { showStep(cur - 1, -1); });
+    form.querySelectorAll(".tiles input").forEach(function (r) {
+      r.addEventListener("change", function () { r.closest(".tiles").classList.remove("invalid-group"); });
+    });
+    showStep(0);
   }
 
   function summary(d) {
@@ -152,11 +212,14 @@
     e.preventDefault();
     errorEl.classList.remove("show");
 
+    // Enter key on an earlier step moves forward instead of submitting.
+    if (steps.length && cur < steps.length - 1) { goNext(); return; }
+
     var bad = validate();
     if (bad) {
-      showError(bad.id === "consent" || bad.name === "consent"
-        ? "Please accept the consent to continue."
-        : "Please fill the highlighted fields.");
+      var stepOf = steps.length ? steps.indexOf(bad.closest(".wz-step")) : -1;
+      if (stepOf >= 0 && stepOf !== cur) showStep(stepOf, -1);
+      showError(errorFor(bad));
       bad.focus();
       return;
     }
@@ -177,7 +240,7 @@
     data.source = "website";
     data.trackToken = window.Irynt ? Irynt.randomHex(16) : "";
 
-    var btn = form.querySelector("button[type=submit]");
+    var btn = submitBtn || form.querySelector("button[type=submit]");
     btn.disabled = true;
     btn.textContent = "Sending…";
 
@@ -202,6 +265,8 @@
           "<b>Next step:</b> keep your medical reports ready. Your coordinator will tell you how to share them.";
       }
       form.style.display = "none";
+      var card = form.closest(".wizard-card");
+      if (card) card.classList.add("is-done");
       successEl.classList.add("show");
       successEl.focus();
       successEl.scrollIntoView({ behavior: "smooth", block: "start" });

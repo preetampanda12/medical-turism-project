@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Irynt – Medical Treatment in India, Planned End to End</title>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__irMotion)document.documentElement.classList.add("reveal-all")},2500)</script>
   <meta name="description" content="Accredited hospitals, original cost estimates and a full plan for travel, stay and family support. A personal coordinator calls you within 2 hours.">
   <link rel="canonical" href="https://preetampanda12.github.io/irynt/">
   <meta name="robots" content="index, follow, max-image-preview:large">
@@ -65,7 +66,9 @@
           <li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>For patients from India and abroad</li>
         </ul>
       </div>
-      <aside class="plan-card" aria-label="Example of an Irynt treatment plan">
+      <div class="hero-visual">
+        <div class="float-badge b1"><span class="fb-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>3 hospital estimates</b><small>received for comparison</small></span></div>
+        <aside class="plan-card" aria-label="Example of an Irynt treatment plan">
         <header>
           <div>
             <b>Treatment plan</b><br>
@@ -83,6 +86,8 @@
         <div class="plan-row"><div><b>Follow-up at home</b><small>Reminders, refills, next-visit planning</small></div><span class="pill pill-in">Included</span></div>
         <p class="plan-note">You choose what you need. Every price is shown before you confirm.</p>
       </aside>
+        <div class="float-badge b2"><span class="fb-ico amber"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg></span><span><b>Room near hospital</b><small>booked for 12 nights</small></span></div>
+      </div>
     </div>
   </section>
   <div class="trust-strip"><ul>
@@ -172,71 +177,66 @@
     </div>
   </section>
 
-  <!-- INTAKE FORM -->
-  <section class="section" id="start">
+  <!-- INTAKE FORM (multi-step) -->
+  <section class="section form-section" id="start">
     <div class="container form-wrap">
       <div class="form-side">
         <p class="eyebrow">Start here</p>
         <h2>Get your free treatment plan</h2>
-        <p class="lead">Takes about 3 minutes. Your coordinator will contact you within <span data-response-hours>2</span> working hours.</p>
+        <p class="lead">4 quick steps, about 2 minutes. Your coordinator will contact you within <span data-response-hours>2</span> working hours.</p>
         <ul class="trust-list">
           <li>No payment needed to get a plan</li>
           <li>Your information is shared only with hospitals you approve</li>
           <li>Not sure what's wrong? Choose "Not sure". We'll help.</li>
         </ul>
         <div class="notice">
-          <b>⚠️ Not for emergencies.</b> If this is a medical emergency, call <b>112</b> in India (or your local emergency number) or go to the nearest hospital now.
+          <b>Not for emergencies.</b> If this is a medical emergency, call <b>112</b> in India (or your local emergency number) or go to the nearest hospital now.
         </div>
       </div>
 
-      <div>
-        <form class="intake" id="intake-form" novalidate>
-          <fieldset>
-            <legend>1. About you</legend>
-            <div class="field">
-              <span>Who are you filling this for? <span class="req">*</span></span>
-              <div class="radio-row">
-                <label class="check"><input type="radio" name="filledFor" value="Myself" required> Myself</label>
-                <label class="check"><input type="radio" name="filledFor" value="Family member / friend"> A family member or friend</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="contactName">Your full name <span class="req">*</span></label><input type="text" id="contactName" name="contactName" required autocomplete="name"></div>
-              <div class="field"><label for="phone">Phone / WhatsApp number <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+91 98765 43210"><span class="hint">Include country code</span></div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email"></div>
-              <div class="field"><label for="country">Country <span class="req">*</span></label><input type="text" id="country" name="country" required value="India" autocomplete="country-name"></div>
-            </div>
-            <div class="field"><label for="city">Your city / town <span class="req">*</span></label><input type="text" id="city" name="city" required autocomplete="address-level2"></div>
-          </fieldset>
+      <div class="wizard-card">
+        <form class="intake wizard" id="intake-form" novalidate>
+          <div class="wz-progress" aria-hidden="true">
+            <div class="wz-bar"><span id="wz-fill"></span></div>
+            <ol class="wz-steps">
+              <li class="on"><span>1</span>Problem</li>
+              <li><span>2</span>Patient</li>
+              <li><span>3</span>Plan</li>
+              <li><span>4</span>Contact</li>
+            </ol>
+          </div>
+          <p class="wz-count" id="wz-count" aria-live="polite">Step 1 of 4</p>
 
-          <fieldset>
-            <legend>2. About the patient</legend>
-            <div class="row-3">
-              <div class="field"><label for="patientName">Patient name <span class="req">*</span></label><input type="text" id="patientName" name="patientName" required></div>
-              <div class="field"><label for="patientAge">Age <span class="req">*</span></label><input type="number" id="patientAge" name="patientAge" min="0" max="120" required></div>
-              <div class="field"><label for="patientGender">Gender</label>
-                <select id="patientGender" name="patientGender"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select>
+          <fieldset class="wz-step" data-step="1">
+            <legend>What do you need help with?</legend>
+            <div class="field">
+              <span id="condition-label">Type of health problem <span class="req">*</span></span>
+              <div class="tiles" role="radiogroup" aria-labelledby="condition-label">
+                <label class="tile"><input type="radio" name="condition" value="Cancer" required><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a4 4 0 0 0-4 4c0 3 4 7 4 7s4-4 4-7a4 4 0 0 0-4-4z"/><path d="M9 10.5 5 21l3.5-2 1.7 2.5L12 13"/><path d="M15 10.5 19 21l-3.5-2-1.7 2.5L12 13"/></svg>Cancer</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Heart"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/><path d="M3.5 12h4l2-3 3 6 2-3h6"/></svg>Heart</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Bones &amp; joints"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 10c.7-.7 1.7-.7 2.4 0a1.7 1.7 0 0 0 2.4-2.4 1.7 1.7 0 0 0-2.4-2.4 1.7 1.7 0 0 0-2.4-2.4c-.7.7-.7 1.7 0 2.4L7 15.1c-.7-.7-1.7-.7-2.4 0a1.7 1.7 0 0 0-2.4 2.4 1.7 1.7 0 0 0 2.4 2.4 1.7 1.7 0 0 0 2.4 2.4c.7-.7.7-1.7 0-2.4z"/></svg>Bones &amp; joints</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Brain &amp; spine"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3 3 3 0 0 0 3-1V4a3 3 0 0 0-3-1z"/><path d="M15 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3 3 3 0 0 1-3-1V4a3 3 0 0 1 3-1z"/></svg>Brain &amp; spine</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Kidney &amp; urology"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-4-7-13-7-13S5 11 5 15a7 7 0 0 0 7 7z"/><path d="M9 15a3 3 0 0 0 3 3"/></svg>Kidney &amp; urology</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Liver &amp; digestive"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>Liver &amp; digestive</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Fertility / IVF"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>Fertility / IVF</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Eye"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Eye</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Other"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v16"/><path d="M2 21h20"/><path d="M12 8v6M9 11h6"/><path d="M10 21v-3h4v3"/></svg>Other</span></label>
+                <label class="tile"><input type="radio" name="condition" value="Not sure"><span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Not sure</span></label>
               </div>
-            </div>
-            <div class="field"><label for="condition">Type of health problem <span class="req">*</span></label>
-              <select id="condition" name="condition" required>
-                <option value="">Select one</option>
-                <option>Cancer</option>
-                <option>Heart</option>
-                <option>Bones &amp; joints</option>
-                <option>Brain &amp; spine</option>
-                <option>Kidney &amp; urology</option>
-                <option>Liver &amp; digestive</option>
-                <option>Fertility / IVF</option>
-                <option>Eye</option>
-                <option>Other</option>
-                <option>Not sure</option>
-              </select>
             </div>
             <div class="field"><label for="problem">Describe the problem <span class="req">*</span></label>
               <textarea id="problem" name="problem" required placeholder="What are the symptoms? Since when? What have doctors said so far?"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="wz-step" data-step="2" hidden>
+            <legend>About the patient</legend>
+            <div class="row-3">
+              <div class="field"><label for="patientName">Patient name <span class="req">*</span></label><input type="text" id="patientName" name="patientName" required></div>
+              <div class="field"><label for="patientAge">Age <span class="req">*</span></label><input type="number" id="patientAge" name="patientAge" min="0" max="120" required inputmode="numeric"></div>
+              <div class="field"><label for="patientGender">Gender</label>
+                <select id="patientGender" name="patientGender"><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select>
+              </div>
             </div>
             <div class="row">
               <div class="field"><label for="diagnosed">Has a doctor diagnosed it?</label>
@@ -246,8 +246,8 @@
             </div>
           </fieldset>
 
-          <fieldset>
-            <legend>3. Your plan</legend>
+          <fieldset class="wz-step" data-step="3" hidden>
+            <legend>Your plan</legend>
             <div class="row">
               <div class="field"><label for="preferredCity">Preferred treatment city</label>
                 <select id="preferredCity" name="preferredCity">
@@ -267,39 +267,64 @@
             </div>
             <div class="field">
               <span>What help do you need? <span class="hint">(choose all that apply)</span></span>
-              <div class="checks">
-                <label class="check"><input type="checkbox" name="services" value="Hospital & doctor" checked> Hospital &amp; doctor</label>
-                <label class="check"><input type="checkbox" name="services" value="Train / flight booking"> Train / flight booking</label>
-                <label class="check"><input type="checkbox" name="services" value="Pickup & local cab"> Pickup &amp; local cab</label>
-                <label class="check"><input type="checkbox" name="services" value="Stay near hospital"> Stay near hospital</label>
-                <label class="check"><input type="checkbox" name="services" value="Personal assistant"> Personal assistant</label>
-                <label class="check"><input type="checkbox" name="services" value="Stay & food for family"> Stay &amp; food for family</label>
-                <label class="check"><input type="checkbox" name="services" value="Medicines / pharmacy"> Medicines / pharmacy</label>
-                <label class="check"><input type="checkbox" name="services" value="Insurance claim help"> Insurance claim help</label>
-                <label class="check"><input type="checkbox" name="services" value="Medical loan / EMI"> Medical loan / EMI</label>
-                <label class="check"><input type="checkbox" name="services" value="Medical visa & invitation letter"> Medical visa &amp; invitation letter</label>
-                <label class="check"><input type="checkbox" name="services" value="Translator"> Translator</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="field"><label for="contactPref">How should we contact you?</label>
-                <select id="contactPref" name="contactPref"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
-              </div>
-              <div class="field"><label for="bestTime">Best time to reach you</label>
-                <select id="bestTime" name="bestTime"><option>Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+              <div class="chips-select">
+                <label class="chip-check"><input type="checkbox" name="services" value="Hospital & doctor" checked><span>Hospital &amp; doctor</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Train / flight booking"><span>Train / flight booking</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Pickup & local cab"><span>Pickup &amp; local cab</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Stay near hospital"><span>Stay near hospital</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Personal assistant"><span>Personal assistant</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Stay & food for family"><span>Stay &amp; food for family</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Medicines / pharmacy"><span>Medicines / pharmacy</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Insurance claim help"><span>Insurance claim help</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Medical loan / EMI"><span>Medical loan / EMI</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Medical visa & invitation letter"><span>Medical visa &amp; letter</span></label>
+                <label class="chip-check"><input type="checkbox" name="services" value="Translator"><span>Translator</span></label>
               </div>
             </div>
           </fieldset>
 
-          <div class="field">
-            <label class="check"><input type="checkbox" id="consent" name="consent" value="Yes" required> <span>I agree to the <a href="consent.html" target="_blank">Patient Consent</a>, <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>. I understand Irynt is a care coordinator, not a hospital or doctor. <span class="req">*</span></span></label>
-          </div>
-          <p class="hint">Please don't upload reports here. After you submit, you can send them safely on WhatsApp with your case ID.</p>
+          <fieldset class="wz-step" data-step="4" hidden>
+            <legend>How can we reach you?</legend>
+            <div class="field">
+              <span>Who are you filling this for? <span class="req">*</span></span>
+              <div class="radio-row">
+                <label class="check"><input type="radio" name="filledFor" value="Myself" required> Myself</label>
+                <label class="check"><input type="radio" name="filledFor" value="Family member / friend"> A family member or friend</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="contactName">Your full name <span class="req">*</span></label><input type="text" id="contactName" name="contactName" required autocomplete="name"></div>
+              <div class="field"><label for="phone">Phone / WhatsApp number <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+91 98765 43210"><span class="hint">Include country code</span></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email"></div>
+              <div class="field"><label for="country">Country <span class="req">*</span></label><input type="text" id="country" name="country" required value="India" autocomplete="country-name"></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="city">Your city / town <span class="req">*</span></label><input type="text" id="city" name="city" required autocomplete="address-level2"></div>
+              <div class="field"><label for="contactPref">How should we contact you?</label>
+                <select id="contactPref" name="contactPref"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
+              </div>
+            </div>
+            <div class="field"><label for="bestTime">Best time to reach you</label>
+              <select id="bestTime" name="bestTime"><option>Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+            </div>
+            <div class="field">
+              <label class="check"><input type="checkbox" id="consent" name="consent" value="Yes" required> <span>I agree to the <a href="consent.html" target="_blank">Patient Consent</a>, <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>. I understand Irynt is a care coordinator, not a hospital or doctor. <span class="req">*</span></span></label>
+            </div>
+            <p class="hint">Please don't upload reports here. After you submit, you can send them safely on WhatsApp with your case ID.</p>
+          </fieldset>
+
           <p class="error-msg" id="form-error" role="alert"></p>
-          <button type="submit" class="btn btn-primary" style="width: 100%">Get my treatment plan</button>
+          <div class="wz-actions">
+            <button type="button" class="btn btn-ghost" id="wz-back" hidden>← Back</button>
+            <button type="button" class="btn btn-primary" id="wz-next">Continue →</button>
+            <button type="submit" class="btn btn-primary" id="wz-submit" hidden>Get my treatment plan</button>
+          </div>
         </form>
 
         <div class="success" id="success" role="status" aria-live="polite" tabindex="-1">
+          <div class="success-icon"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div>
           <h2>Thank you. We've received your request.</h2>
           <p>Your case ID is:</p>
           <div class="case-id" id="case-id">IRY-XXXX</div>
@@ -345,6 +370,7 @@
 <script src="assets/gas-emulator.js"></script>
 <script src="assets/core.js"></script>
 <script src="assets/api.js"></script>
+<script src="assets/motion.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
