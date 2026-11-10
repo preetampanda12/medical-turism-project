@@ -136,6 +136,7 @@ write("", L.page({
         </ul>
       </div>
       <div class="hero-visual">
+        <svg class="ecg" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80 H170 l14 -26 l12 52 l16 -92 l16 104 l14 -50 l10 12 H330 l12 -18 l10 30 l10 -12 H600"/></svg>
         <div class="float-badge b1"><span class="fb-ico">${icon("check")}</span><span><b>3 hospital estimates</b><small>ready to compare</small></span></div>
         ${C("plan-card.html")}
         <div class="float-badge b2"><span class="fb-ico amber">${icon("bed")}</span><span><b>Room near the hospital</b><small>booked for 12 nights</small></span></div>
@@ -201,8 +202,9 @@ write("", L.page({
   <section class="section" id="plan">
     <div class="container">
       <div class="section-head center"><p class="eyebrow">Services</p><h2>What we can arrange for you</h2><p class="lead">Take only what you need.</p></div>
-      <div class="grid grid-4 m-scroll">
-        <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospital &amp; doctor</h3><p>Hospitals that are good at your particular treatment, not just the biggest names.</p></div>
+      <div class="grid grid-4 m-scroll bento">
+        <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospital &amp; doctor</h3><p>Hospitals that are good at your particular treatment, not just the biggest names. You get two or three options with each hospital's own estimate, side by side.</p><span class="bento-tag">${icon("shield")} NABH / JCI accredited only</span>
+          <div class="bento-mock" aria-hidden="true"><div class="bm-row rec"><span><b>Option A</b> Heart hospital</span><b>₹2,95,000</b><em>Recommended</em></div><div class="bm-row"><span><b>Option B</b> Multispeciality</span><b>₹3,20,000</b></div><small>Example comparison</small></div></div>
         <div class="card"><div class="icon">${icon("plane")}</div><h3>Travel</h3><p>Train or flight tickets, someone to pick you up when you arrive, and cabs to the hospital.</p></div>
         <div class="card"><div class="icon">${icon("bed")}</div><h3>A room nearby</h3><p>Clean, affordable rooms close to the hospital, by the day or by the month.</p></div>
         <div class="card"><div class="icon">${icon("assistant")}</div><h3>A helping hand</h3><p>Someone to stand in queues, run errands and be with you on the busy days.</p></div>
@@ -244,7 +246,6 @@ write("", L.page({
   <section class="section section-alt" id="cities">
     <div class="container">
       <div class="section-head center"><p class="eyebrow">Cities</p><h2>Where families usually go</h2><p class="lead">We know where to stay, how to get around and which hospitals to look at in each of these cities.</p></div>
-      ${routeMap()}
       <div class="grid grid-3 m-scroll">${cities.map((c) => cityCard(rel, c)).join("")}
         <a class="card-link" href="${rel}international-patients/"><div class="icon">${icon("globe")}</div><h3>Coming from abroad?</h3><p>Visa letter, airport pickup, a translator and someone to call every day.</p><span class="more">For international patients ${icon("arrow")}</span></a>
       </div>

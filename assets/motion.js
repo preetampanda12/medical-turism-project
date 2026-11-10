@@ -113,3 +113,22 @@
     update();
   }
 })();
+
+/* Mobile sticky CTA: show after the hero, hide while the form is on screen */
+(function () {
+  var bar = document.querySelector("[data-mobile-cta]");
+  if (!bar) return;
+  var form = document.getElementById("start");
+  var formVisible = false;
+  if (form && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { formVisible = es[0].isIntersecting; tick(); }, { threshold: 0.05 }).observe(form);
+  }
+  function tick() {
+    var show = window.scrollY > 520 && !formVisible;
+    bar.classList.toggle("show", show);
+    bar.setAttribute("aria-hidden", show ? "false" : "true");
+    bar.querySelectorAll("a").forEach(function (a) { a.tabIndex = show ? 0 : -1; });
+  }
+  window.addEventListener("scroll", tick, { passive: true });
+  tick();
+})();

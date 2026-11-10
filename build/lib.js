@@ -105,7 +105,8 @@ function footer(rel, data) {
     <p class="disclaimer">Irynt is a medical travel and care coordination service. Irynt is not a hospital, clinic or medical practitioner and does not provide medical advice, diagnosis or treatment. Information on this website is general and is not a substitute for advice from a qualified doctor. Not for emergencies: call 112 (India) or your local emergency number. © <span id="year">2026</span> Irynt.</p>
   </div>
 </footer>
-<a href="#" class="wa-float" data-wa-float aria-label="Chat on WhatsApp" target="_blank" rel="noopener">${icon("chat")}</a>`;
+<a href="#" class="wa-float" data-wa-float aria-label="Chat on WhatsApp" target="_blank" rel="noopener">${icon("chat")}</a>
+<div class="mobile-cta" data-mobile-cta aria-hidden="true"><a class="btn btn-primary" href="${rel}#start" tabindex="-1">Get free treatment plan</a><a class="btn btn-wa mcta-wa" href="#" data-wa-link hidden aria-label="WhatsApp" tabindex="-1">${icon("chat")}</a></div>`;
 }
 
 function breadcrumb(rel, items) {
@@ -151,7 +152,7 @@ function page(o) {
   <meta name="description" content="${esc(o.description)}">
   <link rel="canonical" href="${canonical}">
   ${o.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
-  <meta name="theme-color" content="#0E5E6F">
+  <meta name="theme-color" content="#0B63CE">
   <meta property="og:site_name" content="Irynt">
   <meta property="og:type" content="${o.ogType || "website"}">
   <meta property="og:title" content="${esc(o.title)}">
