@@ -1,0 +1,80 @@
+// City pages: practical help for families travelling to a medical hub.
+"use strict";
+
+module.exports = [
+  {
+    slug: "delhi-ncr",
+    name: "Delhi NCR",
+    title: "Treatment in Delhi NCR: Hospitals & Stay | Irynt",
+    description: "Coming to Delhi, Gurugram or Noida for treatment? Get accredited hospital options, a stay near the hospital, pickup and help for your family.",
+    h1: "Treatment in Delhi NCR for families from out of town",
+    lead: "Delhi, Gurugram, Noida and Faridabad together have one of India's largest concentrations of accredited multi-speciality hospitals. Distances and traffic are the challenge. We plan the stay and transport so the hospital is always close.",
+    arrive: "Indira Gandhi International Airport serves domestic and international flights. Major railway stations include New Delhi, Hazrat Nizamuddin, Old Delhi and Anand Vihar Terminal.",
+    tips: [
+      "NCR is spread out. A hospital in Gurugram and a stay in central Delhi can be more than an hour apart in traffic, so choose a stay near the hospital, not near the station.",
+      "Summers (April–June) are very hot; winters (December–January) are cold and air quality can be poor. Patients with heart or lung conditions should plan accordingly.",
+      "Hindi is widely spoken; hospital staff commonly speak English too.",
+    ],
+    specialties: ["heart-surgery-in-india", "cancer-treatment-in-india", "knee-replacement-in-india", "neurosurgery-in-india"],
+  },
+  {
+    slug: "mumbai",
+    name: "Mumbai",
+    title: "Treatment in Mumbai: Hospitals & Stay | Irynt",
+    description: "Planning treatment in Mumbai? Compare accredited hospitals, find affordable stays near the hospital and get help with travel and paperwork.",
+    h1: "Treatment in Mumbai, with a stay close to your hospital",
+    lead: "Mumbai has long been a destination for cancer care and many other specialities. Space is expensive and commutes are long, so finding a suitable, affordable stay near the hospital matters most.",
+    arrive: "Chhatrapati Shivaji Maharaj International Airport serves domestic and international flights. Major railway terminals include Chhatrapati Shivaji Maharaj Terminus (CSMT), Mumbai Central, Dadar and Lokmanya Tilak Terminus.",
+    tips: [
+      "Accommodation near major hospitals fills up quickly, especially for long cancer treatments. Book early and consider monthly options.",
+      "The monsoon (roughly June–September) brings very heavy rain and occasional waterlogging. Allow extra travel time for appointments.",
+      "Local trains are crowded; for patients, a cab is usually the better choice.",
+    ],
+    specialties: ["cancer-treatment-in-india", "heart-surgery-in-india", "ivf-treatment-in-india", "spine-surgery-in-india"],
+  },
+  {
+    slug: "chennai",
+    name: "Chennai",
+    title: "Treatment in Chennai: Hospitals & Stay | Irynt",
+    description: "Coming to Chennai for treatment? Get accredited hospital options, stays near the hospital, airport or station pickup and family support, with one coordinator.",
+    h1: "Treatment in Chennai, coordinated from arrival to follow-up",
+    lead: "Chennai is one of India's best-known medical cities, receiving patients from across India and abroad. We help with hospital selection, nearby stays and getting around comfortably.",
+    arrive: "Chennai International Airport serves domestic and international flights. Major railway stations include Chennai Central (MGR Chennai Central) and Chennai Egmore.",
+    tips: [
+      "The weather is warm and humid for most of the year; the north-east monsoon brings heavy rain roughly between October and December.",
+      "Tamil is the local language. English is widely used in hospitals; we can arrange a translator or Hindi-speaking assistant.",
+      "Many guest houses near hospitals offer kitchen access, useful for families with dietary needs.",
+    ],
+    specialties: ["heart-surgery-in-india", "kidney-care-and-dialysis-in-india", "knee-replacement-in-india", "cancer-treatment-in-india"],
+  },
+  {
+    slug: "bengaluru",
+    name: "Bengaluru",
+    title: "Treatment in Bengaluru: Hospitals & Stay | Irynt",
+    description: "Planning treatment in Bengaluru? Compare accredited hospitals, find a stay close to the hospital, and get pickup, local travel and family support.",
+    h1: "Treatment in Bengaluru, planned around the traffic",
+    lead: "Bengaluru has many large accredited hospitals and a mild climate that suits recovery. Traffic and the distance from the airport need planning, which is where we help.",
+    arrive: "Kempegowda International Airport is some distance from the city, so allow time for the drive. Major railway stations include KSR Bengaluru City, Yesvantpur and SMVT Bengaluru.",
+    tips: [
+      "Hospitals are spread across the city. A stay close to the hospital saves hours in traffic.",
+      "The climate is pleasant for most of the year, which many patients find comfortable during recovery.",
+      "Kannada is the local language; English and Hindi are commonly understood.",
+    ],
+    specialties: ["cancer-treatment-in-india", "heart-surgery-in-india", "neurosurgery-in-india", "spine-surgery-in-india"],
+  },
+  {
+    slug: "hyderabad",
+    name: "Hyderabad",
+    title: "Treatment in Hyderabad: Hospitals & Stay | Irynt",
+    description: "Coming to Hyderabad for treatment? Get accredited hospital options, a stay near the hospital and help with travel, paperwork and family support.",
+    h1: "Treatment in Hyderabad, with everything around it arranged",
+    lead: "Hyderabad's large hospitals receive patients from across South and Central India and from abroad. We help you choose, then organise the stay and transport around the treatment.",
+    arrive: "Rajiv Gandhi International Airport is outside the city, so allow time for the drive. Major railway stations include Secunderabad, Hyderabad (Nampally) and Kacheguda.",
+    tips: [
+      "Summers (March–June) are hot; plan appointments for cooler parts of the day where possible.",
+      "Telugu, Hindi and Urdu are widely spoken, which helps many families from North India.",
+      "Choose a stay near the hospital; cross-city travel can take a long time.",
+    ],
+    specialties: ["heart-surgery-in-india", "kidney-care-and-dialysis-in-india", "knee-replacement-in-india", "cancer-treatment-in-india"],
+  },
+];

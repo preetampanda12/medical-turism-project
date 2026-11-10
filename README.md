@@ -4,7 +4,18 @@
 
 Irynt is a medical travel and care coordination service. A patient shares their health problem, a personal coordinator contacts them within 2 hours, and builds a complete treatment plan: hospital options, travel, stay, personal assistant, medicines, insurance help and follow-up.
 
-Plain HTML/CSS/JS with no build step. Hosted free on GitHub Pages, with a free backend on Google Sheets + Apps Script.
+Plain HTML/CSS/JS. The generated pages are committed, so hosting needs no build step. Hosted free on GitHub Pages, with a free backend on Google Sheets + Apps Script.
+
+## Website build (SEO pages)
+
+The public pages are generated from content files so every page shares the same professional layout and SEO setup:
+
+```bash
+node build/build.js
+```
+Set `SITE_URL=https://yourdomain.com` when you move to a custom domain. Content lives in `build/content/` (treatments, cities, guides). `node build/images.js` regenerates `assets/logo.png` and the social share image.
+
+Generated: homepage, 8 treatment pages, 5 city pages, 5 guides, international patients, about, contact, partner, legal pages, 404, `sitemap.xml`, `robots.txt`, `site.webmanifest`. Each page has a unique title and description, canonical URL, Open Graph image, JSON-LD (Organization, BreadcrumbList, FAQPage, Article/WebPage) and internal links.
 
 ## What's inside
 
@@ -35,6 +46,7 @@ Plain HTML/CSS/JS with no build step. Hosted free on GitHub Pages, with a free b
 | `docs/04-partner-pitch-kit.md` | Hospital/stay/cab pitch: emails, call script, objections |
 | `docs/05-facilitation-agreement-template.md` | Hospital agreement draft (lawyer review needed) |
 | `docs/06-dashboard-guide.md` | Daily routine and the case flow in the dashboard |
+| `docs/07-seo-growth-plan.md` | Search Console, content calendar, trust signals, backlinks |
 
 ## Try it now (demo mode)
 
@@ -52,7 +64,10 @@ node tests/backend.test.js
 ```bash
 node tests/e2e.test.js
 ```
-`backend.test.js` runs the Apps Script code with an emulator (17 checks). `e2e.test.js` uses Playwright to drive the full flow in a browser, in demo mode and in live mode against a fake Apps Script URL (31 checks).
+```bash
+node tests/seo.test.js
+```
+`backend.test.js` runs the Apps Script code with an emulator (17 checks). `e2e.test.js` uses Playwright to drive the full flow in a browser, in demo mode and in live mode against a fake Apps Script URL (31 checks). `seo.test.js` checks every page in the sitemap: title/description length and uniqueness, one H1, canonical, OG image, valid JSON-LD and no broken internal links.
 
 ## Go live
 Follow `docs/01-setup-guide.md`.

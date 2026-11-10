@@ -1,0 +1,15 @@
+{
+  "name": "Irynt",
+  "short_name": "Irynt",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FBFAF7",
+  "theme_color": "#0E5E6F",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

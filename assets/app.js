@@ -61,6 +61,13 @@
   var form = document.getElementById("intake-form");
   if (!form) return;
   var errorEl = document.getElementById("form-error");
+
+  // Pre-select the condition when arriving from a treatment page (?condition=Heart#start).
+  try {
+    var pre = new URLSearchParams(location.search).get("condition");
+    var sel = document.getElementById("condition");
+    if (pre && sel && Array.prototype.some.call(sel.options, function (o) { return o.value === pre; })) sel.value = pre;
+  } catch (e) { /* ignore */ }
   var successEl = document.getElementById("success");
 
   function makeCaseId() {

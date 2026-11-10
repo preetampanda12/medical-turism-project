@@ -204,7 +204,7 @@ async function demoFlow(browser, base) {
   const m = await browser.newContext({ ...devices["iPhone 13"], storageState: await ctx.storageState() });
   const mp = await m.newPage();
   mp.on("pageerror", (e) => errors.push(e.message));
-  for (const [url, name] of [[track, "track-mobile"], [base + "/partner.html", "partner-mobile"], [base + "/index.html", "home-mobile"]]) {
+  for (const [url, name] of [[track, "track-mobile"], [base + "/partner.html", "partner-mobile"], [base + "/index.html", "home-mobile"], [base + "/treatments/knee-replacement-in-india/", "treatment-mobile"], [base + "/guides/india-medical-visa-guide/", "guide-mobile"], [base + "/cities/mumbai/", "city-mobile"]]) {
     await mp.goto(url);
     await mp.waitForLoadState("networkidle");
     const over = await mp.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
