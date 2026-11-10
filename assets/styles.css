@@ -833,3 +833,15 @@ h1, h2 { color: var(--ink); }
   .card-link.tinted::after { display: none; }
   .hero .eyebrow { font-size: .7rem; padding: 5px 12px; letter-spacing: .04em; }
 }
+
+/* Desktop hero: sit higher on the screen */
+@media (min-width: 861px) {
+  .hero { padding: 36px 0 52px; }
+  .hero-grid { align-items: start; }
+  .hero-grid > div:first-child { padding-top: 46px; }
+  .hero-visual { padding: 30px 0 26px; }
+  .hero-visual .plan-card { padding: 18px 22px; }
+  .hero-visual .plan-row { padding: 7px 0; }
+  .hero-visual .plan-card header { padding-bottom: 10px; margin-bottom: 6px; }
+  .hero h1 { margin-top: 14px; }
+}
