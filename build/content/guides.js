@@ -4,13 +4,15 @@
 module.exports = [
   {
     slug: "india-medical-visa-guide",
+    card: "Documents and steps.",
     short: "India medical visa guide",
     icon: "doc",
     title: "India Medical Visa (e-Medical Visa) Guide for Patients | Irynt",
     description: "How patients apply for India's e-Medical and e-Medical Attendant visas: documents, the hospital invitation letter, steps and practical tips.",
     h1: "How to get an Indian medical visa",
 
-    lead: "Most patients coming from abroad travel on India's e-Medical visa, and family members come on the e-Medical Attendant visa. This is how it usually works, and what to keep ready.",
+    lead: "The e-Medical visa, step by step.",
+
 
     toc: true,
     body: `<div class="callout warn"><p><b>Visa rules change and differ by nationality.</b> Always check the latest rules on the Government of India's official visa website, <b>indianvisaonline.gov.in</b>, before applying. Beware of unofficial sites that charge extra fees.</p></div>
@@ -40,13 +42,15 @@ module.exports = [
   },
   {
     slug: "how-to-choose-a-hospital",
+    card: "A simple checklist.",
     short: "How to choose a hospital",
     icon: "hospital",
     title: "How to Choose the Right Hospital in India for Surgery | Irynt",
     description: "A practical checklist for choosing a hospital in India for surgery: accreditation, specialist experience, estimates, follow-up and key questions.",
     h1: "How to choose a hospital for your treatment",
 
-    lead: "The biggest name isn't always the best choice for your particular problem. This is the same checklist our team uses when comparing hospitals for a patient.",
+    lead: "The checklist our team uses.",
+
 
     toc: true,
     body: `<h2 id="accreditation">1. Accreditation</h2>
@@ -69,13 +73,15 @@ module.exports = [
   },
   {
     slug: "understanding-hospital-cost-estimates",
+    card: "Compare quotes properly.",
     short: "Understanding cost estimates",
     icon: "wallet",
     title: "How to Read a Hospital Cost Estimate in India | Irynt",
     description: "Read a hospital cost estimate in India: package vs itemised billing, inclusions and exclusions, why bills change, and what to ask before admission.",
     h1: "How to read a hospital cost estimate",
 
-    lead: "Two estimates for the same surgery can look completely different and still both be fair. Here's how to compare them properly, so there are no shocks at discharge.",
+    lead: "Compare quotes properly. Avoid surprises.",
+
 
     toc: true,
     body: `<h2 id="types">Package vs itemised estimates</h2>
@@ -102,13 +108,15 @@ module.exports = [
   },
   {
     slug: "travelling-for-treatment-checklist",
+    card: "What to carry.",
     short: "Travel checklist",
     icon: "route",
     title: "Travelling for Treatment: Complete Family Checklist | Irynt",
     description: "A checklist for families travelling to another city or country for treatment: documents, medicines, money, stay and what to do on admission day.",
     h1: "What to pack and plan when travelling for treatment",
 
-    lead: "Going to another city for treatment is stressful enough. Use this list so nothing important gets left behind.",
+    lead: "So nothing important gets left behind.",
+
 
     toc: true,
     body: `<h2 id="documents">Documents</h2>
@@ -135,13 +143,15 @@ module.exports = [
   },
   {
     slug: "cashless-insurance-for-planned-treatment",
+    card: "How cashless works.",
     short: "Cashless insurance guide",
     icon: "shield",
     title: "Cashless Health Insurance for Planned Surgery in India | Irynt",
     description: "How cashless treatment works for planned surgery in India: pre-authorisation, documents, room-rent limits, Ayushman Bharat PM-JAY and delays.",
     h1: "Using cashless health insurance for a planned operation",
 
-    lead: "Cashless means the insurance company pays the hospital directly. For a planned operation it works well, as long as the paperwork starts early.",
+    lead: "Start the paperwork early. Here's how.",
+
 
     toc: true,
     body: `<h2 id="network">1. Check the hospital is in network</h2>

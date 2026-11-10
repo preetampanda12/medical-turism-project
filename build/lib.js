@@ -97,7 +97,7 @@ function footer(rel, data) {
     <div class="footer-grid">
       <div>
         <a href="${rel || "./"}" class="brand"><img src="${rel}assets/logo.svg" alt="" width="36" height="36">irynt</a>
-        <p>We help families find the right hospital and take care of everything around the treatment, whether you're coming from another state or another country.</p>
+        <p>Help for families travelling for treatment, from anywhere in India or abroad.</p>
         <ul>
           <li data-wa-item hidden><a href="#" data-wa-link>WhatsApp us</a></li>
           <li data-email-item hidden><a href="#" data-email-link></a></li>
@@ -194,14 +194,14 @@ ${scripts.map((s) => `<script src="${rel}${s}?v=${ver(s)}"></script>`).join("\n"
 function ctaBand(rel, condition, title, text) {
   const q = condition ? `?condition=${encodeURIComponent(condition)}` : "";
   return `<section class="section" style="padding-top:24px"><div class="container"><div class="cta-band">
-  <div><h2>${esc(title || "Get your free treatment plan")}</h2><p>${esc(text || "Tell us what's going on. We'll call you back within 2 hours and take it from there.")}</p></div>
+  <div><h2>${esc(title || "Get your free treatment plan")}</h2><p>${esc(text || "We call back within 2 hours.")}</p></div>
   <div class="btn-row"><a class="btn btn-light" href="${rel}${q}#start">Get my free plan ${icon("arrow")}</a><a class="btn btn-wa" href="#" data-wa-link hidden>${icon("chat")} WhatsApp</a></div>
 </div></div></section>`;
 }
 
 function asideCta(rel, condition, extra) {
   const q = condition ? `?condition=${encodeURIComponent(condition)}` : "";
-  return `<div class="aside-box cta"><h2>Want us to help?</h2><p>Send us your reports. We'll come back with two or three hospital options, what each will cost, and a plan for your stay.</p>
+  return `<div class="aside-box cta"><h2>Want us to help?</h2><p>Send reports. Get 2–3 options with costs.</p>
   <a class="btn btn-light" href="${rel}${q}#start">Get my plan ${icon("arrow")}</a><a class="btn btn-wa" href="#" data-wa-link hidden>${icon("chat")} WhatsApp us</a></div>${extra || ""}`;
 }
 

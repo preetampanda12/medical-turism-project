@@ -1173,3 +1173,20 @@ form.intake input[type=text], form.intake input[type=tel], form.intake input[typ
   :root { --max: 1240px; }
   .hero { padding-top: 48px; padding-bottom: 64px; }
 }
+
+/* ======================================================================
+   v10 – smoother motion on desktop
+   ====================================================================== */
+/* Cards: same frosted look without per-card blur (blur + fade made Chrome stutter) */
+.card, .card-link, .steps li, .faq details, .fact, .aside-box:not(.cta), .pipeline button, .compare, form.intake.wizard, .success, .legal, .opt-card, .notice {
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+.card, .card-link, .steps li, .faq details, .fact, .aside-box:not(.cta), .compare { background: rgba(255, 255, 255, .78); }
+form.intake.wizard, .success { background: rgba(255, 255, 255, .92); }
+.card:hover, .card-link:hover, .steps li:hover { background: rgba(255, 255, 255, .95); }
+
+/* Quicker, lighter reveal */
+.js .rv:not(.in) { opacity: 0; transform: translateY(12px); }
+.js .rv { transition: opacity .45s ease var(--rv-d, 0ms), transform .5s cubic-bezier(.2,.7,.2,1) var(--rv-d, 0ms); }
+
+@media (min-width: 961px) { .bento { grid-auto-rows: minmax(140px, auto); } }

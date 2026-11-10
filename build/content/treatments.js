@@ -4,19 +4,20 @@
 "use strict";
 
 const COMMON_HELP = [
-  ["search", "Hospital options", "Two or three hospitals that suit your case, with what each one has quoted, side by side."],
-  ["calendar", "Appointments", "We book the consultation, tests and admission date, and confirm them for you."],
-  ["bed", "A room nearby", "Clean, affordable rooms close to the hospital for you and your family."],
-  ["car", "Pickup and cabs", "Someone at the station or airport, and cabs for every hospital visit."],
-  ["assistant", "A helping hand", "Someone for admission day, the queues and the running around, if you want."],
-  ["shield", "Insurance and payment", "Help with cashless forms and claims, and loan or EMI options if needed."],
+  ["search", "Hospital options", "2–3 options with real quotes."],
+  ["calendar", "Appointments", "Booked and confirmed."],
+  ["bed", "A room nearby", "Clean and close to the hospital."],
+  ["car", "Pickup and cabs", "Station, airport and every visit."],
+  ["assistant", "A helping hand", "For queues and busy days."],
+  ["shield", "Insurance and payment", "Cashless forms, loans and EMI."],
 ];
 
 const T = [
   {
     slug: "cancer-treatment-in-india",
     name: "Cancer Treatment",
-    short: "Surgery, chemo, radiation or a second opinion, and a place to stay for the long haul.",
+    short: "Surgery, chemo, radiation, second opinions.",
+
 
     icon: "ribbon",
     condition: "Cancer",
@@ -24,7 +25,8 @@ const T = [
     description: "Planning cancer treatment in India? Get opinions from accredited cancer centres, compare original estimates and plan a long stay near the hospital.",
     h1: "Cancer treatment in India",
 
-    lead: "Cancer treatment can mean weeks or even months in another city. We help you get a specialist's opinion quickly, compare hospitals honestly, and set up a room, transport and medicines around the treatment schedule, so the family isn't scrambling.",
+    lead: "Specialist opinions fast, honest comparisons, and a stay planned around treatment.",
+
 
     facts: [["Typical approach", "Team-based plan: surgery, chemo, radiation or a mix"], ["Time away from home", "Weeks to months, depending on the plan"], ["Key report", "Biopsy / histopathology report"], ["Good to have", "PET-CT or CT/MRI, blood tests"]],
     sections: [
@@ -60,7 +62,8 @@ const T = [
   {
     slug: "heart-surgery-in-india",
     name: "Heart Surgery & Cardiac Care",
-    short: "Angiography, stents, bypass or valve surgery, with travel and stay sorted.",
+    short: "Angiography, stents, bypass, valves.",
+
 
     icon: "heart",
     condition: "Heart",
@@ -68,7 +71,8 @@ const T = [
     description: "Compare accredited heart hospitals in India for angioplasty, bypass (CABG) or valve surgery. Original estimates, nearby stay and family support.",
     h1: "Heart surgery and cardiac care in India",
 
-    lead: "When the local doctor says \"get an angiography done\" or \"you need a bypass\", families have a hundred questions and not much time. We get you a cardiologist's opinion fast and take care of the practical side.",
+    lead: "A cardiologist's opinion fast. We handle the rest.",
+
 
     facts: [["Common procedures", "Angiography, angioplasty, CABG, valve surgery"], ["Hospital stay", "From a day (angiography) to about a week or more (surgery)"], ["Key reports", "ECG, echo, angiography report"], ["Plan to stay nearby", "Usually 1–3 weeks for surgery"]],
     sections: [
@@ -93,7 +97,8 @@ const T = [
   {
     slug: "knee-replacement-in-india",
     name: "Knee Replacement",
-    short: "One knee or both, with a room nearby and physio planned for after.",
+    short: "One or both knees, physio planned.",
+
 
     icon: "bone",
     condition: "Bones & joints",
@@ -101,7 +106,8 @@ const T = [
     description: "Planning knee replacement in India? Compare accredited hospitals, understand what affects the cost, and plan your stay and physiotherapy.",
     h1: "Knee replacement surgery in India",
 
-    lead: "The operation itself takes a few hours. Getting back on your feet takes a couple of weeks, and that's the part people forget to plan for. We sort out the hospital, a room that's easy to move around in, and help for the first few days.",
+    lead: "Surgery takes hours. Recovery takes planning. We do both.",
+
 
     facts: [["Types", "Total (TKR) or partial knee replacement"], ["Hospital stay", "Often around 3–5 days"], ["Plan to stay nearby", "About 2–3 weeks"], ["Key reports", "Standing X-rays of both knees"]],
     sections: [
@@ -123,7 +129,8 @@ const T = [
   {
     slug: "hip-replacement-in-india",
     name: "Hip Replacement",
-    short: "Hip replacement or redo surgery, with an easy-access room for recovery.",
+    short: "Hip replacement and redo surgery.",
+
 
     icon: "walk",
     condition: "Bones & joints",
@@ -131,7 +138,8 @@ const T = [
     description: "Compare accredited hospitals for hip replacement in India. Understand cost factors, reports needed and recovery time, and get a complete stay and travel plan.",
     h1: "Hip replacement surgery in India",
 
-    lead: "Arthritis, an old injury or a fracture that didn't heal well can all lead to a hip replacement. We help you compare surgeons and hospitals, and make sure the place you stay in afterwards is easy and safe to move around.",
+    lead: "Compare surgeons, then recover in an easy, safe room.",
+
 
     facts: [["Types", "Total hip replacement, revision surgery"], ["Hospital stay", "Often around 3–5 days"], ["Plan to stay nearby", "About 2–3 weeks"], ["Key reports", "X-ray of the pelvis and both hips"]],
     sections: [
@@ -151,7 +159,8 @@ const T = [
   {
     slug: "spine-surgery-in-india",
     name: "Spine Surgery",
-    short: "Slip disc, nerve compression or fusion. Get a proper opinion before deciding.",
+    short: "Slip disc, nerves, fusion. Opinion first.",
+
 
     icon: "spine",
     condition: "Brain & spine",
@@ -159,7 +168,8 @@ const T = [
     description: "Advised spine surgery? Get opinions from accredited spine centres in India, compare estimates, and plan travel and stay with one coordinator.",
     h1: "Spine surgery in India",
 
-    lead: "A lot of back and neck problems get better without surgery. Some don't. Either way, it's a decision that deserves a careful opinion, so we get your MRI seen by spine specialists before you travel.",
+    lead: "Many backs heal without surgery. Get a proper opinion first.",
+
 
     facts: [["Common conditions", "Slip disc, stenosis, spondylolisthesis"], ["First step", "Specialist review of MRI"], ["Hospital stay", "From 1–2 days to about a week"], ["Key report", "MRI of the affected region"]],
     sections: [
@@ -179,7 +189,8 @@ const T = [
   {
     slug: "neurosurgery-in-india",
     name: "Brain & Neurosurgery",
-    short: "Brain tumours, epilepsy and other neuro problems, with support for long stays.",
+    short: "Brain tumours, epilepsy and more.",
+
 
     icon: "brain",
     condition: "Brain & spine",
@@ -187,7 +198,8 @@ const T = [
     description: "Opinions from accredited neuro centres in India for brain tumours, epilepsy and more. Compare estimates and plan stay, travel and rehabilitation.",
     h1: "Brain and neurosurgery in India",
 
-    lead: "Hearing the word \"brain\" from a doctor is frightening. We help you reach experienced neuro specialists quickly, understand what they're suggesting, and plan the stay and rehab that often comes after.",
+    lead: "Experienced neuro specialists, clear answers, rehab planned.",
+
 
     facts: [["Common reasons", "Brain tumour, epilepsy, movement disorders"], ["Key reports", "MRI brain, neurologist notes"], ["Hospital stay", "Varies widely by procedure"], ["Often needed", "Rehabilitation after discharge"]],
     sections: [
@@ -207,7 +219,8 @@ const T = [
   {
     slug: "kidney-care-and-dialysis-in-india",
     name: "Kidney Care & Dialysis",
-    short: "Dialysis while you travel, kidney stones and urology opinions.",
+    short: "Dialysis on the go, stones, urology.",
+
 
     icon: "drop",
     condition: "Kidney & urology",
@@ -215,7 +228,8 @@ const T = [
     description: "Kidney stones, kidney disease or dialysis while travelling in India: get specialist opinions, book dialysis sessions and plan your stay.",
     h1: "Kidney care and dialysis in India",
 
-    lead: "If you're on dialysis, every trip has to be planned around your sessions. If it's a kidney stone or a prostate problem, you need the right urologist. We can help with both.",
+    lead: "Dialysis booked around your trip. The right urologist for the rest.",
+
 
     facts: [["We coordinate", "Nephrology, urology, dialysis sessions"], ["Dialysis travel", "Sessions booked in advance"], ["Key reports", "Kidney function tests, ultrasound/CT"], ["Plan ahead", "Bring the latest dialysis prescription"]],
     sections: [
@@ -235,7 +249,8 @@ const T = [
   {
     slug: "ivf-treatment-in-india",
     name: "IVF & Fertility",
-    short: "IVF at registered clinics, with a quiet, comfortable place to stay.",
+    short: "Registered clinics, quiet stays.",
+
 
     icon: "fertility",
     condition: "Fertility / IVF",
@@ -243,7 +258,8 @@ const T = [
     description: "Planning IVF in India? Get opinions from registered fertility clinics, understand the steps and timeline, and plan a discreet, comfortable stay.",
     h1: "IVF and fertility treatment in India",
 
-    lead: "Fertility treatment is personal, and it can be stressful. We help couples find registered clinics, understand what the next few weeks will look like, and find a calm place to stay during the cycle.",
+    lead: "Registered clinics, a clear timeline and a calm place to stay.",
+
 
     facts: [["One IVF cycle", "Often several weeks from start to embryo transfer"], ["Clinics", "Registered under India's ART law"], ["Key reports", "Hormone tests, ultrasound, semen analysis"], ["Our focus", "Discreet, comfortable stays"]],
     sections: [

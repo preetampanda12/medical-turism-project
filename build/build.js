@@ -31,10 +31,10 @@ function treatmentCard(rel, t) {
   return `<a class="card-link tinted" style="--tint:${TINTS[t.icon] || "#0E5E6F"}" href="${rel}treatments/${t.slug}/"><div class="icon">${icon(t.icon)}</div><h3>${esc(t.name)}</h3><p>${esc(t.short)}</p><span class="more">Learn more ${icon("arrow")}</span></a>`;
 }
 function cityCard(rel, c) {
-  return `<a class="card-link" href="${rel}cities/${c.slug}/"><div class="icon">${icon("pin")}</div><h3>${esc(c.name)}</h3><p>${esc(c.lead.split(". ")[0])}.</p><span class="more">Treatment in ${esc(c.name)} ${icon("arrow")}</span></a>`;
+  return `<a class="card-link" href="${rel}cities/${c.slug}/"><div class="icon">${icon("pin")}</div><h3>${esc(c.name)}</h3><p>${esc(c.short)}</p><span class="more">Treatment in ${esc(c.name)} ${icon("arrow")}</span></a>`;
 }
 function guideCard(rel, g) {
-  return `<a class="card-link" href="${rel}guides/${g.slug}/"><div class="icon">${icon(g.icon)}</div><h3>${esc(g.h1)}</h3><p>${esc(g.lead.split(". ")[0])}.</p><span class="more">Read it ${icon("arrow")}</span></a>`;
+  return `<a class="card-link" href="${rel}guides/${g.slug}/"><div class="icon">${icon(g.icon)}</div><h3>${esc(g.h1)}</h3><p>${esc(g.card)}</p><span class="more">Read it ${icon("arrow")}</span></a>`;
 }
 function helpGrid() {
   return `<div class="grid grid-3 m-scroll">${COMMON_HELP.map(([ic, h, p]) => `<div class="card"><div class="icon">${icon(ic)}</div><h3>${h}</h3><p>${p}</p></div>`).join("")}</div>`;
@@ -192,7 +192,7 @@ write("", L.page({
       <div>
         <p class="eyebrow">For families travelling for treatment</p>
         <h1>Coming to a big city for treatment? <span>We'll take care of the rest.</span></h1>
-        <p class="lead">Tell us what the doctor has said. Someone from our team will call you back within <b data-response-hours>2</b> hours. We'll help you pick the right hospital, show you what it will really cost, and sort out where you'll stay, how you'll get around and who will help your family while you're there.</p>
+        <p class="lead">Tell us what the doctor said. We call back within <b data-response-hours>2</b> hours and sort out the hospital, cost, stay and travel.</p>
         <div class="hero-actions">
           <a href="#start" class="btn btn-primary">Get my free treatment plan</a>
           <a href="#" class="btn btn-wa" data-wa-link hidden>${icon("chat")} Chat on WhatsApp</a>
@@ -225,7 +225,7 @@ write("", L.page({
   <section class="section" id="treatments">
     <div class="container">
       <div class="section-head center"><p class="eyebrow">Treatments</p><h2>What we can help with</h2>
-      <p class="lead">Mostly bigger treatments, the kind where you could be away from home for weeks and the room, the travel and the family matter almost as much as the hospital.</p></div>
+      <p class="lead">Bigger treatments, where you may be away from home for weeks.</p></div>
       <div class="grid grid-4 m-compact">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div>
     </div>
   </section>
@@ -235,11 +235,11 @@ write("", L.page({
       <div class="chat-copy">
         <p class="eyebrow">What it's like</p>
         <h2>Like having someone you know at the hospital</h2>
-        <p class="lead">Most of it happens on WhatsApp, in Hindi or English. You send the reports, we come back with options, and there's always someone a message away.</p>
+        <p class="lead">Mostly on WhatsApp, in Hindi or English. Someone is always a message away.</p>
         <ul class="checklist">
-          <li>${icon("check")}<span>A real person replies, not a chatbot</span></li>
-          <li>${icon("check")}<span>Your reports only go to hospitals you say yes to</span></li>
-          <li>${icon("check")}<span>Estimates shared exactly as the hospital gave them</span></li>
+          <li>${icon("check")}<span>A real person, not a bot</span></li>
+          <li>${icon("check")}<span>Reports go only where you say</span></li>
+          <li>${icon("check")}<span>Real hospital estimates</span></li>
         </ul>
         <div class="hero-actions"><a class="btn btn-primary" href="#start">Start a conversation</a><button type="button" class="btn btn-ghost" id="chat-replay">↺ Play again</button></div>
         <p class="hint">Example conversation. Names and prices are for illustration.</p>
@@ -250,17 +250,17 @@ write("", L.page({
 
   <section class="section section-alt" id="how">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">How it works</p><h2>From first call to coming home</h2><p class="lead">Five simple steps. You can stop at any point, no questions asked.</p></div>
+      <div class="section-head center"><p class="eyebrow">How it works</p><h2>From first call to coming home</h2><p class="lead">Five steps. Stop anytime.</p></div>
       <div class="journey" id="journey">
       <div class="journey-track" aria-hidden="true"><span class="jt-fill"></span>
         <i>${icon("chat")}</i><i>${icon("phone")}</i><i>${icon("hospital")}</i><i>${icon("doc")}</i><i>${icon("route")}</i>
       </div>
       <ol class="steps">
-        <li><h3>Tell us what's wrong</h3><p>Fill the form or just WhatsApp us. Send reports if you have them. It's fine if you don't.</p></li>
-        <li><h3>We call you</h3><p>Usually within <span data-response-hours>2</span> hours, between 9 AM and 9 PM. We'll ask a few questions and mostly listen.</p></li>
-        <li><h3>We ask the hospitals</h3><p>We send your reports to two or three good hospitals and get their opinion and cost back.</p></li>
-        <li><h3>You decide</h3><p>Hospital, room, travel and help, all in one plan. You choose what you want and skip what you don't.</p></li>
-        <li><h3>We stay in touch</h3><p>We check on you every day during treatment, and remind you about medicines and check-ups once you're home.</p></li>
+        <li><h3>Tell us what's wrong</h3><p>Fill the form or WhatsApp us.</p></li>
+        <li><h3>We call you</h3><p>Within <span data-response-hours>2</span> hours, 9 AM to 9 PM.</p></li>
+        <li><h3>We ask the hospitals</h3><p>2–3 hospitals send opinions and costs.</p></li>
+        <li><h3>You decide</h3><p>One plan. Pick what you need.</p></li>
+        <li><h3>We stay in touch</h3><p>Daily check-ins, then follow-up at home.</p></li>
       </ol>
       </div>
     </div>
@@ -270,15 +270,15 @@ write("", L.page({
     <div class="container">
       <div class="section-head center"><p class="eyebrow">Services</p><h2>What we can arrange for you</h2><p class="lead">Take only what you need.</p></div>
       <div class="grid grid-4 m-scroll bento">
-        <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospital &amp; doctor</h3><p>Hospitals that are good at your particular treatment, not just the biggest names. You get two or three options with each hospital's own estimate, side by side.</p><span class="bento-tag">${icon("shield")} NABH / JCI accredited only</span>
+        <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospital &amp; doctor</h3><p>2–3 hospitals that are good at your treatment, with their own estimates side by side.</p><span class="bento-tag">${icon("shield")} NABH / JCI accredited only</span>
           <div class="bento-mock" aria-hidden="true"><div class="bm-row rec"><span><b>Option A</b> Heart hospital</span><b>₹2,95,000</b><em>Recommended</em></div><div class="bm-row"><span><b>Option B</b> Multispeciality</span><b>₹3,20,000</b></div><small>Example comparison</small></div></div>
-        <div class="card"><div class="icon">${icon("plane")}</div><h3>Travel</h3><p>Train or flight tickets, someone to pick you up when you arrive, and cabs to the hospital.</p></div>
-        <div class="card"><div class="icon">${icon("bed")}</div><h3>A room nearby</h3><p>Clean, affordable rooms close to the hospital, by the day or by the month.</p></div>
-        <div class="card"><div class="icon">${icon("assistant")}</div><h3>A helping hand</h3><p>Someone to stand in queues, run errands and be with you on the busy days.</p></div>
-        <div class="card"><div class="icon">${icon("pill")}</div><h3>Medicines</h3><p>Medicines picked up and delivered to where you're staying.</p></div>
-        <div class="card"><div class="icon">${icon("shield")}</div><h3>Insurance papers</h3><p>We help with cashless and claim forms so you're not stuck at the insurance desk.</p></div>
-        <div class="card"><div class="icon">${icon("wallet")}</div><h3>Paying for it</h3><p>If money is tight, we'll tell you about medical loans and EMI options.</p></div>
-        <div class="card"><div class="icon">${icon("phone")}</div><h3>After you're home</h3><p>Reminders for medicines and tests, and help planning the next visit.</p></div>
+        <div class="card"><div class="icon">${icon("plane")}</div><h3>Travel</h3><p>Tickets, pickup and cabs.</p></div>
+        <div class="card"><div class="icon">${icon("bed")}</div><h3>A room nearby</h3><p>Clean rooms near the hospital.</p></div>
+        <div class="card"><div class="icon">${icon("assistant")}</div><h3>A helping hand</h3><p>Help with queues and errands.</p></div>
+        <div class="card"><div class="icon">${icon("pill")}</div><h3>Medicines</h3><p>Delivered to your room.</p></div>
+        <div class="card"><div class="icon">${icon("shield")}</div><h3>Insurance papers</h3><p>Cashless and claim forms, done with you.</p></div>
+        <div class="card"><div class="icon">${icon("wallet")}</div><h3>Paying for it</h3><p>Loan and EMI options.</p></div>
+        <div class="card"><div class="icon">${icon("phone")}</div><h3>After you're home</h3><p>Reminders and next visit planned.</p></div>
       </div>
       <p class="swipe-hint">Swipe to see more →</p>
     </div>
@@ -299,12 +299,12 @@ write("", L.page({
       <div class="band">
         <p class="eyebrow" style="color: var(--accent)">Our promise</p>
         <h2>No hidden commissions. No surprise bills.</h2>
-        <p>Many families have had a bad experience with medical agents. That's exactly why we work the way we do.</p>
+        <p>Simple, honest help. That's the whole idea.</p>
         <div class="grid grid-2" style="margin-top: 24px">
-          <div class="card"><h3>We call back fast</h3><p>Within <span data-response-hours>2</span> hours, between <span data-working-hours>9 AM – 9 PM IST</span>. A real person, not a bot.</p></div>
-          <div class="card"><h3>You see the real estimate</h3><p>We pass on what the hospital gives us, as it is. And we'll tell you how we get paid.</p></div>
-          <div class="card"><h3>We look after the family too</h3><p>Whoever comes with the patient needs a bed, food and a bit of help. We plan for them as well.</p></div>
-          <div class="card"><h3>Doctors make the medical calls</h3><p>We're coordinators, not doctors. We'll never push you towards a treatment.</p></div>
+          <div class="card"><h3>Fast call back</h3><p>Within <span data-response-hours>2</span> hours. A real person.</p></div>
+          <div class="card"><h3>Real estimates</h3><p>As the hospital gives them. Nothing added.</p></div>
+          <div class="card"><h3>Family looked after</h3><p>A bed and food for whoever comes along.</p></div>
+          <div class="card"><h3>Doctors decide</h3><p>We coordinate. We never push a treatment.</p></div>
         </div>
       </div>
     </div>
@@ -312,9 +312,9 @@ write("", L.page({
 
   <section class="section section-alt" id="cities">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Cities</p><h2>Where families usually go</h2><p class="lead">We know where to stay, how to get around and which hospitals to look at in each of these cities.</p></div>
+      <div class="section-head center"><p class="eyebrow">Cities</p><h2>Where families usually go</h2><p class="lead">We know the hospitals, rooms and routes.</p></div>
       <div class="grid grid-3 m-scroll">${cities.map((c) => cityCard(rel, c)).join("")}
-        <a class="card-link" href="${rel}international-patients/"><div class="icon">${icon("globe")}</div><h3>Coming from abroad?</h3><p>Visa letter, airport pickup, a translator and someone to call every day.</p><span class="more">For international patients ${icon("arrow")}</span></a>
+        <a class="card-link" href="${rel}international-patients/"><div class="icon">${icon("globe")}</div><h3>Coming from abroad?</h3><p>Visa letter, pickup and a translator.</p><span class="more">For international patients ${icon("arrow")}</span></a>
       </div>
       <p class="swipe-hint">Swipe to see more →</p>
     </div>
@@ -343,9 +343,9 @@ write("treatments/", L.page({
   title: "Treatments We Coordinate in India | Irynt",
   description: "Cancer care, heart surgery, joint replacement, spine and neuro care, kidney care and IVF. Compare accredited hospitals in India and get a full plan.",
   schema: [L.breadcrumbSchema([["", "Home"], ["treatments/", "Treatments"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["treatments/", "Treatments"]], "Treatments we help with", "Pick a treatment to see what usually happens, which reports to keep ready, and how long you may need to stay in the city.", heroActions(rel, "")) +
+  body: (rel) => pageHero(rel, [["", "Home"], ["treatments/", "Treatments"]], "Treatments we help with", "What happens, which reports to keep ready, and how long to stay.", heroActions(rel, "")) +
     `<section class="section"><div class="container"><div class="grid grid-4 m-compact">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div>
-    <p class="muted" style="margin-top:24px">Don't see yours here? We help with a lot more, like liver problems, eye surgery and second opinions. <a href="${rel}?condition=Other#start">Just tell us what you need</a>.</p></div></section>` + L.ctaBand(rel),
+    <p class="muted" style="margin-top:24px">Don't see yours? We help with more too. <a href="${rel}?condition=Other#start">Just tell us what you need</a>.</p></div></section>` + L.ctaBand(rel),
 }), { priority: "0.9" });
 
 treatments.forEach((t) => {
@@ -361,7 +361,7 @@ treatments.forEach((t) => {
         <div class="facts">${t.facts.map(([k, v]) => `<div class="fact"><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join("")}</div>
         ${t.sections.map(([h, html], i) => `<h2 id="s${i + 1}">${esc(h)}</h2>${fill(html)}`).join("\n")}
         <h2 id="help">What we can do for you</h2>
-        <p>You'll have one person from our team looking after you, from the first call until you're back home. Here's what they can sort out:</p>
+        <p>One person from our team, start to finish:</p>
       </article>
       <aside class="aside">${L.asideCta(rel, t.condition, `<div class="aside-box"><h2>On this page</h2><ul class="toc">${t.sections.map(([h], i) => `<li><a href="#s${i + 1}">${esc(h)}</a></li>`).join("")}<li><a href="#help">What we can do</a></li><li><a href="#faq">Common questions</a></li></ul></div>`)}</aside></div>
       <div class="container" style="padding-bottom:16px">${helpGrid()}</div>
@@ -378,7 +378,7 @@ write("cities/", L.page({
   title: "Treatment in India's Top Medical Cities | Irynt",
   description: "Planning treatment in Delhi NCR, Mumbai, Chennai, Bengaluru or Hyderabad? Get accredited hospital options, stays near the hospital and local travel arranged.",
   schema: [L.breadcrumbSchema([["", "Home"], ["cities/", "Cities"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["cities/", "Cities"]], "Cities we help in", "Most families travel to one of these five cities. We know the hospitals, where to stay nearby and how to get around in each.", heroActions(rel, "")) +
+  body: (rel) => pageHero(rel, [["", "Home"], ["cities/", "Cities"]], "Cities we help in", "Where most families go for treatment.", heroActions(rel, "")) +
     `<section class="section"><div class="container"><div class="grid grid-3">${cities.map((c) => cityCard(rel, c)).join("")}</div></div></section>` + L.ctaBand(rel),
 }), { priority: "0.8" });
 
@@ -395,12 +395,12 @@ cities.forEach((c) => {
     schema: [L.breadcrumbSchema(crumbs), L.faqSchema(faqs)],
     body: (rel) => pageHero(rel, crumbs, c.h1, c.lead, heroActions(rel, "")) +
       `<div class="container content-grid"><article class="prose">
-        <h2 id="arrive">Getting to ${esc(c.name)}</h2><p>${esc(c.arrive)}</p><p>Just tell us when your train or flight gets in. Someone will be there to take you to your room or straight to the hospital.</p>
+        <h2 id="arrive">Getting to ${esc(c.name)}</h2><p>${esc(c.arrive)}</p><p>Share your arrival time. We'll pick you up.</p>
         <h2 id="tips">A few things worth knowing</h2><ul class="checklist">${c.tips.map((tip) => `<li>${CHECK}<span>${esc(tip)}</span></li>`).join("")}</ul>
         <h2 id="treatments">What families come to ${esc(c.name)} for</h2>
         <ul>${c.specialties.map((s) => `<li><a href="${rel}treatments/${s}/">${esc(byslug(s).name)}</a></li>`).join("")}</ul>
         <h2 id="help">How we can help in ${esc(c.name)}</h2>
-        <p>We'll find the right hospitals in ${esc(c.name)} for your case, show you what each one has quoted, and take care of the room, the cabs and anything else your family needs while you're there.</p>
+        <p>Right hospitals, real quotes, a room and cabs, all sorted.</p>
       </article><aside class="aside">${L.asideCta(rel, "")}</aside></div>
       <div class="container" style="padding-bottom:16px">${helpGrid()}</div>
       <section class="section" style="padding-top:40px"><div class="container"><h2 class="center">Questions about ${esc(c.name)}</h2>${L.faqHtml(faqs)}</div></section>
@@ -415,7 +415,7 @@ write("guides/", L.page({
   title: "Patient Guides: Planning Treatment in India | Irynt",
   description: "Free, practical guides for patients and families: medical visas, choosing a hospital, reading cost estimates, cashless insurance and a travel checklist.",
   schema: [L.breadcrumbSchema([["", "Home"], ["guides/", "Guides"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["guides/", "Guides"]], "Guides for patients and families", "Things we wish every family knew before travelling for treatment. Short, practical and free.") +
+  body: (rel) => pageHero(rel, [["", "Home"], ["guides/", "Guides"]], "Guides for patients and families", "Short, practical reads before you travel.") +
     `<section class="section"><div class="container"><div class="grid grid-3">${guides.map((g) => guideCard(rel, g)).join("")}</div></div></section>` + L.ctaBand(rel),
 }), { priority: "0.7" });
 
@@ -449,15 +449,15 @@ write("international-patients/", L.page({
   title: "Medical Treatment in India for International Patients | Irynt",
   description: "Coming to India for treatment? Get hospital opinions, the medical visa letter, airport pickup, stay, translator and daily support from one coordinator.",
   schema: [L.breadcrumbSchema([["", "Home"], ["international-patients/", "International patients"]]), L.faqSchema(INTL_FAQ)],
-  body: (rel) => pageHero(rel, [["", "Home"], ["international-patients/", "International patients"]], "Coming to India for treatment from abroad", "You'll get hospital opinions before you book a ticket. After that we help with the visa letter, pick you up at the airport, and stay in touch every day until you're home again.", heroActions(rel, "")) +
+  body: (rel) => pageHero(rel, [["", "Home"], ["international-patients/", "International patients"]], "Coming to India for treatment from abroad", "Hospital opinions before you fly. Then visa letter, pickup and daily help.", heroActions(rel, "")) +
     `<section class="section"><div class="container">
       <div class="section-head center"><h2>What happens, step by step</h2></div>
       <ol class="steps">
-        <li><h3>Send your reports</h3><p>On WhatsApp or email. Our doctor advisor takes a look first.</p></li>
-        <li><h3>Hear from hospitals</h3><p>Two or three hospitals send their opinion and a written estimate.</p></li>
-        <li><h3>Get the visa letter</h3><p>Once you choose, we get the hospital's letter for your e-Medical visa.</p></li>
-        <li><h3>Land in India</h3><p>We meet you at the airport and help with a SIM card, money exchange and your room.</p></li>
-        <li><h3>Treatment, then home</h3><p>A translator if you need one, a daily call from us, and follow-up once you're back.</p></li>
+        <li><h3>Send your reports</h3><p>On WhatsApp or email.</p></li>
+        <li><h3>Hear from hospitals</h3><p>2–3 opinions with costs.</p></li>
+        <li><h3>Get the visa letter</h3><p>For your e-Medical visa.</p></li>
+        <li><h3>Land in India</h3><p>Pickup, SIM and your room.</p></li>
+        <li><h3>Treatment, then home</h3><p>Daily help, then follow-up.</p></li>
       </ol>
     </div></section>
     <section class="section section-alt"><div class="container">
@@ -481,7 +481,7 @@ write("about/", L.page({
   title: "About Irynt: Honest Care Coordination for Treatment in India",
   description: "Irynt helps families plan treatment in India with one coordinator, original hospital estimates and no hidden mark-ups. How we work and what we promise.",
   schema: [L.breadcrumbSchema([["", "Home"], ["about/", "About"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["about/", "About"]], "About Irynt", "We help families who have to travel for treatment. Finding the right hospital shouldn't depend on whether you happen to know a doctor in the big city.") +
+  body: (rel) => pageHero(rel, [["", "Home"], ["about/", "About"]], "About Irynt", "Help for families who travel for treatment.") +
     `<div class="container content-grid"><article class="prose">
       <h2>Why we started</h2>
       <p>If you've ever taken a parent to a big city hospital, you'll know how it goes. You get off the train with a plastic folder full of reports and no idea where to start. The first few days go in finding the right doctor. The room near the hospital costs twice what it should. Someone has to stand at the insurance desk for hours. And all this while you're worried about the person you came with.</p>
@@ -505,12 +505,12 @@ write("contact/", L.page({
   title: "Contact Irynt: WhatsApp, Email & Treatment Enquiries",
   description: "Contact Irynt for a free treatment plan, partnership enquiries or help with an existing case. WhatsApp and email support, 9 AM to 9 PM IST.",
   schema: [L.breadcrumbSchema([["", "Home"], ["contact/", "Contact"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["contact/", "Contact"]], "Get in touch", "WhatsApp is the quickest way to reach us. If you want a treatment plan, the form takes about two minutes.") +
+  body: (rel) => pageHero(rel, [["", "Home"], ["contact/", "Contact"]], "Get in touch", "WhatsApp is quickest. The form takes 2 minutes.") +
     `<section class="section"><div class="container"><div class="grid grid-3">
-      <div class="card"><div class="icon">${icon("doc")}</div><h3>Need help with treatment?</h3><p>Fill the short form and we'll call you back within 2 hours (9 AM to 9 PM).</p><p style="margin-top:12px"><a class="btn btn-primary btn-sm" href="${rel}#start">Get my free plan</a></p></div>
+      <div class="card"><div class="icon">${icon("doc")}</div><h3>Need help with treatment?</h3><p>We call back within 2 hours.</p><p style="margin-top:12px"><a class="btn btn-primary btn-sm" href="${rel}#start">Get my free plan</a></p></div>
       <div class="card"><div class="icon">${icon("chat")}</div><h3>WhatsApp &amp; email</h3><p>Hours: <span data-working-hours>9 AM – 9 PM IST</span>.</p><p style="margin-top:12px"><a class="btn btn-wa btn-sm" href="#" data-wa-link hidden>WhatsApp us</a> <a href="#" data-email-link></a></p></div>
-      <div class="card"><div class="icon">${icon("route")}</div><h3>Already talking to us?</h3><p>Open the tracking link we sent you, or WhatsApp us your case ID.</p><p style="margin-top:12px"><a href="${rel}track.html">Track your case</a></p></div>
-      <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospitals and partners</h3><p>Run a hospital, guest house or cab service? We'd love to talk.</p><p style="margin-top:12px"><a href="${rel}partner.html">Partner with Irynt</a></p></div>
+      <div class="card"><div class="icon">${icon("route")}</div><h3>Already talking to us?</h3><p>Use your tracking link.</p><p style="margin-top:12px"><a href="${rel}track.html">Track your case</a></p></div>
+      <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospitals and partners</h3><p>Hospitals, rooms, cabs: let's talk.</p><p style="margin-top:12px"><a href="${rel}partner.html">Partner with Irynt</a></p></div>
       <div class="card"><div class="icon">${icon("clock")}</div><h3>Is it an emergency?</h3><p>Please don't message us. Call <b>112</b> in India or go to the nearest hospital now.</p></div>
     </div></div></section>`,
 }), { priority: "0.5" });
@@ -520,7 +520,7 @@ write("partner.html", L.page({
   title: "Partner with Irynt: For Hospitals, Stays & Care Providers",
   description: "Irynt brings prepared, well-supported patients to accredited hospitals and trusted local providers. Learn how referrals work and what we ask of partners.",
   schema: [L.breadcrumbSchema([["", "Home"], ["partner.html", "Partner with us"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["partner.html", "Partner with us"]], "Work with Irynt", "We help patients from smaller cities and from abroad get to the right hospital. They arrive with their reports in order, a place to stay and someone helping them.",
+  body: (rel) => pageHero(rel, [["", "Home"], ["partner.html", "Partner with us"]], "Work with Irynt", "We bring you patients who arrive prepared, with stay and support sorted.",
       `<div class="hero-actions"><a class="btn btn-wa" data-partner-wa href="#" data-wa-link hidden>${icon("chat")} WhatsApp us</a><button type="button" class="btn btn-ghost" onclick="window.print()">Print one-pager</button></div>`) +
     `<section class="section"><div class="container"><h2>Why hospitals work with us</h2><p class="lead">Less chasing, fewer no-shows, and families who know what to expect.</p><div class="grid grid-3" style="margin-top:20px">
       <div class="card"><div class="icon">${icon("doc")}</div><h3>Cases that are ready</h3><p>We collect the reports, put them in order and have our doctor advisor look at them before they reach you.</p></div>

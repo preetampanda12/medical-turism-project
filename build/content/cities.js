@@ -4,12 +4,14 @@
 module.exports = [
   {
     slug: "delhi-ncr",
+    short: "Big hospitals. We keep the commute short.",
     name: "Delhi NCR",
     title: "Treatment in Delhi NCR: Hospitals & Stay | Irynt",
     description: "Coming to Delhi, Gurugram or Noida for treatment? Get accredited hospital options, a stay near the hospital, pickup and help for your family.",
     h1: "Coming to Delhi NCR for treatment",
 
-    lead: "Delhi, Gurugram, Noida and Faridabad have some of the biggest hospitals in the country. The hard part is the distances and the traffic, so we make sure your room is close to your hospital and you're not spending hours in a cab.",
+    lead: "Big hospitals, long distances. We keep your room close.",
+
 
     arrive: "Indira Gandhi International Airport serves domestic and international flights. Major railway stations include New Delhi, Hazrat Nizamuddin, Old Delhi and Anand Vihar Terminal.",
     tips: [
@@ -21,12 +23,14 @@ module.exports = [
   },
   {
     slug: "mumbai",
+    short: "Cancer care hub. Rooms sorted early.",
     name: "Mumbai",
     title: "Treatment in Mumbai: Hospitals & Stay | Irynt",
     description: "Planning treatment in Mumbai? Compare accredited hospitals, find affordable stays near the hospital and get help with travel and paperwork.",
     h1: "Coming to Mumbai for treatment",
 
-    lead: "A lot of families come to Mumbai, especially for cancer treatment. The hospitals are good. Finding a decent room nearby that doesn't cost a fortune is the real struggle, and that's where we come in.",
+    lead: "Great hospitals. We find you an affordable room nearby.",
+
 
     arrive: "Chhatrapati Shivaji Maharaj International Airport serves domestic and international flights. Major railway terminals include Chhatrapati Shivaji Maharaj Terminus (CSMT), Mumbai Central, Dadar and Lokmanya Tilak Terminus.",
     tips: [
@@ -38,12 +42,14 @@ module.exports = [
   },
   {
     slug: "chennai",
+    short: "Decades-old medical city.",
     name: "Chennai",
     title: "Treatment in Chennai: Hospitals & Stay | Irynt",
     description: "Coming to Chennai for treatment? Get accredited hospital options, stays near the hospital, airport or station pickup and family support, with one coordinator.",
     h1: "Coming to Chennai for treatment",
 
-    lead: "Chennai has been a medical city for decades, with patients coming from all over India and abroad. We help you choose a hospital, find a room nearby and get around without worrying about language.",
+    lead: "A trusted medical city. Hospital, room and travel sorted.",
+
 
     arrive: "Chennai International Airport serves domestic and international flights. Major railway stations include Chennai Central (MGR Chennai Central) and Chennai Egmore.",
     tips: [
@@ -55,12 +61,14 @@ module.exports = [
   },
   {
     slug: "bengaluru",
+    short: "Mild weather, lots of hospitals.",
     name: "Bengaluru",
     title: "Treatment in Bengaluru: Hospitals & Stay | Irynt",
     description: "Planning treatment in Bengaluru? Compare accredited hospitals, find a stay close to the hospital, and get pickup, local travel and family support.",
     h1: "Coming to Bengaluru for treatment",
 
-    lead: "Bengaluru has plenty of large hospitals and mild weather that's nice for recovery. What catches people out is the traffic and the long drive in from the airport, so we plan around both.",
+    lead: "Good hospitals, mild weather. We plan around the traffic.",
+
 
     arrive: "Kempegowda International Airport is some distance from the city, so allow time for the drive. Major railway stations include KSR Bengaluru City, Yesvantpur and SMVT Bengaluru.",
     tips: [
@@ -72,12 +80,14 @@ module.exports = [
   },
   {
     slug: "hyderabad",
+    short: "Big hospitals, Hindi spoken widely.",
     name: "Hyderabad",
     title: "Treatment in Hyderabad: Hospitals & Stay | Irynt",
     description: "Coming to Hyderabad for treatment? Get accredited hospital options, a stay near the hospital and help with travel, paperwork and family support.",
     h1: "Coming to Hyderabad for treatment",
 
-    lead: "Hyderabad's big hospitals see patients from across South and Central India, and from abroad. Hindi is widely spoken here, which makes things easier for many families from the north.",
+    lead: "Big hospitals, Hindi widely spoken. We handle the rest.",
+
 
     arrive: "Rajiv Gandhi International Airport is outside the city, so allow time for the drive. Major railway stations include Secunderabad, Hyderabad (Nampally) and Kacheguda.",
     tips: [

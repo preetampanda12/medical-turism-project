@@ -32,14 +32,14 @@
     el.classList.add("rv");
     var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return items.indexOf(c) >= 0; });
     var i = sibs.indexOf(el);
-    el.style.setProperty("--rv-d", Math.min(i, 8) * 70 + "ms");
+    el.style.setProperty("--rv-d", Math.min(i % 4, 3) * 50 + "ms");
   });
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
     });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  }, { rootMargin: "0px 0px 60px 0px", threshold: 0 });
   items.forEach(function (el) { io.observe(el); });
 })();
 
