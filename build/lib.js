@@ -4,7 +4,7 @@
 const SITE = {
   name: "Irynt",
   // Change this when you connect a custom domain (or set SITE_URL when building).
-  url: (process.env.SITE_URL || "https://preetampanda12.github.io/irynt").replace(/\/$/, ""),
+  url: (process.env.SITE_URL || "https://preetampanda12.github.io/medical-turism-project").replace(/\/$/, ""),
   tagline: "Help for families travelling for treatment.",
   locale: "en_IN",
   updated: "2026-11-10",

@@ -58,10 +58,10 @@ demoMode: false,
 
 ## Step 4: Free hosting (GitHub Pages)
 
-1. GitHub par repo `irynt` banao (account `preetampanda12`) aur saari files upload karo.
+1. Code repo `preetampanda12/medical-turism-project` mein hai.
 2. **Settings → Pages → Deploy from a branch → `main` / root → Save.**
 3. 1-2 minute mein site live ho jaayegi:
-   - Website: `https://preetampanda12.github.io/irynt/`
+   - Website: `https://preetampanda12.github.io/medical-turism-project/`
    - Dashboard: `…/irynt/dashboard.html`
    - Partners page: `…/irynt/partner.html`
 

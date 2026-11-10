@@ -3,4 +3,4 @@ Allow: /
 Disallow: /dashboard.html
 Disallow: /track.html
 
-Sitemap: https://preetampanda12.github.io/irynt/sitemap.xml
+Sitemap: https://preetampanda12.github.io/medical-turism-project/sitemap.xml
