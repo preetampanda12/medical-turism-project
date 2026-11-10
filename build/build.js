@@ -85,6 +85,75 @@ function chatDemo() {
   </div>`;
 }
 
+
+function heroScene() {
+  const win = (x, y, lit) => `<rect x="${x}" y="${y}" width="26" height="18" rx="3" fill="${lit ? "#9CC7F5" : "#DCEBFD"}"/>`;
+  let windows = "";
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 5; c++) windows += win(214 + c * 42, 186 + r * 28, (r * 5 + c) % 3 === 1);
+  return `<div class="scene" role="img" aria-label="Illustration: a plane, a cab and a hospital, showing travel, transport and treatment arranged together">
+  <svg class="scene-art" viewBox="0 0 560 400" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6E8FD"/><stop offset=".75" stop-color="#EAF6FB"/><stop offset="1" stop-color="#E4F8F3"/></linearGradient>
+      <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1F6FD"/></linearGradient>
+      <clipPath id="frame"><rect width="560" height="400" rx="30"/></clipPath>
+    </defs>
+    <g clip-path="url(#frame)">
+      <rect width="560" height="400" fill="url(#sky)"/>
+      <circle cx="470" cy="78" r="30" fill="#FFF6D8"/>
+      <g fill="#C9DCF5" opacity=".8">
+        <rect x="18" y="214" width="46" height="110" rx="4"/><rect x="70" y="182" width="34" height="142" rx="4"/><rect x="110" y="236" width="44" height="88" rx="4"/>
+        <rect x="440" y="196" width="38" height="128" rx="4"/><rect x="484" y="226" width="58" height="98" rx="4"/>
+      </g>
+      <g class="cloud c1" fill="#fff"><ellipse cx="80" cy="74" rx="34" ry="13"/><ellipse cx="100" cy="64" rx="22" ry="17"/><ellipse cx="64" cy="68" rx="16" ry="11"/></g>
+      <g class="cloud c2" fill="#fff" opacity=".9"><ellipse cx="330" cy="52" rx="28" ry="10"/><ellipse cx="346" cy="44" rx="18" ry="13"/></g>
+      <path class="trail" d="M-20 118 C 120 92, 260 70, 600 40" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 8" opacity=".9"/>
+      <g class="plane"><g transform="rotate(-8)">
+        <path d="M0 6 H30 Q39 6 41 9 Q39 12 30 12 H0 Z" fill="#fff"/>
+        <path d="M15 9 L6 -5 H12 L24 9 Z M15 9 L6 23 H12 L24 9 Z M2 9 L-4 -1 H1 L8 8 Z" fill="#fff"/>
+        <path d="M30 7.5 h6" stroke="#9CC7F5" stroke-width="2" stroke-linecap="round"/>
+      </g></g>
+      <!-- side wing -->
+      <rect x="142" y="214" width="62" height="112" rx="6" fill="url(#bld)" stroke="#C3D7F0"/>
+      <rect x="154" y="230" width="16" height="16" rx="3" fill="#DCEBFD"/><rect x="176" y="230" width="16" height="16" rx="3" fill="#9CC7F5"/>
+      <rect x="154" y="258" width="16" height="16" rx="3" fill="#DCEBFD"/><rect x="176" y="258" width="16" height="16" rx="3" fill="#DCEBFD"/>
+      <!-- main block -->
+      <rect x="200" y="152" width="230" height="174" rx="10" fill="url(#bld)" stroke="#C3D7F0"/>
+      <path d="M210 152 H420 Q430 152 430 162 V172 H200 V162 Q200 152 210 152 Z" fill="#0B63CE"/>
+      <text x="315" y="167" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="3" fill="#fff">HOSPITAL</text>
+      ${windows}
+      <!-- tower + cross -->
+      <rect x="278" y="96" width="74" height="60" rx="8" fill="url(#bld)" stroke="#C3D7F0"/>
+      <g class="cross"><rect x="297" y="106" width="36" height="36" rx="9" fill="#E5484D"/><rect x="311" y="113" width="8" height="22" rx="2" fill="#fff"/><rect x="304" y="120" width="22" height="8" rx="2" fill="#fff"/></g>
+      <!-- entrance -->
+      <rect x="278" y="268" width="74" height="9" rx="3" fill="#0A4FA6"/>
+      <rect x="290" y="277" width="50" height="49" rx="3" fill="#9CC7F5"/><path d="M315 277 V326" stroke="#fff" stroke-width="2"/>
+      <!-- trees -->
+      <g><rect x="117" y="290" width="6" height="36" rx="2" fill="#7C6A55"/><circle cx="120" cy="282" r="18" fill="#2DB7A3"/><circle cx="110" cy="292" r="11" fill="#5FD3BF"/></g>
+      <g><rect x="455" y="286" width="6" height="40" rx="2" fill="#7C6A55"/><circle cx="458" cy="276" r="20" fill="#2DB7A3"/><circle cx="470" cy="288" r="12" fill="#5FD3BF"/></g>
+      <!-- ground & road -->
+      <rect x="0" y="324" width="560" height="10" fill="#E3ECF7"/>
+      <rect x="0" y="334" width="560" height="66" fill="#2E3B4E"/>
+      <path class="lane" d="M0 366 H560" stroke="#fff" stroke-width="3" stroke-dasharray="18 14" opacity=".8"/>
+      <!-- cab -->
+      <g class="cab"><g transform="translate(0 322)">
+        <rect x="0" y="12" width="76" height="22" rx="8" fill="#FFC53D"/>
+        <path d="M14 13 L24 0 H52 L64 13 Z" fill="#FFC53D"/>
+        <path d="M20 12 L27 3 H37 V12 Z M41 12 V3 H50 L58 12 Z" fill="#CFE3FB"/>
+        <rect x="31" y="-6" width="16" height="6" rx="2" fill="#1C2533"/>
+        <rect x="2" y="20" width="72" height="3" fill="#1C2533" opacity=".25"/>
+        <circle cx="18" cy="35" r="8" fill="#1C2533"/><circle cx="18" cy="35" r="3" fill="#C9D3E0"/>
+        <circle cx="58" cy="35" r="8" fill="#1C2533"/><circle cx="58" cy="35" r="3" fill="#C9D3E0"/>
+        <rect x="72" y="17" width="5" height="5" rx="2" fill="#FFF6D8"/>
+      </g></g>
+    </g>
+  </svg>
+  <div class="notif n1"><span class="ni">${icon("plane")}</span><span><b>Flight booked</b><small>Lands in Delhi, 9:40 AM</small></span></div>
+  <div class="notif n2"><span class="ni red">${icon("calendar")}</span><span><b>Doctor appointment</b><small>Tue, 10:30 AM · Cardiology</small></span></div>
+  <div class="notif n3"><span class="ni mint">${icon("bed")}</span><span><b>Room ready</b><small>5 minutes from the hospital</small></span></div>
+  <div class="notif n4"><span class="avatar">P</span><span><b>Priya</b><small>your coordinator</small></span><i class="online"></i></div>
+</div>`;
+}
+
 // ------------------------------------------------------------------ HOME
 const HOME_FAQ = [
   ["Do I have to pay Irynt anything?", "No. Finding hospitals, getting estimates, booking appointments and helping with insurance papers is free for you. Some extras do cost money, like a room, a cab or a helper at the hospital. We'll always tell you the price first, and you can say no."],
@@ -137,9 +206,7 @@ write("", L.page({
       </div>
       <div class="hero-visual">
         <svg class="ecg" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80 H170 l14 -26 l12 52 l16 -92 l16 104 l14 -50 l10 12 H330 l12 -18 l10 30 l10 -12 H600"/></svg>
-        <div class="float-badge b1"><span class="fb-ico">${icon("check")}</span><span><b>3 hospital estimates</b><small>ready to compare</small></span></div>
-        ${C("plan-card.html")}
-        <div class="float-badge b2"><span class="fb-ico amber">${icon("bed")}</span><span><b>Room near the hospital</b><small>booked for 12 nights</small></span></div>
+        ${heroScene()}
       </div>
     </div>
   </section>
