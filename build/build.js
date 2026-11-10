@@ -30,13 +30,13 @@ function treatmentCard(rel, t) {
   return `<a class="card-link" href="${rel}treatments/${t.slug}/"><div class="icon">${icon(t.icon)}</div><h3>${esc(t.name)}</h3><p>${esc(t.short)}</p><span class="more">Learn more ${icon("arrow")}</span></a>`;
 }
 function cityCard(rel, c) {
-  return `<a class="card-link" href="${rel}cities/${c.slug}/"><div class="icon">${icon("pin")}</div><h3>${esc(c.name)}</h3><p>${esc(c.lead.split(". ")[0])}.</p><span class="more">Plan treatment in ${esc(c.name)} ${icon("arrow")}</span></a>`;
+  return `<a class="card-link" href="${rel}cities/${c.slug}/"><div class="icon">${icon("pin")}</div><h3>${esc(c.name)}</h3><p>${esc(c.lead.split(". ")[0])}.</p><span class="more">Treatment in ${esc(c.name)} ${icon("arrow")}</span></a>`;
 }
 function guideCard(rel, g) {
-  return `<a class="card-link" href="${rel}guides/${g.slug}/"><div class="icon">${icon(g.icon)}</div><h3>${esc(g.h1)}</h3><p>${esc(g.lead.split(". ")[0])}.</p><span class="more">Read the guide ${icon("arrow")}</span></a>`;
+  return `<a class="card-link" href="${rel}guides/${g.slug}/"><div class="icon">${icon(g.icon)}</div><h3>${esc(g.h1)}</h3><p>${esc(g.lead.split(". ")[0])}.</p><span class="more">Read it ${icon("arrow")}</span></a>`;
 }
 function helpGrid() {
-  return `<div class="grid grid-3">${COMMON_HELP.map(([ic, h, p]) => `<div class="card"><div class="icon">${icon(ic)}</div><h3>${h}</h3><p>${p}</p></div>`).join("")}</div>`;
+  return `<div class="grid grid-3 m-scroll">${COMMON_HELP.map(([ic, h, p]) => `<div class="card"><div class="icon">${icon(ic)}</div><h3>${h}</h3><p>${p}</p></div>`).join("")}</div>`;
 }
 function pageHero(rel, crumbs, h1, lead, actions, meta) {
   return `<section class="page-hero"><div class="container">${L.breadcrumb(rel, crumbs)}<h1>${esc(h1)}</h1><p class="lead">${esc(lead)}</p>${actions || ""}${meta ? `<p class="meta-line">${meta}</p>` : ""}</div></section>`;
@@ -45,30 +45,30 @@ const heroActions = (rel, condition) => `<div class="hero-actions"><a class="btn
 
 // ------------------------------------------------------------------ HOME
 const HOME_FAQ = [
-  ["Is Irynt's service free?", "Yes, care coordination (finding hospitals, comparing estimates, booking appointments, insurance paperwork help and follow-up) is free for patients. Optional services such as a personal assistant, stay, cabs or medicines have a cost, and we always tell you the price before you confirm anything."],
-  ["How does Irynt make money?", "Partner hospitals and service providers may pay Irynt a facilitation fee for coordinating patients. We tell you this openly, show you the hospital's own estimate, and never add hidden charges to it. You are free to choose any option, or none."],
-  ["Are you a hospital? Do you give medical advice?", "No. Irynt is a care coordination service. We do not diagnose or treat. All medical opinions and treatment come from qualified doctors at the hospital you choose."],
-  ["Which hospitals do you work with?", "We work with hospitals accredited by recognised bodies such as NABH or JCI, in major medical cities across India. We share 2–3 options for your case so you can compare doctors, costs and recovery time."],
-  ["Is my medical information safe?", "Your reports are shared only with the hospitals and doctors you approve, only for your treatment. We do not sell your data."],
-  ["Can you help if my treatment is long, like cancer treatment?", "Yes. This is where we help most: longer stays near the hospital, monthly room options, medicine refills, cabs for each visit and support for the family member staying with the patient."],
-  ["I live outside India. Can you help?", "Yes. We arrange the hospital invitation letter for the medical visa, airport pickup, stay, translator and daily support during treatment."],
-  ["What if it's an emergency?", "Irynt is not an emergency service. In an emergency, call 112 in India or your local emergency number, or go to the nearest hospital immediately."],
+  ["Do I have to pay Irynt anything?", "No. Finding hospitals, getting estimates, booking appointments and helping with insurance papers is free for you. Some extras do cost money, like a room, a cab or a helper at the hospital. We'll always tell you the price first, and you can say no."],
+  ["Then how do you make money?", "Hospitals and some of our partners (rooms, cabs) pay us a fee for sending patients. We're upfront about it. The estimate you see is exactly what the hospital gave us, and we don't add anything on top."],
+  ["Are you doctors? Will you tell us which treatment to take?", "No, we're not doctors and we won't advise on treatment. The hospital's specialists do that. Our job is everything around it: finding the right place, arranging travel and stay, and keeping things on track."],
+  ["Which hospitals do you work with?", "Only hospitals accredited by NABH or JCI, in the big medical cities. For your case we'll usually get you two or three options so you can compare the doctor, the cost and how long you'll need to stay."],
+  ["Is my medical information safe with you?", "Yes. We only send your reports to hospitals you agree to, and only for your treatment. We don't sell or share your data with anyone else."],
+  ["Can you help with long treatments like cancer?", "Yes, and honestly that's where we're most useful. Monthly rooms near the hospital, cabs for every visit, medicines, and someone to help the family member who's staying with the patient."],
+  ["We live outside India. Can you still help?", "Yes. We get the hospital's letter for your medical visa, pick you up from the airport, arrange a place to stay and a translator if you need one, and check on you every day."],
+  ["What if it's an emergency?", "Please don't wait for us. Call 112 in India (or your local emergency number) or go straight to the nearest hospital."],
 ];
 
 const COMPARE = [
-  ["Finding the right hospital", "Asking relatives, searching online, guessing", "2–3 accredited options matched to the case, side by side"],
-  ["Understanding the cost", "Different formats, unclear inclusions", "Original estimates, explained in plain language"],
-  ["First response", "Waiting on hospital call centres", "A personal coordinator within 2 working hours"],
-  ["Stay near the hospital", "Searching on arrival, overpaying", "Checked rooms close to the hospital, daily or monthly"],
-  ["Travel and local cabs", "Arranged separately, often last-minute", "Pickup and cabs for every visit, planned"],
-  ["Insurance paperwork", "Handled alone at the hospital desk", "Pre-authorisation documents prepared with you"],
-  ["After you go home", "Usually on your own", "Medicine reminders, follow-ups and next-visit planning"],
+  ["Choosing a hospital", "Asking relatives, Googling, hoping for the best", "Two or three good options for your case, compared for you"],
+  ["Knowing the cost", "Every hospital's estimate looks different", "Each estimate explained in simple words"],
+  ["Getting a reply", "Waiting on hold with hospital call centres", "A call back within 2 hours"],
+  ["Finding a room", "Searching after you arrive, often overpaying", "A room near the hospital, sorted before you travel"],
+  ["Getting around", "Haggling with autos and cabs every day", "Pickup and cabs arranged for you"],
+  ["Insurance", "Running between the insurance desk and the TPA", "Forms and papers prepared with you"],
+  ["After discharge", "Mostly on your own", "Reminders and follow-up visits planned"],
 ];
 
 write("", L.page({
   path: "", section: "home", data,
-  title: "Irynt – Medical Treatment in India, Planned End to End",
-  description: "Accredited hospitals, original cost estimates and a full plan for travel, stay and family support. A personal coordinator calls you within 2 hours.",
+  title: "Irynt – Medical Treatment in India, From Hospital to Home",
+  description: "Coming to a big city for treatment? We find the right hospital, show you the real estimate, and sort out your stay, travel and help for your family.",
   scripts: ["assets/gas-emulator.js", "assets/core.js", "assets/api.js"],
   schema: [
     { "@context": "https://schema.org", "@type": "WebSite", name: "Irynt", url: L.SITE.url + "/" },
@@ -79,77 +79,78 @@ write("", L.page({
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow">Medical treatment in India · Care coordination</p>
-        <h1>Your treatment in India, <span>planned end to end.</span></h1>
-        <p class="lead">Tell us the health problem. A personal care coordinator contacts you within <b data-response-hours>2</b> hours, finds the right accredited hospital and doctor, and plans everything else: travel, stay, medicines, insurance help and support for your family.</p>
+        <p class="eyebrow">For families travelling for treatment</p>
+        <h1>Coming to a big city for treatment? <span>We'll take care of the rest.</span></h1>
+        <p class="lead">Tell us what the doctor has said. Someone from our team will call you back within <b data-response-hours>2</b> hours. We'll help you pick the right hospital, show you what it will really cost, and sort out where you'll stay, how you'll get around and who will help your family while you're there.</p>
         <div class="hero-actions">
           <a href="#start" class="btn btn-primary">Get my free treatment plan</a>
           <a href="#" class="btn btn-wa" data-wa-link hidden>${icon("chat")} Chat on WhatsApp</a>
         </div>
         <ul class="hero-points">
-          <li>${icon("check")}Care coordination is free</li>
-          <li>${icon("check")}Original hospital estimates, no mark-ups</li>
-          <li>${icon("check")}One coordinator from start to follow-up</li>
-          <li>${icon("check")}For patients from India and abroad</li>
+          <li>${icon("check")}Our help costs you nothing</li>
+          <li>${icon("check")}You see the hospital's own estimate</li>
+          <li>${icon("check")}One person looks after you throughout</li>
+          <li>${icon("check")}For families in India and abroad</li>
         </ul>
       </div>
       <div class="hero-visual">
-        <div class="float-badge b1"><span class="fb-ico">${icon("check")}</span><span><b>3 hospital estimates</b><small>received for comparison</small></span></div>
+        <div class="float-badge b1"><span class="fb-ico">${icon("check")}</span><span><b>3 hospital estimates</b><small>ready to compare</small></span></div>
         ${C("plan-card.html")}
-        <div class="float-badge b2"><span class="fb-ico amber">${icon("bed")}</span><span><b>Room near hospital</b><small>booked for 12 nights</small></span></div>
+        <div class="float-badge b2"><span class="fb-ico amber">${icon("bed")}</span><span><b>Room near the hospital</b><small>booked for 12 nights</small></span></div>
       </div>
     </div>
   </section>
   <div class="trust-strip"><ul>
-    <li>${icon("shield")}NABH / JCI accredited hospitals</li>
-    <li>${icon("clock")}First call within 2 working hours</li>
-    <li>${icon("search")}Transparent, original estimates</li>
-    <li>${icon("language")}Help in Hindi &amp; English</li>
+    <li>${icon("shield")}Only NABH / JCI accredited hospitals</li>
+    <li>${icon("clock")}We call back within 2 hours</li>
+    <li>${icon("search")}No hidden charges on estimates</li>
+    <li>${icon("language")}We speak Hindi and English</li>
   </ul></div>
 
   <section class="section" id="treatments">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Treatments we coordinate</p><h2>Specialist care at accredited hospitals across India</h2>
-      <p class="lead">Especially for serious and long treatments, where the stay, medicines and family support matter as much as the hospital.</p></div>
-      <div class="grid grid-4">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div>
+      <div class="section-head center"><p class="eyebrow">Treatments</p><h2>What we can help with</h2>
+      <p class="lead">Mostly bigger treatments, the kind where you could be away from home for weeks and the room, the travel and the family matter almost as much as the hospital.</p></div>
+      <div class="grid grid-4 m-compact">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div>
     </div>
   </section>
 
   <section class="section section-alt" id="how">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">How it works</p><h2>From “where do we go?” to “we're home” in five steps</h2><p class="lead">You focus on getting better. We handle the rest.</p></div>
+      <div class="section-head center"><p class="eyebrow">How it works</p><h2>From first call to coming home</h2><p class="lead">Five simple steps. You can stop at any point, no questions asked.</p></div>
       <ol class="steps">
-        <li><h3>Tell us the problem</h3><p>Fill a short form or message us on WhatsApp. Share reports if you have them.</p></li>
-        <li><h3>Coordinator calls you</h3><p>Within <span data-response-hours>2</span> working hours, your personal coordinator calls to understand your needs.</p></li>
-        <li><h3>Compare hospitals</h3><p>We get opinions and estimates from 2–3 accredited hospitals and show them side by side.</p></li>
-        <li><h3>Get your full plan</h3><p>Hospital, travel, stay, assistant, medicines and insurance help, in one clear plan.</p></li>
-        <li><h3>We stay with you</h3><p>Daily check-ins during treatment and follow-up after you return home.</p></li>
+        <li><h3>Tell us what's wrong</h3><p>Fill the form or just WhatsApp us. Send reports if you have them. It's fine if you don't.</p></li>
+        <li><h3>We call you</h3><p>Usually within <span data-response-hours>2</span> hours, between 9 AM and 9 PM. We'll ask a few questions and mostly listen.</p></li>
+        <li><h3>We ask the hospitals</h3><p>We send your reports to two or three good hospitals and get their opinion and cost back.</p></li>
+        <li><h3>You decide</h3><p>Hospital, room, travel and help, all in one plan. You choose what you want and skip what you don't.</p></li>
+        <li><h3>We stay in touch</h3><p>We check on you every day during treatment, and remind you about medicines and check-ups once you're home.</p></li>
       </ol>
     </div>
   </section>
 
   <section class="section" id="plan">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Everything in one plan</p><h2>One coordinator. Every part of your treatment trip.</h2></div>
-      <div class="grid grid-4">
-        <div class="card"><div class="icon">${icon("hospital")}</div><h3>Right hospital &amp; doctor</h3><p>Accredited hospitals and experienced specialists matched to your condition and budget.</p></div>
-        <div class="card"><div class="icon">${icon("plane")}</div><h3>Travel</h3><p>Train or flight bookings, airport and station pickup, and local cabs during treatment.</p></div>
-        <div class="card"><div class="icon">${icon("bed")}</div><h3>Stay</h3><p>Clean, affordable rooms near the hospital for the patient and family, for days or months.</p></div>
-        <div class="card"><div class="icon">${icon("assistant")}</div><h3>Personal assistant</h3><p>A helper for hospital visits, queues, paperwork and errands when you need one.</p></div>
-        <div class="card"><div class="icon">${icon("pill")}</div><h3>Medicines</h3><p>Prescriptions filled through a pharmacy partner and delivered to where you stay.</p></div>
-        <div class="card"><div class="icon">${icon("shield")}</div><h3>Insurance help</h3><p>Pre-authorisation, cashless claims and reimbursement paperwork handled with you.</p></div>
-        <div class="card"><div class="icon">${icon("wallet")}</div><h3>Payment options</h3><p>Guidance on medical loans and EMI options if treatment cost is a worry.</p></div>
-        <div class="card"><div class="icon">${icon("phone")}</div><h3>Follow-up</h3><p>After you go home: medicine reminders, test schedules and the next visit, planned.</p></div>
+      <div class="section-head center"><p class="eyebrow">Services</p><h2>What we can arrange for you</h2><p class="lead">Take only what you need.</p></div>
+      <div class="grid grid-4 m-scroll">
+        <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospital &amp; doctor</h3><p>Hospitals that are good at your particular treatment, not just the biggest names.</p></div>
+        <div class="card"><div class="icon">${icon("plane")}</div><h3>Travel</h3><p>Train or flight tickets, someone to pick you up when you arrive, and cabs to the hospital.</p></div>
+        <div class="card"><div class="icon">${icon("bed")}</div><h3>A room nearby</h3><p>Clean, affordable rooms close to the hospital, by the day or by the month.</p></div>
+        <div class="card"><div class="icon">${icon("assistant")}</div><h3>A helping hand</h3><p>Someone to stand in queues, run errands and be with you on the busy days.</p></div>
+        <div class="card"><div class="icon">${icon("pill")}</div><h3>Medicines</h3><p>Medicines picked up and delivered to where you're staying.</p></div>
+        <div class="card"><div class="icon">${icon("shield")}</div><h3>Insurance papers</h3><p>We help with cashless and claim forms so you're not stuck at the insurance desk.</p></div>
+        <div class="card"><div class="icon">${icon("wallet")}</div><h3>Paying for it</h3><p>If money is tight, we'll tell you about medical loans and EMI options.</p></div>
+        <div class="card"><div class="icon">${icon("phone")}</div><h3>After you're home</h3><p>Reminders for medicines and tests, and help planning the next visit.</p></div>
       </div>
+      <p class="swipe-hint">Swipe to see more →</p>
     </div>
   </section>
 
   <section class="section section-alt" id="why">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Why families choose Irynt</p><h2>Doing it alone vs. with a coordinator</h2></div>
+      <div class="section-head center"><p class="eyebrow">Why us</p><h2>Doing it yourself vs. with Irynt</h2></div>
       <div class="table-scroll"><table class="compare">
         <thead><tr><th scope="col"></th><th scope="col">On your own</th><th scope="col" class="us">With Irynt</th></tr></thead>
-        <tbody>${COMPARE.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td class="no">${icon("x")}${b}</td><td class="us yes">${icon("check")}${c}</td></tr>`).join("")}</tbody>
+        <tbody>${COMPARE.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td class="no" data-label="On your own">${icon("x")}${b}</td><td class="us yes" data-label="With Irynt">${icon("check")}${c}</td></tr>`).join("")}</tbody>
       </table></div>
     </div>
   </section>
@@ -157,14 +158,14 @@ write("", L.page({
   <section class="section">
     <div class="container">
       <div class="band">
-        <p class="eyebrow" style="color: var(--accent)">The Irynt promise</p>
-        <h2>We earn your trust before we earn anything else.</h2>
-        <p>Medical travel has a reputation for hidden commissions and surprise bills. We built Irynt to be the opposite.</p>
+        <p class="eyebrow" style="color: var(--accent)">Our promise</p>
+        <h2>No hidden commissions. No surprise bills.</h2>
+        <p>Many families have had a bad experience with medical agents. That's exactly why we work the way we do.</p>
         <div class="grid grid-2" style="margin-top: 24px">
-          <div class="card"><h3>Fast first response</h3><p>A real person contacts you within <span data-response-hours>2</span> hours during working hours (<span data-working-hours>9 AM – 9 PM IST</span>).</p></div>
-          <div class="card"><h3>Original hospital estimates</h3><p>We share the estimate exactly as the hospital gives it, and we tell you openly how Irynt is paid.</p></div>
-          <div class="card"><h3>Care for the family too</h3><p>The person who travels with the patient needs a room, food and help too. We plan for them.</p></div>
-          <div class="card"><h3>Doctors decide, not us</h3><p>We are coordinators, not doctors. Medical decisions always come from qualified specialists.</p></div>
+          <div class="card"><h3>We call back fast</h3><p>Within <span data-response-hours>2</span> hours, between <span data-working-hours>9 AM – 9 PM IST</span>. A real person, not a bot.</p></div>
+          <div class="card"><h3>You see the real estimate</h3><p>We pass on what the hospital gives us, as it is. And we'll tell you how we get paid.</p></div>
+          <div class="card"><h3>We look after the family too</h3><p>Whoever comes with the patient needs a bed, food and a bit of help. We plan for them as well.</p></div>
+          <div class="card"><h3>Doctors make the medical calls</h3><p>We're coordinators, not doctors. We'll never push you towards a treatment.</p></div>
         </div>
       </div>
     </div>
@@ -172,17 +173,18 @@ write("", L.page({
 
   <section class="section section-alt" id="cities">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Medical cities</p><h2>Treatment in India's leading medical cities</h2><p class="lead">We know where families can stay, how to get around and which hospitals to compare in each city.</p></div>
-      <div class="grid grid-3">${cities.map((c) => cityCard(rel, c)).join("")}
-        <a class="card-link" href="${rel}international-patients/"><div class="icon">${icon("globe")}</div><h3>Coming from abroad?</h3><p>Medical visa support, airport pickup, translator and daily help.</p><span class="more">International patients ${icon("arrow")}</span></a>
+      <div class="section-head center"><p class="eyebrow">Cities</p><h2>Where families usually go</h2><p class="lead">We know where to stay, how to get around and which hospitals to look at in each of these cities.</p></div>
+      <div class="grid grid-3 m-scroll">${cities.map((c) => cityCard(rel, c)).join("")}
+        <a class="card-link" href="${rel}international-patients/"><div class="icon">${icon("globe")}</div><h3>Coming from abroad?</h3><p>Visa letter, airport pickup, a translator and someone to call every day.</p><span class="more">For international patients ${icon("arrow")}</span></a>
       </div>
+      <p class="swipe-hint">Swipe to see more →</p>
     </div>
   </section>
 
   <section class="section" id="guides">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Free guides</p><h2>Plan with confidence</h2></div>
-      <div class="grid grid-3">${guides.slice(0, 3).map((g) => guideCard(rel, g)).join("")}</div>
+      <div class="section-head center"><p class="eyebrow">Guides</p><h2>Worth reading before you travel</h2></div>
+      <div class="grid grid-3 m-scroll">${guides.slice(0, 3).map((g) => guideCard(rel, g)).join("")}</div>
       <p class="center" style="margin-top:20px"><a href="${rel}guides/">See all guides →</a></p>
     </div>
   </section>
@@ -190,7 +192,7 @@ write("", L.page({
 ${C("intake-form.html")}
   <section class="section section-alt" id="faq">
     <div class="container">
-      <div class="section-head center"><p class="eyebrow">Questions</p><h2>Frequently asked questions</h2></div>
+      <div class="section-head center"><p class="eyebrow">Questions</p><h2>Questions people ask us</h2></div>
       ${L.faqHtml(HOME_FAQ)}
     </div>
   </section>`,
@@ -202,14 +204,14 @@ write("treatments/", L.page({
   title: "Treatments We Coordinate in India | Irynt",
   description: "Cancer care, heart surgery, joint replacement, spine and neuro care, kidney care and IVF. Compare accredited hospitals in India and get a full plan.",
   schema: [L.breadcrumbSchema([["", "Home"], ["treatments/", "Treatments"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["treatments/", "Treatments"]], "Treatments we coordinate in India", "We work with accredited hospitals for planned and long treatments. Choose a treatment to see what to expect, which reports to share and how we plan the stay around it.", heroActions(rel, "")) +
-    `<section class="section"><div class="container"><div class="grid grid-4">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div>
-    <p class="muted" style="margin-top:24px">Don't see your treatment? We coordinate many other specialities too, including liver and digestive care, eye surgery and second opinions. <a href="${rel}?condition=Other#start">Tell us what you need</a>.</p></div></section>` + L.ctaBand(rel),
+  body: (rel) => pageHero(rel, [["", "Home"], ["treatments/", "Treatments"]], "Treatments we help with", "Pick a treatment to see what usually happens, which reports to keep ready, and how long you may need to stay in the city.", heroActions(rel, "")) +
+    `<section class="section"><div class="container"><div class="grid grid-4 m-compact">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div>
+    <p class="muted" style="margin-top:24px">Don't see yours here? We help with a lot more, like liver problems, eye surgery and second opinions. <a href="${rel}?condition=Other#start">Just tell us what you need</a>.</p></div></section>` + L.ctaBand(rel),
 }), { priority: "0.9" });
 
 treatments.forEach((t) => {
   const crumbs = [["", "Home"], ["treatments/", "Treatments"], [`treatments/${t.slug}/`, t.name]];
-  const allFaqs = t.faqs.concat([["Is Irynt's coordination free?", "Yes. Coordination is free for patients. Optional services like stay, cabs or an assistant are priced upfront, and hospital estimates are shared exactly as given."]]);
+  const allFaqs = t.faqs.concat([["Do we have to pay Irynt?", "No, our help is free. If you want a room, cabs or a helper, we'll tell you the price first. The hospital's estimate is passed on to you exactly as they gave it."]]);
   write(`treatments/${t.slug}/`, L.page({
     path: `treatments/${t.slug}/`, section: "treatments", data, ogType: "article",
     title: t.title, description: t.description,
@@ -219,15 +221,15 @@ treatments.forEach((t) => {
       `<div class="container content-grid"><article class="prose">
         <div class="facts">${t.facts.map(([k, v]) => `<div class="fact"><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join("")}</div>
         ${t.sections.map(([h, html], i) => `<h2 id="s${i + 1}">${esc(h)}</h2>${fill(html)}`).join("\n")}
-        <h2 id="help">How Irynt helps with ${esc(t.name.toLowerCase())}</h2>
-        <p>One coordinator handles every part of the journey, from the first call to follow-up at home:</p>
+        <h2 id="help">What we can do for you</h2>
+        <p>You'll have one person from our team looking after you, from the first call until you're back home. Here's what they can sort out:</p>
       </article>
-      <aside class="aside">${L.asideCta(rel, t.condition, `<div class="aside-box"><h2>On this page</h2><ul class="toc">${t.sections.map(([h], i) => `<li><a href="#s${i + 1}">${esc(h)}</a></li>`).join("")}<li><a href="#help">How Irynt helps</a></li><li><a href="#faq">FAQs</a></li></ul></div>`)}</aside></div>
+      <aside class="aside">${L.asideCta(rel, t.condition, `<div class="aside-box"><h2>On this page</h2><ul class="toc">${t.sections.map(([h], i) => `<li><a href="#s${i + 1}">${esc(h)}</a></li>`).join("")}<li><a href="#help">What we can do</a></li><li><a href="#faq">Common questions</a></li></ul></div>`)}</aside></div>
       <div class="container" style="padding-bottom:16px">${helpGrid()}</div>
-      <section class="section" id="faq" style="padding-top:40px"><div class="container"><h2 class="center">${esc(t.name)}: frequently asked questions</h2>${L.faqHtml(allFaqs)}</div></section>
-      ${L.ctaBand(rel, t.condition, `Get a free ${t.name.toLowerCase()} plan`)}
-      <section class="related"><div class="container"><h2>Related treatments</h2><div class="grid grid-3">${t.related.map((s) => treatmentCard(rel, byslug(s))).join("")}</div>
-      <p style="margin-top:18px" class="muted">Popular cities: ${cities.map((c) => `<a href="${rel}cities/${c.slug}/">${esc(c.name)}</a>`).join(" · ")}</p></div></section>`,
+      <section class="section" id="faq" style="padding-top:40px"><div class="container"><h2 class="center">Common questions about ${esc(t.name.toLowerCase())}</h2>${L.faqHtml(allFaqs)}</div></section>
+      ${L.ctaBand(rel, t.condition, "Want us to look at your case?")}
+      <section class="related"><div class="container"><h2>You might also want to read</h2><div class="grid grid-3 m-scroll">${t.related.map((s) => treatmentCard(rel, byslug(s))).join("")}</div>
+      <p style="margin-top:18px" class="muted">Cities we help in: ${cities.map((c) => `<a href="${rel}cities/${c.slug}/">${esc(c.name)}</a>`).join(" · ")}</p></div></section>`,
   }), { priority: "0.8" });
 });
 
@@ -237,16 +239,16 @@ write("cities/", L.page({
   title: "Treatment in India's Top Medical Cities | Irynt",
   description: "Planning treatment in Delhi NCR, Mumbai, Chennai, Bengaluru or Hyderabad? Get accredited hospital options, stays near the hospital and local travel arranged.",
   schema: [L.breadcrumbSchema([["", "Home"], ["cities/", "Cities"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["cities/", "Cities"]], "Treatment in India's leading medical cities", "We coordinate treatment at accredited hospitals in India's major medical cities, with practical help for families coming from other states and countries.", heroActions(rel, "")) +
+  body: (rel) => pageHero(rel, [["", "Home"], ["cities/", "Cities"]], "Cities we help in", "Most families travel to one of these five cities. We know the hospitals, where to stay nearby and how to get around in each.", heroActions(rel, "")) +
     `<section class="section"><div class="container"><div class="grid grid-3">${cities.map((c) => cityCard(rel, c)).join("")}</div></div></section>` + L.ctaBand(rel),
 }), { priority: "0.8" });
 
 cities.forEach((c) => {
   const crumbs = [["", "Home"], ["cities/", "Cities"], [`cities/${c.slug}/`, c.name]];
   const faqs = [
-    [`How do I choose a hospital in ${c.name}?`, `Share your reports with us. We get opinions and estimates from 2–3 accredited hospitals in ${c.name} that suit the treatment, and compare them with you.`],
-    [`Can you find a stay near the hospital in ${c.name}?`, "Yes. We suggest checked rooms close to your hospital, for the patient and family, by the day or by the month, with prices shown before you book."],
-    [`Do you arrange pickup in ${c.name}?`, "Yes. We arrange pickup from the airport or railway station and cabs for hospital visits."],
+    [`Which hospital in ${c.name} should we go to?`, `It depends on the treatment. Send us your reports and we'll ask two or three suitable hospitals in ${c.name} for their opinion and cost, then go through them with you.`],
+    [`Can you find us a room near the hospital in ${c.name}?`, "Yes. We'll suggest rooms we've checked ourselves, close to your hospital, by the day or by the month. You'll see the price before anything is booked."],
+    [`Will someone pick us up in ${c.name}?`, "Yes, from the airport or the railway station. We can also arrange cabs for every hospital visit."],
   ];
   write(`cities/${c.slug}/`, L.page({
     path: `cities/${c.slug}/`, section: "cities", data,
@@ -254,17 +256,17 @@ cities.forEach((c) => {
     schema: [L.breadcrumbSchema(crumbs), L.faqSchema(faqs)],
     body: (rel) => pageHero(rel, crumbs, c.h1, c.lead, heroActions(rel, "")) +
       `<div class="container content-grid"><article class="prose">
-        <h2 id="arrive">Getting to ${esc(c.name)}</h2><p>${esc(c.arrive)}</p><p>Tell us your arrival time and we arrange pickup straight to your stay or the hospital.</p>
-        <h2 id="tips">Practical tips for families</h2><ul class="checklist">${c.tips.map((tip) => `<li>${CHECK}<span>${esc(tip)}</span></li>`).join("")}</ul>
-        <h2 id="treatments">Treatments families travel to ${esc(c.name)} for</h2>
+        <h2 id="arrive">Getting to ${esc(c.name)}</h2><p>${esc(c.arrive)}</p><p>Just tell us when your train or flight gets in. Someone will be there to take you to your room or straight to the hospital.</p>
+        <h2 id="tips">A few things worth knowing</h2><ul class="checklist">${c.tips.map((tip) => `<li>${CHECK}<span>${esc(tip)}</span></li>`).join("")}</ul>
+        <h2 id="treatments">What families come to ${esc(c.name)} for</h2>
         <ul>${c.specialties.map((s) => `<li><a href="${rel}treatments/${s}/">${esc(byslug(s).name)}</a></li>`).join("")}</ul>
-        <h2 id="help">How Irynt helps in ${esc(c.name)}</h2>
-        <p>We compare accredited hospitals in ${esc(c.name)} for your case, share each hospital's original estimate, and plan the stay, local travel and help your family needs.</p>
+        <h2 id="help">How we can help in ${esc(c.name)}</h2>
+        <p>We'll find the right hospitals in ${esc(c.name)} for your case, show you what each one has quoted, and take care of the room, the cabs and anything else your family needs while you're there.</p>
       </article><aside class="aside">${L.asideCta(rel, "")}</aside></div>
       <div class="container" style="padding-bottom:16px">${helpGrid()}</div>
-      <section class="section" style="padding-top:40px"><div class="container"><h2 class="center">Questions about treatment in ${esc(c.name)}</h2>${L.faqHtml(faqs)}</div></section>
-      ${L.ctaBand(rel, "", `Plan your treatment in ${c.name}`)}
-      <section class="related"><div class="container"><h2>Other medical cities</h2><div class="grid grid-3">${cities.filter((x) => x.slug !== c.slug).slice(0, 3).map((x) => cityCard(rel, x)).join("")}</div></div></section>`,
+      <section class="section" style="padding-top:40px"><div class="container"><h2 class="center">Questions about ${esc(c.name)}</h2>${L.faqHtml(faqs)}</div></section>
+      ${L.ctaBand(rel, "", `Coming to ${c.name} for treatment?`)}
+      <section class="related"><div class="container"><h2>Other cities</h2><div class="grid grid-3 m-scroll">${cities.filter((x) => x.slug !== c.slug).slice(0, 3).map((x) => cityCard(rel, x)).join("")}</div></div></section>`,
   }), { priority: "0.7" });
 });
 
@@ -274,7 +276,7 @@ write("guides/", L.page({
   title: "Patient Guides: Planning Treatment in India | Irynt",
   description: "Free, practical guides for patients and families: medical visas, choosing a hospital, reading cost estimates, cashless insurance and a travel checklist.",
   schema: [L.breadcrumbSchema([["", "Home"], ["guides/", "Guides"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["guides/", "Guides"]], "Free guides for patients and families", "Practical, plain-language guides to help you plan treatment in another city or country.") +
+  body: (rel) => pageHero(rel, [["", "Home"], ["guides/", "Guides"]], "Guides for patients and families", "Things we wish every family knew before travelling for treatment. Short, practical and free.") +
     `<section class="section"><div class="container"><div class="grid grid-3">${guides.map((g) => guideCard(rel, g)).join("")}</div></div></section>` + L.ctaBand(rel),
 }), { priority: "0.7" });
 
@@ -287,51 +289,51 @@ guides.forEach((g) => {
     schema: [L.breadcrumbSchema(crumbs), L.faqSchema(g.faqs),
       { "@context": "https://schema.org", "@type": "Article", headline: g.h1, description: g.description, datePublished: L.SITE.updated, dateModified: L.SITE.updated,
         author: { "@type": "Organization", name: "Irynt Care Team", url: L.SITE.url + "/about/" }, publisher: { "@id": L.SITE.url + "/#org" }, mainEntityOfPage: L.absUrl(`guides/${g.slug}/`), image: L.SITE.url + "/assets/og-image.png" }],
-    body: (rel) => pageHero(rel, crumbs, g.h1, g.lead, "", `By the Irynt Care Team · Updated ${L.SITE.updatedLabel}`) +
+    body: (rel) => pageHero(rel, crumbs, g.h1, g.lead, "", `Written by the Irynt team · Updated ${L.SITE.updatedLabel}`) +
       `<div class="container content-grid"><article class="prose">${fill(g.body)}
-      <h2 id="faq">Frequently asked questions</h2>${L.faqHtml(g.faqs)}</article>
+      <h2 id="faq">Common questions</h2>${L.faqHtml(g.faqs)}</article>
       <aside class="aside">${L.asideCta(rel, "", headings.length ? `<div class="aside-box"><h2>In this guide</h2><ul class="toc">${headings.map(([id, h]) => `<li><a href="#${id}">${esc(h)}</a></li>`).join("")}</ul></div>` : "")}</aside></div>
       ${L.ctaBand(rel)}
-      <section class="related"><div class="container"><h2>More guides</h2><div class="grid grid-3">${guides.filter((x) => x.slug !== g.slug).slice(0, 3).map((x) => guideCard(rel, x)).join("")}</div></div></section>`,
+      <section class="related"><div class="container"><h2>More guides</h2><div class="grid grid-3 m-scroll">${guides.filter((x) => x.slug !== g.slug).slice(0, 3).map((x) => guideCard(rel, x)).join("")}</div></div></section>`,
   }), { priority: "0.6" });
 });
 
 // ------------------------------------------------------------------ INTERNATIONAL
 const INTL_FAQ = [
-  ["Do you help with the Indian medical visa?", "We arrange the hospital's invitation letter and help you prepare documents. You apply on the official Government of India visa website."],
-  ["Can my family come with me?", "Yes. Under current rules, usually up to two attendants can travel on e-Medical Attendant visas. We plan their stay too."],
-  ["Do you provide translators?", "Yes, on request. Tell us your language and we will arrange a translator for doctor visits."],
-  ["How do I pay the hospital?", "You pay the hospital directly as per its process. We explain the deposit and payment steps before you travel."],
+  ["Can you get me the Indian medical visa?", "We can't apply for you, but we get the hospital's invitation letter and help you get your papers in order. You then apply on the official Government of India visa website."],
+  ["Can my family come with me?", "Yes. Under the current rules, up to two family members can usually come on e-Medical Attendant visas. We'll find a place for them to stay too."],
+  ["I don't speak English or Hindi. Is that a problem?", "Not at all. Tell us your language and we'll arrange a translator for your doctor visits."],
+  ["How do I pay the hospital?", "You pay the hospital directly, the way they ask. Before you travel, we'll explain how much deposit they need and how the rest is paid."],
 ];
 write("international-patients/", L.page({
   path: "international-patients/", section: "international", data,
   title: "Medical Treatment in India for International Patients | Irynt",
   description: "Coming to India for treatment? Get hospital opinions, the medical visa letter, airport pickup, stay, translator and daily support from one coordinator.",
   schema: [L.breadcrumbSchema([["", "Home"], ["international-patients/", "International patients"]]), L.faqSchema(INTL_FAQ)],
-  body: (rel) => pageHero(rel, [["", "Home"], ["international-patients/", "International patients"]], "Treatment in India for international patients", "India's accredited hospitals receive patients from around the world. We make the journey simple: opinions before you travel, the visa letter, and someone with you from arrival to follow-up.", heroActions(rel, "")) +
+  body: (rel) => pageHero(rel, [["", "Home"], ["international-patients/", "International patients"]], "Coming to India for treatment from abroad", "You'll get hospital opinions before you book a ticket. After that we help with the visa letter, pick you up at the airport, and stay in touch every day until you're home again.", heroActions(rel, "")) +
     `<section class="section"><div class="container">
-      <div class="section-head center"><h2>Your journey with Irynt</h2></div>
+      <div class="section-head center"><h2>What happens, step by step</h2></div>
       <ol class="steps">
-        <li><h3>Share reports</h3><p>Send reports by WhatsApp or email. We review them with our doctor advisor.</p></li>
-        <li><h3>Get opinions</h3><p>2–3 accredited hospitals share an opinion and written estimate.</p></li>
-        <li><h3>Visa letter</h3><p>We arrange the hospital's invitation letter for your e-Medical visa.</p></li>
-        <li><h3>Arrival</h3><p>Airport pickup, SIM card, currency exchange and your stay near the hospital.</p></li>
-        <li><h3>Treatment &amp; home</h3><p>Translator, daily check-ins and follow-up after you return home.</p></li>
+        <li><h3>Send your reports</h3><p>On WhatsApp or email. Our doctor advisor takes a look first.</p></li>
+        <li><h3>Hear from hospitals</h3><p>Two or three hospitals send their opinion and a written estimate.</p></li>
+        <li><h3>Get the visa letter</h3><p>Once you choose, we get the hospital's letter for your e-Medical visa.</p></li>
+        <li><h3>Land in India</h3><p>We meet you at the airport and help with a SIM card, money exchange and your room.</p></li>
+        <li><h3>Treatment, then home</h3><p>A translator if you need one, a daily call from us, and follow-up once you're back.</p></li>
       </ol>
     </div></section>
     <section class="section section-alt"><div class="container">
       <div class="grid grid-3">
-        <div class="card"><div class="icon">${icon("doc")}</div><h3>Medical visa support</h3><p>Hospital invitation letter and document checklist. <a href="${rel}guides/india-medical-visa-guide/">Read the visa guide</a>.</p></div>
-        <div class="card"><div class="icon">${icon("plane")}</div><h3>Airport pickup</h3><p>Met at arrival and taken to your stay or straight to the hospital.</p></div>
-        <div class="card"><div class="icon">${icon("language")}</div><h3>Translator</h3><p>Arabic, French, Bengali, Swahili, Russian and more, on request.</p></div>
-        <div class="card"><div class="icon">${icon("bed")}</div><h3>Stay near the hospital</h3><p>Rooms and service apartments with kitchen access for long treatments.</p></div>
-        <div class="card"><div class="icon">${icon("wallet")}</div><h3>Clear costs</h3><p>Original hospital estimates in writing, and optional services priced upfront.</p></div>
-        <div class="card"><div class="icon">${icon("phone")}</div><h3>Follow-up from home</h3><p>We coordinate teleconsultations and reports after you return.</p></div>
+        <div class="card"><div class="icon">${icon("doc")}</div><h3>Visa paperwork</h3><p>The hospital's letter and a checklist of what you'll need. <a href="${rel}guides/india-medical-visa-guide/">Read the visa guide</a>.</p></div>
+        <div class="card"><div class="icon">${icon("plane")}</div><h3>Airport pickup</h3><p>Someone waiting for you when you land, to take you to your room or the hospital.</p></div>
+        <div class="card"><div class="icon">${icon("language")}</div><h3>Translator</h3><p>Arabic, French, Bengali, Swahili, Russian and others. Just ask.</p></div>
+        <div class="card"><div class="icon">${icon("bed")}</div><h3>A room nearby</h3><p>Rooms and small apartments with a kitchen, good for longer stays.</p></div>
+        <div class="card"><div class="icon">${icon("wallet")}</div><h3>No surprises on cost</h3><p>The hospital's estimate in writing, and our prices for extras told upfront.</p></div>
+        <div class="card"><div class="icon">${icon("phone")}</div><h3>Follow-up from home</h3><p>We set up video calls with your doctor and pass on reports after you leave.</p></div>
       </div>
     </div></section>
-    <section class="section"><div class="container"><h2 class="center">Treatments international patients come for</h2><div class="grid grid-4" style="margin-top:24px">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div></div></section>
-    <section class="section section-alt"><div class="container"><h2 class="center">Questions from international patients</h2>${L.faqHtml(INTL_FAQ)}</div></section>
-    ${L.ctaBand(rel, "", "Get opinions before you travel")}`,
+    <section class="section"><div class="container"><h2 class="center">What people come to India for</h2><div class="grid grid-4 m-compact" style="margin-top:24px">${treatments.map((t) => treatmentCard(rel, t)).join("")}</div></div></section>
+    <section class="section section-alt"><div class="container"><h2 class="center">Questions from patients abroad</h2>${L.faqHtml(INTL_FAQ)}</div></section>
+    ${L.ctaBand(rel, "", "Get hospital opinions before you travel")}`,
 }), { priority: "0.9" });
 
 // ------------------------------------------------------------------ ABOUT / CONTACT / PARTNER
@@ -340,22 +342,22 @@ write("about/", L.page({
   title: "About Irynt: Honest Care Coordination for Treatment in India",
   description: "Irynt helps families plan treatment in India with one coordinator, original hospital estimates and no hidden mark-ups. How we work and what we promise.",
   schema: [L.breadcrumbSchema([["", "Home"], ["about/", "About"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["about/", "About"]], "We help families get the right treatment, without the chaos", "Irynt is a care coordination service for patients travelling to another city or country for treatment. We exist because finding the right hospital should not depend on who you know.") +
+  body: (rel) => pageHero(rel, [["", "Home"], ["about/", "About"]], "About Irynt", "We help families who have to travel for treatment. Finding the right hospital shouldn't depend on whether you happen to know a doctor in the big city.") +
     `<div class="container content-grid"><article class="prose">
-      <h2>Why we started Irynt</h2>
-      <p>Every day, families from smaller towns travel to big cities for treatment. They arrive with a folder of reports, little information and a lot of fear. They spend days finding the right doctor, overpay for a room, and handle insurance paperwork alone, while also caring for someone who is unwell.</p>
-      <p>Irynt brings all of that into one plan, handled by one coordinator who stays with the family from the first call until follow-up at home.</p>
+      <h2>Why we started</h2>
+      <p>If you've ever taken a parent to a big city hospital, you'll know how it goes. You get off the train with a plastic folder full of reports and no idea where to start. The first few days go in finding the right doctor. The room near the hospital costs twice what it should. Someone has to stand at the insurance desk for hours. And all this while you're worried about the person you came with.</p>
+      <p>We started Irynt so families don't have to figure all of that out alone. One person from our team stays with you from the first phone call until you're back home, and handles the running around so you can focus on the patient.</p>
       <!-- Add the founder's name, photo and a short personal story here. Real people build trust (and help SEO). -->
-      <h2>What we promise</h2>
+      <h2>What we promise you</h2>
       <ul class="checklist">
-        <li>${CHECK}<span><b>Original estimates.</b> We share each hospital's estimate exactly as given.</span></li>
-        <li>${CHECK}<span><b>Open about how we are paid.</b> Hospitals and partners may pay us a facilitation fee; it is never added to your estimate.</span></li>
-        <li>${CHECK}<span><b>No payments to doctors.</b> We never pay or accept referral fees from individual doctors.</span></li>
-        <li>${CHECK}<span><b>Doctors decide.</b> We coordinate; qualified doctors make every medical decision.</span></li>
-        <li>${CHECK}<span><b>Your data stays private.</b> Reports go only to hospitals you approve.</span></li>
+        <li>${CHECK}<span><b>You see the real estimate.</b> Whatever the hospital quotes, you see it as it is.</span></li>
+        <li>${CHECK}<span><b>We're open about money.</b> Hospitals and some partners pay us a fee. It never gets added to your bill.</span></li>
+        <li>${CHECK}<span><b>No deals with doctors.</b> We don't pay doctors for referrals, and we don't take money from them either.</span></li>
+        <li>${CHECK}<span><b>Doctors decide treatment.</b> We'll never tell you which treatment to choose.</span></li>
+        <li>${CHECK}<span><b>Your reports stay private.</b> They only go to hospitals you've said yes to.</span></li>
       </ul>
-      <h2>How we choose partners</h2>
-      <p>We work with hospitals accredited by recognised bodies such as NABH or JCI, and with stays, cab operators and assistants we have checked ourselves. Partners that treat patients poorly or overcharge are removed.</p>
+      <h2>Who we work with</h2>
+      <p>Only NABH or JCI accredited hospitals. For rooms, cabs and helpers, we visit and check them ourselves first. If a partner treats a patient badly or overcharges, we stop working with them.</p>
     </article><aside class="aside">${L.asideCta(rel, "")}</aside></div>` + L.ctaBand(rel),
 }), { priority: "0.5" });
 
@@ -364,13 +366,13 @@ write("contact/", L.page({
   title: "Contact Irynt: WhatsApp, Email & Treatment Enquiries",
   description: "Contact Irynt for a free treatment plan, partnership enquiries or help with an existing case. WhatsApp and email support, 9 AM to 9 PM IST.",
   schema: [L.breadcrumbSchema([["", "Home"], ["contact/", "Contact"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["contact/", "Contact"]], "Contact Irynt", "The fastest way to reach us is WhatsApp. For a treatment plan, the form takes about 3 minutes.") +
+  body: (rel) => pageHero(rel, [["", "Home"], ["contact/", "Contact"]], "Get in touch", "WhatsApp is the quickest way to reach us. If you want a treatment plan, the form takes about two minutes.") +
     `<section class="section"><div class="container"><div class="grid grid-3">
-      <div class="card"><div class="icon">${icon("doc")}</div><h3>New treatment enquiry</h3><p>Fill the short form and a coordinator calls you within 2 working hours.</p><p style="margin-top:12px"><a class="btn btn-primary btn-sm" href="${rel}#start">Get my free plan</a></p></div>
+      <div class="card"><div class="icon">${icon("doc")}</div><h3>Need help with treatment?</h3><p>Fill the short form and we'll call you back within 2 hours (9 AM to 9 PM).</p><p style="margin-top:12px"><a class="btn btn-primary btn-sm" href="${rel}#start">Get my free plan</a></p></div>
       <div class="card"><div class="icon">${icon("chat")}</div><h3>WhatsApp &amp; email</h3><p>Hours: <span data-working-hours>9 AM – 9 PM IST</span>.</p><p style="margin-top:12px"><a class="btn btn-wa btn-sm" href="#" data-wa-link hidden>WhatsApp us</a> <a href="#" data-email-link></a></p></div>
-      <div class="card"><div class="icon">${icon("route")}</div><h3>Existing case</h3><p>Use the tracking link your coordinator sent you, or message us with your case ID.</p><p style="margin-top:12px"><a href="${rel}track.html">Track your case</a></p></div>
-      <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospitals &amp; partners</h3><p>Hospitals, stays, cab operators and translators: we'd like to hear from you.</p><p style="margin-top:12px"><a href="${rel}partner.html">Partner with Irynt</a></p></div>
-      <div class="card"><div class="icon">${icon("clock")}</div><h3>Emergencies</h3><p>Irynt is not an emergency service. Call <b>112</b> in India or go to the nearest hospital.</p></div>
+      <div class="card"><div class="icon">${icon("route")}</div><h3>Already talking to us?</h3><p>Open the tracking link we sent you, or WhatsApp us your case ID.</p><p style="margin-top:12px"><a href="${rel}track.html">Track your case</a></p></div>
+      <div class="card"><div class="icon">${icon("hospital")}</div><h3>Hospitals and partners</h3><p>Run a hospital, guest house or cab service? We'd love to talk.</p><p style="margin-top:12px"><a href="${rel}partner.html">Partner with Irynt</a></p></div>
+      <div class="card"><div class="icon">${icon("clock")}</div><h3>Is it an emergency?</h3><p>Please don't message us. Call <b>112</b> in India or go to the nearest hospital now.</p></div>
     </div></div></section>`,
 }), { priority: "0.5" });
 
@@ -379,21 +381,21 @@ write("partner.html", L.page({
   title: "Partner with Irynt: For Hospitals, Stays & Care Providers",
   description: "Irynt brings prepared, well-supported patients to accredited hospitals and trusted local providers. Learn how referrals work and what we ask of partners.",
   schema: [L.breadcrumbSchema([["", "Home"], ["partner.html", "Partner with us"]])],
-  body: (rel) => pageHero(rel, [["", "Home"], ["partner.html", "Partner with us"]], "Partner with Irynt", "We coordinate complete treatment journeys for patients from smaller cities and from abroad, and bring you patients who arrive prepared, informed and supported.",
+  body: (rel) => pageHero(rel, [["", "Home"], ["partner.html", "Partner with us"]], "Work with Irynt", "We help patients from smaller cities and from abroad get to the right hospital. They arrive with their reports in order, a place to stay and someone helping them.",
       `<div class="hero-actions"><a class="btn btn-wa" data-partner-wa href="#" data-wa-link hidden>${icon("chat")} WhatsApp us</a><button type="button" class="btn btn-ghost" onclick="window.print()">Print one-pager</button></div>`) +
-    `<section class="section"><div class="container"><h2>Why hospitals work with us</h2><div class="grid grid-3" style="margin-top:20px">
-      <div class="card"><div class="icon">${icon("doc")}</div><h3>Pre-qualified cases</h3><p>Reports are collected, organised and reviewed by our doctor advisor before they reach your team.</p></div>
-      <div class="card"><div class="icon">${icon("route")}</div><h3>Patients arrive ready</h3><p>Travel, stay near your hospital, local transport and an assistant are arranged.</p></div>
-      <div class="card"><div class="icon">${icon("users")}</div><h3>One point of contact</h3><p>A dedicated coordinator handles family questions, paperwork and logistics.</p></div>
-      <div class="card"><div class="icon">${icon("search")}</div><h3>Transparent and ethical</h3><p>Your estimate goes to the patient exactly as given. We never pay or accept fees from individual doctors.</p></div>
-      <div class="card"><div class="icon">${icon("phone")}</div><h3>Follow-up continuity</h3><p>We help patients with reminders, tests and return visits as you advise.</p></div>
-      <div class="card"><div class="icon">${icon("globe")}</div><h3>Domestic &amp; international</h3><p>Families from tier-2/3 Indian cities, and international patients needing visa support.</p></div>
+    `<section class="section"><div class="container"><h2>Why hospitals work with us</h2><p class="lead">Less chasing, fewer no-shows, and families who know what to expect.</p><div class="grid grid-3" style="margin-top:20px">
+      <div class="card"><div class="icon">${icon("doc")}</div><h3>Cases that are ready</h3><p>We collect the reports, put them in order and have our doctor advisor look at them before they reach you.</p></div>
+      <div class="card"><div class="icon">${icon("route")}</div><h3>Patients turn up on time</h3><p>Their travel, room and local cabs are already sorted, so appointments don't get missed.</p></div>
+      <div class="card"><div class="icon">${icon("users")}</div><h3>One person to call</h3><p>Our coordinator deals with the family's questions and paperwork, so your staff don't have to.</p></div>
+      <div class="card"><div class="icon">${icon("search")}</div><h3>Clean and honest</h3><p>Your estimate goes to the patient exactly as you give it. We never pay or take money from individual doctors.</p></div>
+      <div class="card"><div class="icon">${icon("phone")}</div><h3>Patients come back for follow-up</h3><p>We remind them about tests and return visits, the way you've advised.</p></div>
+      <div class="card"><div class="icon">${icon("globe")}</div><h3>From India and abroad</h3><p>Families from smaller Indian towns, and patients from other countries who need visa help.</p></div>
     </div></div></section>
     <section class="section section-alt"><div class="container content-grid" style="padding-top:0;padding-bottom:0"><div class="prose">
       <h2>How a referral works</h2><ol><li><b>Case sent</b>: patient summary and reports, with consent.</li><li><b>Your opinion and estimate</b>: ideally within 24–72 hours.</li><li><b>Patient chooses</b>: we present 2–3 options with your original estimate.</li><li><b>Admission</b>: we confirm dates, travel and stay. The patient pays the hospital directly.</li><li><b>Follow-up</b>: we stay in touch after discharge.</li></ol>
       <h2>What we ask of partners</h2><ul><li>A named point of contact (international desk, marketing or patient relations)</li><li>Timely opinions and written estimates</li><li>Fair, consistent pricing: the same or better than for walk-in patients</li><li>A clear, written facilitation agreement</li></ul>
-      <h2>Also looking for</h2><p>Clean, affordable <b>stays</b> near hospitals, reliable <b>cab</b> operators, trained <b>care assistants</b>, <b>pharmacies</b> that deliver and <b>translators</b>.</p>
-    </div><aside class="aside"><div class="aside-box cta"><h2>Let's talk</h2><p>Message us with your organisation's name and city, and we'll set up a short call.</p><a class="btn btn-light" href="#" data-wa-link hidden>WhatsApp us</a><p style="margin-top:10px"><a href="#" data-email-link style="color:#fff"></a></p></div></aside></div></section>`,
+      <h2>We're also looking for</h2><p>Clean, reasonably priced <b>rooms</b> near hospitals, <b>cab</b> drivers people can rely on, <b>care helpers</b>, <b>pharmacies</b> that deliver and <b>translators</b>.</p>
+    </div><aside class="aside"><div class="aside-box cta"><h2>Let's talk</h2><p>Send us your name, your organisation and your city. We'll set up a quick call.</p><a class="btn btn-light" href="#" data-wa-link hidden>WhatsApp us</a><p style="margin-top:10px"><a href="#" data-email-link style="color:#fff"></a></p></div></aside></div></section>`,
 }), { priority: "0.4" });
 
 // ------------------------------------------------------------------ LEGAL + 404
@@ -408,7 +410,7 @@ write("partner.html", L.page({
 
 write("404.html", L.page({
   path: "404.html", section: "", data, noindex: true, absBase: true, title: "Page not found | Irynt", description: "This page could not be found.",
-  body: (rel) => `<section class="notfound"><div class="container"><h1>Page not found</h1><p class="lead" style="margin:0 auto 24px">The page you were looking for doesn't exist or has moved.</p><div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="${L.SITE.url}/">Go to the homepage</a><a class="btn btn-ghost" href="${L.SITE.url}/treatments/">See treatments</a></div></div></section>`,
+  body: (rel) => `<section class="notfound"><div class="container"><h1>Page not found</h1><p class="lead" style="margin:0 auto 24px">Sorry, we couldn't find that page. It may have moved.</p><div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="${L.SITE.url}/">Go to the homepage</a><a class="btn btn-ghost" href="${L.SITE.url}/treatments/">See treatments</a></div></div></section>`,
 }), { nositemap: true });
 
 // ------------------------------------------------------------------ SITEMAP / ROBOTS / MANIFEST

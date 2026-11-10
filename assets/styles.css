@@ -559,3 +559,60 @@ form.intake input:focus, form.intake select:focus, form.intake textarea:focus { 
 }
 
 #intake-form, #success { scroll-margin-top: 88px; }
+
+/* ======================================================================
+   v4 – mobile polish
+   ====================================================================== */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-delay: 0s !important; } }
+
+@media (max-width: 600px) {
+  .section { padding: 52px 0; }
+  .section-head { margin-bottom: 22px; }
+  .lead { font-size: 1.05rem; }
+
+  /* Hero card: show the first rows only */
+  .hero-visual { padding: 8px 0 0; }
+  .hero-visual .plan-card { animation: cardIn .8s cubic-bezier(.2,.7,.2,1) .2s both; }
+  .hero-visual .plan-row:nth-of-type(n+5) { display: none; }
+  .hero-points { gap: 8px; }
+
+  /* Treatments: compact 2-column tiles */
+  .m-compact { grid-template-columns: 1fr 1fr !important; gap: 10px; }
+  .m-compact .card-link { padding: 14px; }
+  .m-compact .card-link .icon { width: 38px; height: 38px; margin-bottom: 8px; }
+  .m-compact .card-link h3 { font-size: .95rem; margin: 0; }
+  .m-compact .card-link p, .m-compact .card-link .more { display: none; }
+
+  /* Swipe carousels */
+  .m-scroll { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 16px; gap: 12px; margin: 0 -16px; padding: 4px 16px 14px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .m-scroll::-webkit-scrollbar { display: none; }
+  .m-scroll > * { flex: 0 0 80%; scroll-snap-align: start; }
+  .m-scroll .rv:not(.in) { opacity: 1; transform: none; }
+  .swipe-hint { display: block; font-size: .8rem; color: var(--muted); text-align: right; margin: -4px 0 0; }
+
+  /* Steps: compact rows */
+  .steps { gap: 10px; }
+  .steps li { display: grid; grid-template-columns: 34px 1fr; column-gap: 12px; padding: 14px 16px; }
+  .steps li::before { grid-row: span 2; margin: 0; }
+  .steps li h3 { margin: 4px 0 2px; font-size: 1rem; }
+  .steps li p { grid-column: 2; }
+
+  /* Comparison table → cards */
+  .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: 100%; }
+  .compare { border: 0; box-shadow: none; background: transparent; }
+  .compare thead { display: none; }
+  .compare tr { background: #fff; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
+  .compare th[scope="row"] { background: #F6FAFA; font-size: .95rem; padding: 10px 14px; }
+  .compare td { border: 0; padding: 8px 14px; font-size: .9rem; }
+  .compare td::before { content: attr(data-label); display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
+  .compare td.us { background: #F0F8F9; padding-bottom: 12px; }
+  .compare tbody tr:nth-child(n+6) { display: none; }
+
+  .band { padding: 28px 18px; border-radius: 22px; }
+  .band .grid { gap: 10px; }
+  .band .grid .card { padding: 16px; }
+  .faq details { padding: 2px 16px; }
+  .footer-grid { gap: 22px; }
+  .content-grid { padding-top: 28px; }
+}
+@media (min-width: 601px) { .swipe-hint { display: none; } }

@@ -4,25 +4,28 @@
 "use strict";
 
 const COMMON_HELP = [
-  ["search", "Hospital options", "2–3 accredited hospitals and specialists matched to the case, with each hospital's original estimate side by side."],
-  ["calendar", "Appointments", "Consultation, tests and admission dates booked and confirmed."],
-  ["bed", "Stay near the hospital", "Clean, affordable rooms for the patient and family, by the day or by the month."],
-  ["car", "Pickup and local travel", "Station or airport pickup and cabs for every hospital visit."],
-  ["assistant", "A helping hand", "A personal assistant for admission day, queues, paperwork and errands, if you want one."],
-  ["shield", "Insurance and payments", "Cashless pre-authorisation and claim paperwork, and guidance on medical loans or EMI."],
+  ["search", "Hospital options", "Two or three hospitals that suit your case, with what each one has quoted, side by side."],
+  ["calendar", "Appointments", "We book the consultation, tests and admission date, and confirm them for you."],
+  ["bed", "A room nearby", "Clean, affordable rooms close to the hospital for you and your family."],
+  ["car", "Pickup and cabs", "Someone at the station or airport, and cabs for every hospital visit."],
+  ["assistant", "A helping hand", "Someone for admission day, the queues and the running around, if you want."],
+  ["shield", "Insurance and payment", "Help with cashless forms and claims, and loan or EMI options if needed."],
 ];
 
 const T = [
   {
     slug: "cancer-treatment-in-india",
     name: "Cancer Treatment",
-    short: "Surgery, chemotherapy, radiation and second opinions at accredited cancer centres.",
+    short: "Surgery, chemo, radiation or a second opinion, and a place to stay for the long haul.",
+
     icon: "ribbon",
     condition: "Cancer",
     title: "Cancer Treatment in India: Hospitals & Stay Planning | Irynt",
     description: "Planning cancer treatment in India? Get opinions from accredited cancer centres, compare original estimates and plan a long stay near the hospital.",
-    h1: "Cancer treatment in India, with a plan for every week of it",
-    lead: "Cancer care often means weeks or months away from home. We help you get the right specialist opinion quickly, compare hospitals honestly, and organise the stay, travel and medicines around the treatment schedule.",
+    h1: "Cancer treatment in India",
+
+    lead: "Cancer treatment can mean weeks or even months in another city. We help you get a specialist's opinion quickly, compare hospitals honestly, and set up a room, transport and medicines around the treatment schedule, so the family isn't scrambling.",
+
     facts: [["Typical approach", "Team-based plan: surgery, chemo, radiation or a mix"], ["Time away from home", "Weeks to months, depending on the plan"], ["Key report", "Biopsy / histopathology report"], ["Good to have", "PET-CT or CT/MRI, blood tests"]],
     sections: [
       ["How cancer treatment is planned", `<p>Most large cancer centres in India plan treatment through a <b>multidisciplinary team</b>: surgical, medical and radiation oncologists review the reports together. The plan depends on the type of cancer, its stage, the patient's overall health and their preferences.</p>
@@ -35,16 +38,16 @@ const T = [
 <li>${"{check}"}<span><b>Recent blood tests</b> (complete blood count, kidney and liver function).</span></li>
 <li>${"{check}"}<span><b>Treatment so far</b>: discharge summaries, chemotherapy or radiation details, surgery notes.</span></li>
 <li>${"{check}"}<span>A short note on current symptoms and other conditions (diabetes, heart disease).</span></li></ul>
-<p>Not sure which reports you have? Send whatever you have on WhatsApp. Your coordinator will tell you what is missing.</p>`],
-      ["Planning a longer stay", `<p>The biggest practical challenge in cancer care is often the stay, not the hospital. A typical plan has three phases:</p>
+<p>Not sure what you have? Just send whatever's in the folder on WhatsApp. We'll tell you if anything is missing.</p>`],
+      ["Planning a longer stay", `<p>In our experience, the hardest part of cancer treatment for families is often the stay, not the hospital. It usually happens in three phases:</p>
 <table><thead><tr><th>Phase</th><th>What happens</th><th>What we arrange</th></tr></thead><tbody>
 <tr><td>Evaluation</td><td>Consultation, scans and tests, team review</td><td>Short stay near the hospital, cabs, appointment booking</td></tr>
 <tr><td>Treatment</td><td>Surgery and/or chemo and radiation cycles</td><td>Monthly room rates, assistant on key days, medicine delivery, food options for the family</td></tr>
 <tr><td>Follow-up</td><td>Scans and review visits</td><td>Travel planning for each visit, reminders, coordination with your local doctor</td></tr></tbody></table>
 <p>Whether some cycles can be continued closer to home is a medical decision. Ask the treating oncologist; we will plan around their answer.</p>`],
-      ["What affects the cost", `<p>Cancer treatment costs vary more than almost any other treatment, so we don't publish a single price. The main factors are:</p>
+      ["What affects the cost", `<p>Cancer treatment costs vary a lot, so we won't throw a single number at you. It mainly depends on:</p>
 <ul><li>Type and stage of cancer, and the treatment plan chosen</li><li>Number of chemotherapy cycles and radiation sessions</li><li>Medicines used: generic or branded, targeted therapy or immunotherapy</li><li>Surgery type, length of hospital stay and room category</li><li>Scans and tests during treatment</li></ul>
-<p>We share each hospital's <b>written estimate exactly as given</b> and help you ask the right questions about what is included.</p>`],
+<p>We'll show you each hospital's <b>written estimate exactly as they gave it</b>, and help you ask what's included and what isn't.</p>`],
     ],
     faqs: [
       ["Can I get a cancer treatment opinion before travelling?", "Often, yes. If you share the biopsy report, scans and blood tests, many hospitals can give an initial opinion and estimate before you travel. A final plan is made after the doctor examines the patient."],
@@ -57,13 +60,16 @@ const T = [
   {
     slug: "heart-surgery-in-india",
     name: "Heart Surgery & Cardiac Care",
-    short: "Angiography, angioplasty, bypass (CABG) and valve surgery with complete travel planning.",
+    short: "Angiography, stents, bypass or valve surgery, with travel and stay sorted.",
+
     icon: "heart",
     condition: "Heart",
     title: "Heart Surgery in India: Bypass & Angioplasty | Irynt",
     description: "Compare accredited heart hospitals in India for angioplasty, bypass (CABG) or valve surgery. Original estimates, nearby stay and family support.",
-    h1: "Heart surgery and cardiac care in India, planned end to end",
-    lead: "When a local doctor says “you need angiography” or “bypass surgery”, families have many questions and little time. We get you cardiac opinions quickly and plan everything around the procedure.",
+    h1: "Heart surgery and cardiac care in India",
+
+    lead: "When the local doctor says \"get an angiography done\" or \"you need a bypass\", families have a hundred questions and not much time. We get you a cardiologist's opinion fast and take care of the practical side.",
+
     facts: [["Common procedures", "Angiography, angioplasty, CABG, valve surgery"], ["Hospital stay", "From a day (angiography) to about a week or more (surgery)"], ["Key reports", "ECG, echo, angiography report"], ["Plan to stay nearby", "Usually 1–3 weeks for surgery"]],
     sections: [
       ["Common cardiac procedures", `<ul><li><b>Coronary angiography</b>: a test that shows blockages in the heart's arteries.</li><li><b>Angioplasty with stent</b>: opening a blocked artery through a catheter.</li><li><b>Bypass surgery (CABG)</b>: creating new routes for blood flow around blockages.</li><li><b>Valve repair or replacement</b>: surgical or, in selected patients, catheter-based (such as TAVI).</li><li><b>Pacemaker and other device procedures</b>.</li></ul>
@@ -74,7 +80,7 @@ const T = [
 <tr><td>Angioplasty</td><td>Usually a short hospital stay; plan about a week in the city</td></tr>
 <tr><td>Bypass or valve surgery</td><td>Often around a week in hospital; plan roughly 2–3 weeks in the city for recovery and the first review</td></tr></tbody></table>
 <p>These are general planning guides. Your cardiologist or surgeon will confirm the actual timeline for the patient.</p>`],
-      ["What affects the cost", `<ul><li>The procedure and whether more than one is needed</li><li>Number and type of stents, or type of valve</li><li>Days in ICU and in the ward, and room category</li><li>Age and other conditions (diabetes, kidney disease)</li><li>Surgeon and hospital</li></ul><p>You will see each hospital's estimate exactly as given, with what is and isn't included.</p>`],
+      ["What affects the cost", `<ul><li>The procedure and whether more than one is needed</li><li>Number and type of stents, or type of valve</li><li>Days in ICU and in the ward, and room category</li><li>Age and other conditions (diabetes, kidney disease)</li><li>Surgeon and hospital</li></ul><p>You'll see each hospital's estimate as they gave it, and we'll go through what's included with you.</p>`],
     ],
     faqs: [
       ["Can I compare bypass surgery estimates from different hospitals?", "Yes. With the angiography report and other tests, we request opinions and written estimates from 2–3 accredited hospitals and show them side by side."],
@@ -87,13 +93,16 @@ const T = [
   {
     slug: "knee-replacement-in-india",
     name: "Knee Replacement",
-    short: "Total and partial knee replacement, one or both knees, with stay and physiotherapy planning.",
+    short: "One knee or both, with a room nearby and physio planned for after.",
+
     icon: "bone",
     condition: "Bones & joints",
     title: "Knee Replacement in India: Cost Factors & Planning | Irynt",
     description: "Planning knee replacement in India? Compare accredited hospitals, understand what affects the cost, and plan your stay and physiotherapy.",
-    h1: "Knee replacement in India, from first X-ray to walking home",
-    lead: "Knee replacement is one of the most common planned surgeries. The surgery takes a few hours; the recovery takes planning. We organise the hospital, the stay and the help you will need in the first weeks.",
+    h1: "Knee replacement surgery in India",
+
+    lead: "The operation itself takes a few hours. Getting back on your feet takes a couple of weeks, and that's the part people forget to plan for. We sort out the hospital, a room that's easy to move around in, and help for the first few days.",
+
     facts: [["Types", "Total (TKR) or partial knee replacement"], ["Hospital stay", "Often around 3–5 days"], ["Plan to stay nearby", "About 2–3 weeks"], ["Key reports", "Standing X-rays of both knees"]],
     sections: [
       ["When is knee replacement considered?", `<p>Orthopaedic surgeons usually consider knee replacement when arthritis causes severe pain and stiffness that limit daily life, and when medicines, physiotherapy, weight management or injections no longer help enough.</p>
@@ -114,13 +123,16 @@ const T = [
   {
     slug: "hip-replacement-in-india",
     name: "Hip Replacement",
-    short: "Total hip replacement and revision surgery, with recovery-friendly stays and assistance.",
+    short: "Hip replacement or redo surgery, with an easy-access room for recovery.",
+
     icon: "walk",
     condition: "Bones & joints",
     title: "Hip Replacement in India: Hospitals & Recovery | Irynt",
     description: "Compare accredited hospitals for hip replacement in India. Understand cost factors, reports needed and recovery time, and get a complete stay and travel plan.",
-    h1: "Hip replacement in India, with a recovery plan that works",
-    lead: "Whether it is arthritis, an old injury or a fracture that didn't heal well, hip replacement can restore movement. We help you compare surgeons and hospitals and plan a safe, comfortable recovery.",
+    h1: "Hip replacement surgery in India",
+
+    lead: "Arthritis, an old injury or a fracture that didn't heal well can all lead to a hip replacement. We help you compare surgeons and hospitals, and make sure the place you stay in afterwards is easy and safe to move around.",
+
     facts: [["Types", "Total hip replacement, revision surgery"], ["Hospital stay", "Often around 3–5 days"], ["Plan to stay nearby", "About 2–3 weeks"], ["Key reports", "X-ray of the pelvis and both hips"]],
     sections: [
       ["When is hip replacement considered?", `<p>Surgeons consider hip replacement for severe hip pain and stiffness from arthritis, avascular necrosis or certain fractures, when other treatment no longer helps. <b>Revision surgery</b> replaces an older implant that has worn out or loosened.</p>
@@ -139,13 +151,16 @@ const T = [
   {
     slug: "spine-surgery-in-india",
     name: "Spine Surgery",
-    short: "Slip disc, spinal stenosis, fusion and minimally invasive spine care. Get an opinion first.",
+    short: "Slip disc, nerve compression or fusion. Get a proper opinion before deciding.",
+
     icon: "spine",
     condition: "Brain & spine",
     title: "Spine Surgery in India: Opinions & Planning | Irynt",
     description: "Advised spine surgery? Get opinions from accredited spine centres in India, compare estimates, and plan travel and stay with one coordinator.",
-    h1: "Spine surgery in India: get the right opinion before deciding",
-    lead: "Many back and neck problems improve without surgery, and some need it. A careful specialist opinion matters. We get your MRI reviewed by accredited spine centres and plan everything if surgery is advised.",
+    h1: "Spine surgery in India",
+
+    lead: "A lot of back and neck problems get better without surgery. Some don't. Either way, it's a decision that deserves a careful opinion, so we get your MRI seen by spine specialists before you travel.",
+
     facts: [["Common conditions", "Slip disc, stenosis, spondylolisthesis"], ["First step", "Specialist review of MRI"], ["Hospital stay", "From 1–2 days to about a week"], ["Key report", "MRI of the affected region"]],
     sections: [
       ["Do I need spine surgery?", `<p>For many people, back and neck pain improves with time, medicines, physiotherapy or injections. Surgery is usually considered when there is severe nerve compression, weakness, or pain that does not improve with other treatment. Spine surgeons and neurosurgeons both treat spine conditions.</p>
@@ -164,13 +179,16 @@ const T = [
   {
     slug: "neurosurgery-in-india",
     name: "Brain & Neurosurgery",
-    short: "Brain tumour, epilepsy and movement disorder care with neuro specialists and long-stay support.",
+    short: "Brain tumours, epilepsy and other neuro problems, with support for long stays.",
+
     icon: "brain",
     condition: "Brain & spine",
     title: "Neurosurgery & Brain Tumour Treatment in India | Irynt",
     description: "Opinions from accredited neuro centres in India for brain tumours, epilepsy and more. Compare estimates and plan stay, travel and rehabilitation.",
-    h1: "Brain and neurosurgery care in India, coordinated carefully",
-    lead: "Neurological conditions are frightening for families. We help you reach experienced neuro specialists quickly, understand the options, and plan the stay and rehabilitation that often follow.",
+    h1: "Brain and neurosurgery in India",
+
+    lead: "Hearing the word \"brain\" from a doctor is frightening. We help you reach experienced neuro specialists quickly, understand what they're suggesting, and plan the stay and rehab that often comes after.",
+
     facts: [["Common reasons", "Brain tumour, epilepsy, movement disorders"], ["Key reports", "MRI brain, neurologist notes"], ["Hospital stay", "Varies widely by procedure"], ["Often needed", "Rehabilitation after discharge"]],
     sections: [
       ["Conditions we coordinate", `<ul><li><b>Brain and pituitary tumours</b>: surgery, radiation and follow-up</li><li><b>Epilepsy</b> that does not respond to medicines: evaluation for surgery</li><li><b>Movement disorders</b> such as Parkinson's disease: evaluation for procedures like deep brain stimulation in selected patients</li><li><b>Hydrocephalus, aneurysms and vascular conditions</b></li><li><b>Rehabilitation</b> after stroke or brain surgery</li></ul>
@@ -189,13 +207,16 @@ const T = [
   {
     slug: "kidney-care-and-dialysis-in-india",
     name: "Kidney Care & Dialysis",
-    short: "Nephrology and urology opinions, kidney stone treatment and dialysis while you travel.",
+    short: "Dialysis while you travel, kidney stones and urology opinions.",
+
     icon: "drop",
     condition: "Kidney & urology",
     title: "Kidney Care & Dialysis in India for Travellers | Irynt",
     description: "Kidney stones, kidney disease or dialysis while travelling in India: get specialist opinions, book dialysis sessions and plan your stay.",
-    h1: "Kidney care and dialysis in India, without the travel worries",
-    lead: "For patients on dialysis, every trip needs planning. For others, a kidney stone or a prostate problem needs the right urologist. We coordinate the specialists, the sessions and the stay.",
+    h1: "Kidney care and dialysis in India",
+
+    lead: "If you're on dialysis, every trip has to be planned around your sessions. If it's a kidney stone or a prostate problem, you need the right urologist. We can help with both.",
+
     facts: [["We coordinate", "Nephrology, urology, dialysis sessions"], ["Dialysis travel", "Sessions booked in advance"], ["Key reports", "Kidney function tests, ultrasound/CT"], ["Plan ahead", "Bring the latest dialysis prescription"]],
     sections: [
       ["What we help with", `<ul><li><b>Dialysis while travelling</b>: booking haemodialysis sessions near your stay, for patients travelling for any treatment</li><li><b>Kidney stones</b>: opinions on treatment options such as lithotripsy or endoscopic procedures</li><li><b>Chronic kidney disease</b>: nephrology opinions and long-term care planning</li><li><b>Prostate and urology conditions</b></li></ul>
@@ -214,13 +235,16 @@ const T = [
   {
     slug: "ivf-treatment-in-india",
     name: "IVF & Fertility",
-    short: "IVF and fertility evaluations at registered clinics, with discreet, comfortable stays.",
+    short: "IVF at registered clinics, with a quiet, comfortable place to stay.",
+
     icon: "fertility",
     condition: "Fertility / IVF",
     title: "IVF Treatment in India: Clinics & Stay Planning | Irynt",
     description: "Planning IVF in India? Get opinions from registered fertility clinics, understand the steps and timeline, and plan a discreet, comfortable stay.",
-    h1: "IVF and fertility treatment in India, planned with care",
-    lead: "Fertility treatment is personal and often stressful. We help couples find registered clinics, understand the steps and timelines, and plan a calm stay around the treatment cycle.",
+    h1: "IVF and fertility treatment in India",
+
+    lead: "Fertility treatment is personal, and it can be stressful. We help couples find registered clinics, understand what the next few weeks will look like, and find a calm place to stay during the cycle.",
+
     facts: [["One IVF cycle", "Often several weeks from start to embryo transfer"], ["Clinics", "Registered under India's ART law"], ["Key reports", "Hormone tests, ultrasound, semen analysis"], ["Our focus", "Discreet, comfortable stays"]],
     sections: [
       ["How an IVF cycle usually works", `<ol><li><b>Evaluation</b>: tests for both partners and a consultation.</li><li><b>Ovarian stimulation</b>: daily injections and monitoring scans for about 10–14 days.</li><li><b>Egg retrieval</b>: a short procedure, usually as a day case.</li><li><b>Fertilisation and embryo culture</b> in the laboratory.</li><li><b>Embryo transfer</b>, fresh or frozen, as the doctor advises.</li></ol>

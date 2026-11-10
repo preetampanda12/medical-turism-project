@@ -3,15 +3,15 @@
     <div class="container form-wrap">
       <div class="form-side">
         <p class="eyebrow">Start here</p>
-        <h2>Get your free treatment plan</h2>
-        <p class="lead">4 quick steps, about 2 minutes. Your coordinator will contact you within <span data-response-hours>2</span> working hours.</p>
+        <h2>Get a free treatment plan</h2>
+        <p class="lead">Four short steps, about two minutes. We'll call you back within <span data-response-hours>2</span> hours (9 AM to 9 PM).</p>
         <ul class="trust-list">
-          <li>No payment needed to get a plan</li>
-          <li>Your information is shared only with hospitals you approve</li>
-          <li>Not sure what's wrong? Choose "Not sure". We'll help.</li>
+          <li>You don't pay anything for this</li>
+          <li>We only share your details with hospitals you say yes to</li>
+          <li>Not sure what the problem is? Pick "Not sure". That's fine.</li>
         </ul>
         <div class="notice">
-          <b>Not for emergencies.</b> If this is a medical emergency, call <b>112</b> in India (or your local emergency number) or go to the nearest hospital now.
+          <b>Is this an emergency?</b> Please don't wait for us. Call <b>112</b> (or your local emergency number) or go to the nearest hospital right away.
         </div>
       </div>
 
@@ -29,7 +29,7 @@
           <p class="wz-count" id="wz-count" aria-live="polite">Step 1 of 4</p>
 
           <fieldset class="wz-step" data-step="1">
-            <legend>What do you need help with?</legend>
+            <legend>What's the problem?</legend>
             <div class="field">
               <span id="condition-label">Type of health problem <span class="req">*</span></span>
               <div class="tiles" role="radiogroup" aria-labelledby="condition-label">
@@ -46,12 +46,12 @@
               </div>
             </div>
             <div class="field"><label for="problem">Describe the problem <span class="req">*</span></label>
-              <textarea id="problem" name="problem" required placeholder="What are the symptoms? Since when? What have doctors said so far?"></textarea>
+              <textarea id="problem" name="problem" required placeholder="For example: chest pain while walking for 2 months, local doctor said get an angiography done"></textarea>
             </div>
           </fieldset>
 
           <fieldset class="wz-step" data-step="2" hidden>
-            <legend>About the patient</legend>
+            <legend>Tell us about the patient</legend>
             <div class="row-3">
               <div class="field"><label for="patientName">Patient name <span class="req">*</span></label><input type="text" id="patientName" name="patientName" required></div>
               <div class="field"><label for="patientAge">Age <span class="req">*</span></label><input type="number" id="patientAge" name="patientAge" min="0" max="120" required inputmode="numeric"></div>
@@ -68,7 +68,7 @@
           </fieldset>
 
           <fieldset class="wz-step" data-step="3" hidden>
-            <legend>Your plan</legend>
+            <legend>What do you need from us?</legend>
             <div class="row">
               <div class="field"><label for="preferredCity">Preferred treatment city</label>
                 <select id="preferredCity" name="preferredCity">
@@ -87,7 +87,7 @@
               </div>
             </div>
             <div class="field">
-              <span>What help do you need? <span class="hint">(choose all that apply)</span></span>
+              <span>What should we help with? <span class="hint">(pick as many as you like)</span></span>
               <div class="chips-select">
                 <label class="chip-check"><input type="checkbox" name="services" value="Hospital & doctor" checked><span>Hospital &amp; doctor</span></label>
                 <label class="chip-check"><input type="checkbox" name="services" value="Train / flight booking"><span>Train / flight booking</span></label>
@@ -105,7 +105,7 @@
           </fieldset>
 
           <fieldset class="wz-step" data-step="4" hidden>
-            <legend>How can we reach you?</legend>
+            <legend>How do we reach you?</legend>
             <div class="field">
               <span>Who are you filling this for? <span class="req">*</span></span>
               <div class="radio-row">
@@ -133,7 +133,7 @@
             <div class="field">
               <label class="check"><input type="checkbox" id="consent" name="consent" value="Yes" required> <span>I agree to the <a href="consent.html" target="_blank">Patient Consent</a>, <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>. I understand Irynt is a care coordinator, not a hospital or doctor. <span class="req">*</span></span></label>
             </div>
-            <p class="hint">Please don't upload reports here. After you submit, you can send them safely on WhatsApp with your case ID.</p>
+            <p class="hint">No need to upload reports here. Once you submit, you can send them to us on WhatsApp.</p>
           </fieldset>
 
           <p class="error-msg" id="form-error" role="alert"></p>
@@ -146,13 +146,13 @@
 
         <div class="success" id="success" role="status" aria-live="polite" tabindex="-1">
           <div class="success-icon">{icon:check}</div>
-          <h2>Thank you. We've received your request.</h2>
-          <p>Your case ID is:</p>
+          <h2>Done. We've got your request.</h2>
+          <p>Your case number is:</p>
           <div class="case-id" id="case-id">IRY-XXXX</div>
-          <p>Your coordinator will contact you within <b><span data-response-hours>2</span> working hours</b> (<span data-working-hours>9 AM – 9 PM IST</span>).</p>
-          <p id="success-wa-text"><b>Next step:</b> send your medical reports (photos or PDFs) on WhatsApp so we can start talking to hospitals right away.</p>
+          <p>Someone from our team will call you within <b><span data-response-hours>2</span> hours</b> (<span data-working-hours>9 AM – 9 PM IST</span>).</p>
+          <p id="success-wa-text">Meanwhile, if you have reports handy, send photos or PDFs on WhatsApp. That way we can start talking to hospitals straight away.</p>
           <a href="#" class="btn btn-wa" id="success-wa" target="_blank" rel="noopener">Send reports on WhatsApp</a>
-          <p id="success-track" hidden style="margin-top:16px">Follow your case anytime: <a href="#" target="_blank" rel="noopener">your tracking page</a>. Please save this link.</p>
+          <p id="success-track" hidden style="margin-top:16px">You can check progress anytime on <a href="#" target="_blank" rel="noopener">your tracking page</a>. Save this link somewhere safe.</p>
         </div>
       </div>
     </div>

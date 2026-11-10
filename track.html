@@ -56,8 +56,8 @@
 
   function lookupForm(msg) {
     el.innerHTML = '<h1>Track your case</h1>' +
-      (msg ? '<p class="error-msg show" role="alert">' + esc(msg) + '</p>' : '<p class="lead">Open the tracking link your coordinator sent you on WhatsApp.</p>') +
-      '<div class="panel"><p>Lost the link? Message us with your case ID and we will resend it.</p>' +
+      (msg ? '<p class="error-msg show" role="alert">' + esc(msg) + '</p>' : '<p class="lead">Please open the link we sent you on WhatsApp.</p>') +
+      '<div class="panel"><p>Lost the link? Send us your case number on WhatsApp and we\'ll send it again.</p>' +
       (cfg.whatsappNumber ? '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + esc(I.waUrl(cfg.whatsappNumber, "Hello Irynt, please resend my case tracking link. Case ID: " + id)) + '">Message us on WhatsApp</a>' : "") +
       '</div>';
   }
@@ -69,11 +69,11 @@
     var closedLost = d.status === "Closed - lost";
     var coordWa = d.coordinator && d.coordinator.phone ? d.coordinator.phone : cfg.whatsappNumber;
     var html = '<p class="eyebrow">Case ' + esc(d.caseId) + '</p>' +
-      '<h1>Hello' + (d.patientFirstName ? " " + esc(d.patientFirstName) : "") + ', here is your treatment journey</h1>' +
-      '<p class="lead">Request received on ' + esc(I.fmtDate(d.submittedAt)) + '. This page updates as your case moves forward.</p>';
+      '<h1>Hi' + (d.patientFirstName ? " " + esc(d.patientFirstName) : "") + ', here\'s where things stand</h1>' +
+      '<p class="lead">Request received on ' + esc(I.fmtDate(d.submittedAt)) + '. We update this page as things move along.</p>';
 
     html += '<section class="panel"><div class="coord"><div><small class="muted">Your coordinator</small><br><b>' +
-      (d.coordinator ? esc(d.coordinator.name) : "Being assigned – we'll contact you shortly") + '</b></div>' +
+      (d.coordinator ? esc(d.coordinator.name) : "We're assigning someone. They'll call you soon.") + '</b></div>' +
       (coordWa ? '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + esc(I.waUrl(coordWa, "Hello, this is about case " + d.caseId + ".")) + '">Message on WhatsApp</a>' : "") +
       '</div></section>';
 
@@ -104,7 +104,7 @@
       window.print();
       setTimeout(function () { document.body.classList.remove("printing"); }, 1000);
     });
-  }).catch(function () { lookupForm("We couldn't find this case. Please check the link, or message us."); });
+  }).catch(function () { lookupForm("Hmm, we couldn't find that case. Please check the link, or message us."); });
 })();
 </script>
 </body>
