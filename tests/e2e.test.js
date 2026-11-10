@@ -256,7 +256,7 @@ async function liveFlow(browser, base) {
   const ENDPOINT = "https://script.google.com/macros/s/TEST/exec";
   const errors = [];
   const ctx = await browser.newContext();
-  await ctx.route("**/assets/config.js", (r) => r.fulfill({ contentType: "text/javascript",
+  await ctx.route(/\/assets\/config\.js(\?.*)?$/, (r) => r.fulfill({ contentType: "text/javascript",
     body: `window.IRYNT_CONFIG={whatsappNumber:"919000000000",email:"",sheetEndpoint:"${ENDPOINT}",responseHours:2,workingHours:"9 AM – 9 PM IST",demoMode:false};` }));
   let formPosts = 0, apiPosts = 0;
   await ctx.route(ENDPOINT, async (r) => {
