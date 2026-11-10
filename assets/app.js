@@ -154,7 +154,12 @@
       return;
     }
 
-    if (!cfg.sheetEndpoint && !hasWa) {
+    // Demo: no Google Sheet yet, but running locally (or demoMode on) → save in this browser.
+    var demoOk = !cfg.sheetEndpoint && window.IryntAPI &&
+      (cfg.demoMode === true || /^(localhost|127\.0\.0\.1|)$/.test(location.hostname));
+    var saves = !!cfg.sheetEndpoint || demoOk;
+
+    if (!saves && !hasWa) {
       showError("This form is not connected yet. Site owner: add your WhatsApp number or Google Sheet link in assets/config.js.");
       return;
     }
@@ -162,22 +167,25 @@
     var data = collect();
     data.caseId = makeCaseId();
     data.submittedAt = new Date().toISOString();
-    data.source = location.hostname || "local";
+    data.source = "website";
+    data.trackToken = window.Irynt ? Irynt.randomHex(16) : "";
 
     var btn = form.querySelector("button[type=submit]");
     btn.disabled = true;
     btn.textContent = "Sending…";
 
-    var send = cfg.sheetEndpoint
-      ? fetch(cfg.sheetEndpoint, {
-          method: "POST",
-          mode: "no-cors",
-          body: new URLSearchParams(data)
-        }).catch(function () { /* WhatsApp below is the backup channel */ })
+    var send = saves
+      ? IryntAPI.submitIntake(data).catch(function () { /* WhatsApp below is the backup channel */ })
       : Promise.resolve();
 
     send.then(function () {
       document.getElementById("case-id").textContent = data.caseId;
+      var tr = document.getElementById("success-track");
+      if (tr && saves && data.trackToken) {
+        var url = Irynt.trackUrl(data.caseId, data.trackToken);
+        tr.querySelector("a").href = url;
+        tr.hidden = false;
+      }
       var waBtn = document.getElementById("success-wa");
       if (hasWa) {
         waBtn.href = waLink(summary(data));

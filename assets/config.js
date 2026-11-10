@@ -19,4 +19,9 @@ window.IRYNT_CONFIG = {
   // Promised first-response time in hours, and the hours you are available.
   responseHours: 2,
   workingHours: "9 AM – 9 PM IST, all days",
+
+  // Demo mode: while no sheetEndpoint is set, the website form, dashboard
+  // and tracking page use sample data stored only in your own browser.
+  // Turned on automatically on localhost. Keep false on the live site.
+  demoMode: false,
 };

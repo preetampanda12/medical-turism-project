@@ -1,9 +1,9 @@
 # Coordinator: Pehli Call ki Checklist
 
-Target: form aane ke **2 ghante ke andar** call. Call ka time Google Sheet ke "First contact at" mein bharo.
+Target: form aane ke **2 ghante ke andar** call. Call ke baad dashboard mein **"Mark contacted now"** dabao, response time apne aap record ho jaayega.
 
 ## Call se pehle (2 min)
-- [ ] Sheet mein case padho: condition, city, services needed
+- [ ] Dashboard mein case kholo: condition, city, services needed
 - [ ] WhatsApp label `📞 Contacted` lagao
 
 ## Call par (10–15 min)
@@ -32,8 +32,8 @@ Target: form aane ke **2 ghante ke andar** call. Call ka time Google Sheet ke "F
 "Hamari service aapke liye free hai. Hospital hamein facilitation fee dete hain, lekin hum aapko hospital ka original estimate hi dikhayenge."
 
 ## Call ke baad (5 min)
-- [ ] Sheet: Status → `Contacted`, "First contact at" bharo, Notes mein summary likho
-- [ ] WhatsApp par `/reports` bhejo
+- [ ] Dashboard: "Mark contacted now" dabao, Internal notes mein summary likho
+- [ ] Dashboard ka template *Ask for reports* bhejo (ya WhatsApp quick reply `/reports`)
 - [ ] "Next action" column mein likho kya karna hai aur kab tak
 
 ## Kabhi mat karna ❌

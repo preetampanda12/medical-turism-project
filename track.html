@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Track your case – Irynt</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/plan.css">
+  <style>
+    .track { max-width: 860px; margin: 0 auto; padding: 32px 16px 72px; }
+    .track .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; margin-bottom: 18px; }
+    .track h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
+    .steps-v { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+    .steps-v li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: start; padding-bottom: 14px; position: relative; color: var(--muted); }
+    .steps-v li::after { content: ""; position: absolute; left: 15px; top: 30px; bottom: 0; width: 2px; background: var(--line); }
+    .steps-v li:last-child::after { display: none; }
+    .steps-v .dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line); background: #fff; display: grid; place-items: center; font-size: .85rem; font-weight: 700; z-index: 1; }
+    .steps-v li.done { color: var(--ink); }
+    .steps-v li.done .dot { background: var(--brand); border-color: var(--brand); color: #fff; }
+    .steps-v li.done::after { background: var(--brand); }
+    .steps-v li.now { color: var(--ink); font-weight: 700; }
+    .steps-v li.now .dot { border-color: var(--brand); color: var(--brand); box-shadow: 0 0 0 4px var(--brand-soft); }
+    .steps-v span { padding-top: 5px; }
+    .upd { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .upd li { border-left: 3px solid var(--brand); padding-left: 12px; }
+    .upd small { color: var(--muted); display: block; }
+    .coord { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .lookup { display: grid; gap: 10px; max-width: 420px; }
+    .head-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+    .head-row h2 { margin: 0; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand"><img src="assets/logo.svg" alt="">irynt</a>
+    <a href="index.html#start" class="btn btn-primary" style="padding:.6em 1.1em">New request</a>
+  </div>
+</header>
+<main class="track" id="track"><p class="muted">Loading…</p></main>
+<div id="print-area"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/gas-emulator.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/api.js"></script>
+<script>
+(function () {
+  var I = Irynt, esc = I.esc, cfg = window.IRYNT_CONFIG || {};
+  var el = document.getElementById("track");
+  var q = new URLSearchParams(location.search);
+  var id = (q.get("id") || "").trim(), token = (q.get("t") || "").trim();
+
+  function lookupForm(msg) {
+    el.innerHTML = '<h1>Track your case</h1>' +
+      (msg ? '<p class="error-msg show" role="alert">' + esc(msg) + '</p>' : '<p class="lead">Open the tracking link your coordinator sent you on WhatsApp.</p>') +
+      '<div class="panel"><p>Lost the link? Message us with your case ID and we will resend it.</p>' +
+      (cfg.whatsappNumber ? '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + esc(I.waUrl(cfg.whatsappNumber, "Hello Irynt, please resend my case tracking link. Case ID: " + id)) + '">Message us on WhatsApp</a>' : "") +
+      '</div>';
+  }
+
+  if (!id || !token) { lookupForm(); return; }
+
+  IryntAPI.call("track", { caseId: id, token: token }).then(function (d) {
+    var idx = I.stageIndex(d.status);
+    var closedLost = d.status === "Closed - lost";
+    var coordWa = d.coordinator && d.coordinator.phone ? d.coordinator.phone : cfg.whatsappNumber;
+    var html = '<p class="eyebrow">Case ' + esc(d.caseId) + '</p>' +
+      '<h1>Hello' + (d.patientFirstName ? " " + esc(d.patientFirstName) : "") + ', here is your treatment journey</h1>' +
+      '<p class="lead">Request received on ' + esc(I.fmtDate(d.submittedAt)) + '. This page updates as your case moves forward.</p>';
+
+    html += '<section class="panel"><div class="coord"><div><small class="muted">Your coordinator</small><br><b>' +
+      (d.coordinator ? esc(d.coordinator.name) : "Being assigned – we'll contact you shortly") + '</b></div>' +
+      (coordWa ? '<a class="btn btn-wa" target="_blank" rel="noopener" href="' + esc(I.waUrl(coordWa, "Hello, this is about case " + d.caseId + ".")) + '">Message on WhatsApp</a>' : "") +
+      '</div></section>';
+
+    html += '<section class="panel"><h2 style="font-size:1.2rem">Progress</h2>' +
+      (closedLost ? '<p>This case is closed. If you still need help, message us anytime.</p>' :
+      '<ol class="steps-v">' + I.STAGES.map(function (s, i) {
+        var cls = i < idx ? "done" : i === idx ? "now" : "";
+        return '<li class="' + cls + '"><div class="dot">' + (i < idx ? "✓" : i + 1) + '</div><span>' + esc(s.label) + (i === idx ? " (current)" : "") + '</span></li>';
+      }).join("") + '</ol>') + '</section>';
+
+    if (d.plan) {
+      html += '<section class="panel"><div class="head-row"><h2>Your treatment plan</h2><button type="button" class="btn btn-ghost" id="print-plan">Print / Save PDF</button></div>' +
+        I.renderPlan(d.plan) +
+        (coordWa ? '<p style="margin-top:16px"><a class="btn btn-wa" target="_blank" rel="noopener" href="' + esc(I.waUrl(coordWa, "Hello, about case " + d.caseId + ": I have reviewed the plan. My preferred option is: ")) + '">Reply with your choice on WhatsApp</a></p>' : "") +
+        '</section>';
+    }
+
+    html += '<section class="panel"><h2 style="font-size:1.2rem">Updates</h2><ul class="upd">' +
+      d.updates.slice().reverse().map(function (u) { return '<li>' + esc(u.text) + '<small>' + esc(I.fmtDateTime(u.at)) + '</small></li>'; }).join("") +
+      '</ul></section>' +
+      '<p class="hint">Irynt is a care coordinator, not a hospital or doctor. In an emergency, call 112 (India) or your local emergency number.</p>';
+    el.innerHTML = html;
+
+    var pb = document.getElementById("print-plan");
+    if (pb) pb.addEventListener("click", function () {
+      document.getElementById("print-area").innerHTML = I.renderPlan(d.plan);
+      document.body.classList.add("printing");
+      window.print();
+      setTimeout(function () { document.body.classList.remove("printing"); }, 1000);
+    });
+  }).catch(function () { lookupForm("We couldn't find this case. Please check the link, or message us."); });
+})();
+</script>
+</body>
+</html>
