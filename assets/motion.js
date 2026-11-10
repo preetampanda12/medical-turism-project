@@ -42,3 +42,74 @@
   }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
   items.forEach(function (el) { io.observe(el); });
 })();
+
+/* Chat demo, journey progress, stats */
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---- Stats pop in
+  var stats = document.querySelectorAll(".stat");
+  if (stats.length && !reduce && "IntersectionObserver" in window) {
+    stats.forEach(function (s, i) { s.style.setProperty("--rv-d", i * 120 + "ms"); });
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); so.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    stats.forEach(function (s) { so.observe(s); });
+  } else {
+    stats.forEach(function (s) { s.classList.add("in"); });
+  }
+
+  // ---- Chat demo plays message by message
+  var chat = document.getElementById("chat-demo");
+  if (chat) {
+    var msgs = Array.prototype.slice.call(chat.querySelectorAll(".msg"));
+    var typing = chat.querySelector(".typing");
+    var timers = [];
+    var play = function () {
+      timers.forEach(clearTimeout); timers = [];
+      if (reduce) return;
+      chat.classList.add("playing");
+      msgs.forEach(function (m) { m.classList.remove("shown"); });
+      var t = 400;
+      msgs.forEach(function (m, i) {
+        var out = m.classList.contains("out");
+        var len = (m.textContent || "").length;
+        timers.push(setTimeout(function () { typing.className = "typing on" + (out ? " out" : ""); chat.appendChild(typing); }, t));
+        t += out ? Math.min(1600, 600 + len * 12) : Math.min(1300, 500 + len * 8);
+        timers.push(setTimeout(function () { typing.className = "typing"; m.classList.add("shown"); chat.insertBefore(m, typing); }, t));
+        t += 500;
+      });
+      timers.push(setTimeout(function () { typing.className = "typing"; }, t));
+    };
+    var started = false;
+    if ("IntersectionObserver" in window) {
+      var co = new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting && !started) { started = true; play(); co.disconnect(); }
+      }, { threshold: 0.35 });
+      co.observe(chat);
+    }
+    var replay = document.getElementById("chat-replay");
+    if (replay) { if (reduce) replay.hidden = true; else replay.addEventListener("click", play); }
+  }
+
+  // ---- Journey line fills as you scroll
+  var j = document.getElementById("journey");
+  if (j) {
+    var nodes = j.querySelectorAll(".journey-track i");
+    var cards = j.querySelectorAll(".steps li");
+    var update = function () {
+      var r = j.getBoundingClientRect(), vh = window.innerHeight;
+      var p = reduce ? 1 : Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (r.height + vh * 0.25)));
+      j.style.setProperty("--p", p.toFixed(3));
+      var lit = Math.round(p * (nodes.length - 1) + 0.5);
+      for (var k = 0; k < nodes.length; k++) {
+        nodes[k].classList.toggle("lit", k < lit);
+        if (cards[k]) cards[k].classList.toggle("lit", k < lit);
+      }
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+})();

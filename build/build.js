@@ -26,8 +26,9 @@ function write(p, html, opts) {
   written.push({ path: p, sitemap: !(opts && opts.nositemap), priority: (opts && opts.priority) || "0.7" });
 }
 
+const TINTS = { ribbon: "#D9467A", heart: "#E0533D", bone: "#D98A1E", walk: "#C46A1A", spine: "#7A56C4", brain: "#4E5BD1", drop: "#1E86C9", fertility: "#2E9D6B" };
 function treatmentCard(rel, t) {
-  return `<a class="card-link" href="${rel}treatments/${t.slug}/"><div class="icon">${icon(t.icon)}</div><h3>${esc(t.name)}</h3><p>${esc(t.short)}</p><span class="more">Learn more ${icon("arrow")}</span></a>`;
+  return `<a class="card-link tinted" style="--tint:${TINTS[t.icon] || "#0E5E6F"}" href="${rel}treatments/${t.slug}/"><div class="icon">${icon(t.icon)}</div><h3>${esc(t.name)}</h3><p>${esc(t.short)}</p><span class="more">Learn more ${icon("arrow")}</span></a>`;
 }
 function cityCard(rel, c) {
   return `<a class="card-link" href="${rel}cities/${c.slug}/"><div class="icon">${icon("pin")}</div><h3>${esc(c.name)}</h3><p>${esc(c.lead.split(". ")[0])}.</p><span class="more">Treatment in ${esc(c.name)} ${icon("arrow")}</span></a>`;
@@ -42,6 +43,47 @@ function pageHero(rel, crumbs, h1, lead, actions, meta) {
   return `<section class="page-hero"><div class="container">${L.breadcrumb(rel, crumbs)}<h1>${esc(h1)}</h1><p class="lead">${esc(lead)}</p>${actions || ""}${meta ? `<p class="meta-line">${meta}</p>` : ""}</div></section>`;
 }
 const heroActions = (rel, condition) => `<div class="hero-actions"><a class="btn btn-primary" href="${rel}?condition=${encodeURIComponent(condition || "")}#start">Get my free treatment plan</a><a class="btn btn-wa" href="#" data-wa-link hidden>${icon("chat")} Chat on WhatsApp</a></div>`;
+
+// ------------------------------------------------------------------ VISUALS
+function routeMap() {
+  const from = [["Patna", 0], ["Gorakhpur", 1], ["Ranchi", 2], ["Raipur", 3], ["Siliguri", 4], ["Kathmandu", 5], ["Dhaka", 6], ["Nairobi", 7]];
+  const to = [["Delhi NCR", 0], ["Mumbai", 1], ["Hyderabad", 2], ["Bengaluru", 3], ["Chennai", 4]];
+  const links = [[0, 0], [1, 0], [5, 0], [0, 1], [3, 1], [7, 1], [2, 2], [3, 2], [7, 3], [4, 4], [6, 4], [2, 4]];
+  const fy = (i) => 30 + i * 40, ty = (j) => 50 + j * 64;
+  const paths = links.map(([i, j], k) => {
+    const d = `M150 ${fy(i)} C 320 ${fy(i)}, 450 ${ty(j)}, 625 ${ty(j)}`;
+    return `<path class="rm-line" d="${d}" style="--k:${k}"/><circle class="rm-dot" r="4"><animateMotion dur="${3.2 + (k % 4) * 0.6}s" begin="${(k * 0.45).toFixed(2)}s" repeatCount="indefinite" path="${d}"/></circle>`;
+  }).join("");
+  return `<figure class="routemap" aria-label="Illustration: routes from smaller cities and other countries to India's medical cities">
+  <svg viewBox="0 0 800 340" role="img" aria-hidden="true">
+    ${paths}
+    ${from.map(([n, i]) => `<g class="rm-from"><circle cx="150" cy="${fy(i)}" r="6"/><text x="138" y="${fy(i) + 5}" text-anchor="end">${n}</text></g>`).join("")}
+    ${to.map(([n, j]) => `<g class="rm-to"><circle cx="625" cy="${ty(j)}" r="11"/><circle class="rm-ping" cx="625" cy="${ty(j)}" r="11"/><text x="646" y="${ty(j) + 6}">${n}</text></g>`).join("")}
+  </svg>
+  <figcaption>A few of the routes families take. We plan the travel, the room and the help at the other end.</figcaption></figure>`;
+}
+
+const CHAT = [
+  ["in", "Namaste. Papa ko Patna mein angiography bola hai. Delhi mein karwana chahte hain, kahan jaayein?"],
+  ["out", "Namaste Ravi ji, main Priya, Irynt se. Aap reports ki photo bhej dijiye, main abhi dekhti hoon."],
+  ["in", "📄 📄 📄  3 photos"],
+  ["out", "Mil gayi, thank you. Do achhe hospitals se baat karke shaam tak dono ka estimate bhejti hoon."],
+  ["plan", ""],
+  ["in", "Aur rehne ka kya hoga? Mummy bhi saath aayengi."],
+  ["out", "Hospital se 5 minute pe ek room dekh liya hai, lift wala. Station pe cab bhi aa jaayegi 🙂"],
+  ["in", "Bahut badi tension khatam ho gayi. Thank you 🙏"],
+];
+function chatDemo() {
+  const msg = ([who, text], i) => who === "plan"
+    ? `<div class="msg out plan-msg" style="--i:${i}"><b>Treatment plan · 2 options</b><span class="pm-row"><span>Option A · Heart hospital</span><b>₹2,95,000</b></span><span class="pm-row"><span>Option B · Multispeciality</span><b>₹3,20,000</b></span><small>Estimates exactly as the hospitals gave them</small></div>`
+    : `<div class="msg ${who}" style="--i:${i}">${esc(text)}</div>`;
+  return `<div class="phone" aria-label="Example WhatsApp conversation">
+    <div class="phone-notch"></div>
+    <div class="phone-head"><span class="ph-avatar">P</span><span><b>Priya · Irynt</b><small>usually replies within 2 hours</small></span></div>
+    <div class="chat" id="chat-demo">${CHAT.map(msg).join("")}<div class="typing" aria-hidden="true"><span></span><span></span><span></span></div></div>
+    <div class="phone-foot"><span>Type a message</span>${icon("chat")}</div>
+  </div>`;
+}
 
 // ------------------------------------------------------------------ HOME
 const HOME_FAQ = [
@@ -100,12 +142,17 @@ write("", L.page({
       </div>
     </div>
   </section>
-  <div class="trust-strip"><ul>
-    <li>${icon("shield")}Only NABH / JCI accredited hospitals</li>
-    <li>${icon("clock")}We call back within 2 hours</li>
-    <li>${icon("search")}No hidden charges on estimates</li>
-    <li>${icon("language")}We speak Hindi and English</li>
-  </ul></div>
+  <section class="stats" aria-label="What you can expect">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat"><b>2<em>hrs</em></b><span>to get a call back from us</span></div>
+        <div class="stat"><b>₹0</b><span>what our help costs you</span></div>
+        <div class="stat"><b>2–3</b><span>hospitals compared for your case</span></div>
+        <div class="stat"><b>1</b><span>person who stays with you throughout</span></div>
+      </div>
+      <ul class="stat-chips"><li>${icon("shield")}Only NABH / JCI hospitals</li><li>${icon("search")}No hidden charges</li><li>${icon("language")}Hindi &amp; English</li></ul>
+    </div>
+  </section>
 
   <section class="section" id="treatments">
     <div class="container">
@@ -115,9 +162,31 @@ write("", L.page({
     </div>
   </section>
 
+  <section class="section chat-section" id="chat">
+    <div class="container chat-grid">
+      <div class="chat-copy">
+        <p class="eyebrow">What it's like</p>
+        <h2>Like having someone you know at the hospital</h2>
+        <p class="lead">Most of it happens on WhatsApp, in Hindi or English. You send the reports, we come back with options, and there's always someone a message away.</p>
+        <ul class="checklist">
+          <li>${icon("check")}<span>A real person replies, not a chatbot</span></li>
+          <li>${icon("check")}<span>Your reports only go to hospitals you say yes to</span></li>
+          <li>${icon("check")}<span>Estimates shared exactly as the hospital gave them</span></li>
+        </ul>
+        <div class="hero-actions"><a class="btn btn-primary" href="#start">Start a conversation</a><button type="button" class="btn btn-ghost" id="chat-replay">↺ Play again</button></div>
+        <p class="hint">Example conversation. Names and prices are for illustration.</p>
+      </div>
+      ${chatDemo()}
+    </div>
+  </section>
+
   <section class="section section-alt" id="how">
     <div class="container">
       <div class="section-head center"><p class="eyebrow">How it works</p><h2>From first call to coming home</h2><p class="lead">Five simple steps. You can stop at any point, no questions asked.</p></div>
+      <div class="journey" id="journey">
+      <div class="journey-track" aria-hidden="true"><span class="jt-fill"></span>
+        <i>${icon("chat")}</i><i>${icon("phone")}</i><i>${icon("hospital")}</i><i>${icon("doc")}</i><i>${icon("route")}</i>
+      </div>
       <ol class="steps">
         <li><h3>Tell us what's wrong</h3><p>Fill the form or just WhatsApp us. Send reports if you have them. It's fine if you don't.</p></li>
         <li><h3>We call you</h3><p>Usually within <span data-response-hours>2</span> hours, between 9 AM and 9 PM. We'll ask a few questions and mostly listen.</p></li>
@@ -125,6 +194,7 @@ write("", L.page({
         <li><h3>You decide</h3><p>Hospital, room, travel and help, all in one plan. You choose what you want and skip what you don't.</p></li>
         <li><h3>We stay in touch</h3><p>We check on you every day during treatment, and remind you about medicines and check-ups once you're home.</p></li>
       </ol>
+      </div>
     </div>
   </section>
 
@@ -174,6 +244,7 @@ write("", L.page({
   <section class="section section-alt" id="cities">
     <div class="container">
       <div class="section-head center"><p class="eyebrow">Cities</p><h2>Where families usually go</h2><p class="lead">We know where to stay, how to get around and which hospitals to look at in each of these cities.</p></div>
+      ${routeMap()}
       <div class="grid grid-3 m-scroll">${cities.map((c) => cityCard(rel, c)).join("")}
         <a class="card-link" href="${rel}international-patients/"><div class="icon">${icon("globe")}</div><h3>Coming from abroad?</h3><p>Visa letter, airport pickup, a translator and someone to call every day.</p><span class="more">For international patients ${icon("arrow")}</span></a>
       </div>
