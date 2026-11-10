@@ -45,6 +45,13 @@ const ICONS = {
   route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
 };
 
+// Cache-busting: a short content hash appended to asset URLs, so browsers fetch new files after each update.
+const _crypto = require("crypto"), _fs = require("fs"), _path = require("path");
+function ver(file) {
+  try { return _crypto.createHash("md5").update(_fs.readFileSync(_path.join(__dirname, "..", file))).digest("hex").slice(0, 8); }
+  catch (e) { return "1"; }
+}
+
 function icon(name, cls) {
   const body = ICONS[name] || ICONS.check;
   return `<svg class="ico${cls ? " " + cls : ""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
@@ -169,7 +176,7 @@ function page(o) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="${rel}assets/styles.css">
+  <link rel="stylesheet" href="${rel}assets/styles.css?v=${ver("assets/styles.css")}">
 ${schema.map((s) => `  <script type="application/ld+json">${JSON.stringify(s)}</script>`).join("\n")}
 </head>
 <body>
@@ -178,7 +185,7 @@ ${header(rel, o.section)}
 ${o.body(rel)}
 </main>
 ${footer(rel, o.data)}
-${scripts.map((s) => `<script src="${rel}${s}"></script>`).join("\n")}
+${scripts.map((s) => `<script src="${rel}${s}?v=${ver(s)}"></script>`).join("\n")}
 </body>
 </html>
 `;

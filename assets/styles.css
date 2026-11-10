@@ -845,3 +845,20 @@ h1, h2 { color: var(--ink); }
   .hero-visual .plan-card header { padding-bottom: 10px; margin-bottom: 6px; }
   .hero h1 { margin-top: 14px; }
 }
+
+/* Desktop hero: compact card so everything fits on laptop screens */
+@media (min-width: 861px) {
+  .hero-grid { align-items: center; }
+  .hero-grid > div:first-child { padding-top: 0; }
+  .hero { padding: 28px 0 44px; }
+  .hero-visual { padding: 34px 0 30px; }
+  .hero-visual .plan-row:nth-of-type(n+7), .hero-visual .plan-note { display: none; }
+  .hero-visual .plan-row { padding: 8px 0; }
+  .hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.3rem); }
+  .hero .lead { font-size: 1.08rem; }
+  .hero-actions { margin: 22px 0 18px; }
+}
+@media (min-width: 861px) and (max-height: 820px) {
+  .hero h1 { font-size: clamp(2rem, 3.6vw, 2.9rem); }
+  .hero-visual .plan-row:nth-of-type(n+6) { display: none; }
+}
